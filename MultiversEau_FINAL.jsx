@@ -6,7 +6,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 
 // ── CONFIGURATION ────────────────────────────────────────────────────────────
-const API_URL    = "https://multiverseau-api.railway.app"; // ← Remplacer après Railway deploy
+const API_URL    = ""; // ← Remplacer après Railway deploy
 const PI_SANDBOX = true; // ← Passer à false pour le mainnet production
 const CODE_INVITATION = "flashman90";
 const FRAIS_RESEAU_PI = 0.010;
@@ -837,8 +837,8 @@ function ClientApp({oracle,stocks,dec,lang,setLang,onBack}){
     setPayStatus("loading");
     const orderId=`MVE-${Date.now().toString(36).toUpperCase()}`;
     window.Pi.createPayment({amount:totalPi,memo:`Multivers'Eau #${orderId}`,metadata:{orderId}},{
-      onReadyForServerApproval:async(paymentId)=>{try{await fetch(`${API_URL}/payments/approve`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({paymentId,orderId})});}catch(e){}},
-      onReadyForServerCompletion:async(paymentId,txId)=>{try{await fetch(`${API_URL}/payments/complete`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({paymentId,txId,orderId})});setPayStatus("success");Object.entries(panier).forEach(([id,qty])=>dec(id,qty));setPanier({});show(t.paiementOk,C.green);}catch(e){setPayStatus(null);}},
+      onReadyForServerApproval:async(paymentId)=>{try{await fetch(`${API_URL}/api/approve`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({paymentId,orderId})});}catch(e){}},
+      onReadyForServerCompletion:async(paymentId,txId)=>{try{await fetch(`${API_URL}/api/complete`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({paymentId,txId,orderId})});setPayStatus("success");Object.entries(panier).forEach(([id,qty])=>dec(id,qty));setPanier({});show(t.paiementOk,C.green);}catch(e){setPayStatus(null);}},
       onCancel:()=>{setPayStatus(null);show(t.paiementErr,C.red);},
       onError:()=>{setPayStatus(null);show(t.paiementErr,C.red);},
     });
