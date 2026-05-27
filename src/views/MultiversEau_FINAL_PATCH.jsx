@@ -2115,7 +2115,10 @@ function AdminRoleSwitcher({role,setRole,lang}){
 }
 
 export default function MultiversEau(){
-  const[role,setRole]=useState(null);
+  const piAuth=usePiAuth();
+  const{user,role:piRole,loading}=piAuth;
+  const[manualRole,setManualRole]=useState(null);
+  const role=piRole||manualRole;
   const[lang,setLang]=useState("fr");
   const[showInscRelais,setShowInscRelais]=useState(false);
   const[showInscLiv,setShowInscLiv]=useState(false);
@@ -2123,13 +2126,12 @@ export default function MultiversEau(){
   const oracle=useOracle();
   const{stocks,update,dec}=useStock(import.meta.env.VITE_GRAND_LOME_ID);
   const{toast,show}=useToast();
-  const piAuth=usePiAuth();
 
   const isAdmin=piAuth.user?.username===CODE_INVITATION;
 
   // ── Détection automatique Super Admin ──────────────────────────────────
   useEffect(()=>{
-    if(isAdmin&&!role) setRole("admin");
+    if(isAdmin&&!role) setManualRole("admin");
   },[isAdmin,role]);
 
   if(piAuth.loading&&typeof window!=="undefined"&&window.Pi){
