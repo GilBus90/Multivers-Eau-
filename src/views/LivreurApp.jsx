@@ -13,11 +13,11 @@ import { supabase } from "../lib/supabase.js";
 import { useOracle, useToast, useStock, usePiAuth } from "../hooks/index.js";
 
 
-function LivreurApp({oracle,lang,setLang,onBack}){
+function LivreurApp({oracle,lang,setLang,onBack,show}){
   const[tab,setTab]=useState("accueil");
   const[actif,setActif]=useState(true);
   const[inscription,setInscription]=useState(false);
-  const{toast,show}=useToast();
+  const{toast}=useToast();
   const t=T[lang];const COL=C.livreur;
 
   const[courses,setCourses]=useState([

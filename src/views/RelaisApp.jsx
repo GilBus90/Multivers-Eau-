@@ -13,7 +13,7 @@ import { supabase } from "../lib/supabase.js";
 import { useOracle, useToast, useStock, usePiAuth } from "../hooks/index.js";
 
 
-function RelaisApp({oracle,stocks,update,lang,setLang,onBack}){
+function RelaisApp({oracle,stocks,update,lang,setLang,onBack,show}){
   const[tab,setTab]=useState("dashboard");
   const[ouvert,setOuvert]=useState(true);
   const[editId,setEditId]=useState(null);
@@ -21,7 +21,7 @@ function RelaisApp({oracle,stocks,update,lang,setLang,onBack}){
   const[regime,setRegime]=useState(null);
   const[showOnboarding,setShowOnboarding]=useState(true);
   const[showCharte,setShowCharte]=useState(false);
-  const{toast,show}=useToast();
+  const{toast}=useToast();
   const t=T[lang];const COL=C.relais;
 
   const[cmds,setCmds]=useState([

@@ -13,13 +13,13 @@ import { supabase } from "../lib/supabase.js";
 import { useOracle, useToast, useStock, usePiAuth } from "../hooks/index.js";
 
 
-function ClientApp({oracle,stocks,dec,lang,setLang,onBack}){
+function ClientApp({oracle,stocks,dec,lang,setLang,onBack,show}){
   const[tab,setTab]=useState("catalogue");
   const[brand,setBrand]=useState("all");
   const[panier,setPanier]=useState({});
   const[payStatus,setPayStatus]=useState(null);
   const[showAcad,setShowAcad]=useState(false);
-  const{toast,show}=useToast();
+  const{toast}=useToast();
   const t=T[lang];const COL=C.client;
 
   const add=(id)=>{if((panier[id]||0)>=(stocks[id]||0))return;setPanier(p=>({...p,[id]:(p[id]||0)+1}));};

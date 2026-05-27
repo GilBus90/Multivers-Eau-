@@ -13,9 +13,9 @@ import { supabase } from "../lib/supabase.js";
 import { useOracle, useToast, useStock, usePiAuth } from "../hooks/index.js";
 
 
-function AdminApp({oracle,lang,setLang,onBack}){
+function AdminApp({oracle,lang,setLang,onBack,show}){
   const[section,setSection]=useState("dashboard");
-  const{toast,show}=useToast();
+  const{toast}=useToast();
   const COL=C.admin;
 
   const CANDIDATS=[
