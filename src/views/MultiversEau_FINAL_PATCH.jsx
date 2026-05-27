@@ -1142,8 +1142,8 @@ function ClientApp({oracle,stocks,dec,lang,setLang,onBack}){
                             <div style={{background:epuise?C.red:faible?C.relais:br.color,height:4,borderRadius:3,width:`${Math.max(0,(rest/Math.max(1,sq))*100)}%`,transition:"width .3s"}}/>
                           </div>
                         </div>
-                        <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,color:br.color,fontSize:16,marginBottom:2}}>{fmt(p.pv)} F</div>
-                        <div style={{fontSize:10,color:C.muted,marginBottom:8}}>≈ π{(p.pv/oracle.rate).toFixed(3)}</div>
+                        <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,color:"#fff",fontSize:18,marginBottom:2}}>π {(p.pv/oracle.rate).toFixed(3)}</div>
+                        <div style={{fontSize:11,color:C.muted,marginBottom:8}}>≈ {fmt(p.pv)} FCFA</div>
                         {epuise?(
                           <div style={{textAlign:"center",padding:"8px",background:C.red+"18",borderRadius:10,fontSize:11,fontWeight:700,color:C.red}}>{t.rupture}</div>
                         ):iq===0?(
@@ -2119,6 +2119,7 @@ export default function MultiversEau(){
   const[lang,setLang]=useState("fr");
   const[showInscRelais,setShowInscRelais]=useState(false);
   const[showInscLiv,setShowInscLiv]=useState(false);
+  const[prevRole,setPrevRole]=useState(null); // navigation retour
   const oracle=useOracle();
   const{stocks,update,dec}=useStock(import.meta.env.VITE_GRAND_LOME_ID);
   const{toast,show}=useToast();
@@ -2136,10 +2137,18 @@ export default function MultiversEau(){
   }
 
   const onBack=()=>{
-    // L'admin revient toujours à AdminApp, pas à la landing
-    setRole(isAdmin?"admin":null);
     setShowInscRelais(false);
     setShowInscLiv(false);
+    if(isAdmin){
+      // Admin: retourne à AdminApp sauf si vient de landing
+      setRole("admin");
+    } else if(prevRole){
+      // Utilisateur normal: retourne au rôle précédent
+      setRole(prevRole);
+      setPrevRole(null);
+    } else {
+      setRole(null); // retour landing
+    }
   };
 
   const PROPS={oracle,stocks,update,dec,lang,setLang,piUser:piAuth.user,isAdmin,onBack};
@@ -2153,7 +2162,7 @@ export default function MultiversEau(){
       <LandingPage onRole={(r)=>{
         if(r==="relais")setShowInscRelais(true);
         else if(r==="livreur")setShowInscLiv(true);
-        else setRole(r);
+        else{setPrevRole(role);setRole(r);}
       }} oracle={oracle} lang={lang} setLang={setLang}/>
     </div>
   );
