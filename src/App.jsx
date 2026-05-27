@@ -65,8 +65,8 @@ export default function MultiversEau() {
 
   const oracle  = useOracle();
   const piAuth  = usePiAuth();
-  const { stocks, update, dec } = useStock();
-  const { toast, show } = useToast();
+  const RELAIS_ID = import.meta.env.VITE_GRAND_LOME_ID;
+  const { stocks, update, dec } = useStock(RELAIS_ID);
 
   const isAdmin = piAuth.user?.username === CODE_INVITATION;
 
