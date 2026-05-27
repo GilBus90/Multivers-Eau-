@@ -10,6 +10,8 @@ import { AppWrap, Toast, OracleBadge, TradingViewChart, Btn, Fld, Photo, BottomN
 
 import { supabase } from "../lib/supabase.js";
 
+import { useOracle, useToast, useStock, usePiAuth } from "../hooks/index.js";
+
 
 function RelaisApp({oracle,stocks,update,lang,setLang,onBack}){
   const[tab,setTab]=useState("dashboard");

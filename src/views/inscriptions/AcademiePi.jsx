@@ -1,14 +1,14 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 
-import { C, GF, GCSS, fmt, fmtPi, useWindowWidth, CODE_INVITATION, FRAIS_RESEAU_PI, PI_SANDBOX, API_URL } from "../../design/theme.js";
+import { C, GF, GCSS, fmt, fmtPi, useWindowWidth, CODE_INVITATION, FRAIS_RESEAU_PI, PI_SANDBOX, API_URL } from "../design/theme.js";
 
-import { CATALOGUE, BRANDS, PLANCHERS, REGIMES, FLOTTE, STOCK_INIT, STOCK_MIN, calcSplit, calcFraisLivraison, ZONE_A_KM } from "../../data/constants.js";
+import { CATALOGUE, BRANDS, PLANCHERS, REGIMES, FLOTTE, STOCK_INIT, STOCK_MIN, calcSplit, calcFraisLivraison, ZONE_A_KM } from "../data/constants.js";
 
-import { T } from "../../data/translations.js";
+import { T } from "../data/translations.js";
 
-import { AppWrap, Toast, OracleBadge, TradingViewChart, Btn, Fld, Photo, BottomNav } from "../../components/index.jsx";
+import { AppWrap, Toast, OracleBadge, TradingViewChart, Btn, Fld, Photo, BottomNav } from "../components/index.jsx";
 
-import { supabase } from "../../lib/supabase.js";
+import { supabase } from "../lib/supabase.js";
 
 
 function AcademiePi({lang="fr",onClose}){

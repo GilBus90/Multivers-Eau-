@@ -10,6 +10,8 @@ import { AppWrap, Toast, OracleBadge, TradingViewChart, Btn, Fld, Photo, BottomN
 
 import { supabase } from "../lib/supabase.js";
 
+import { useOracle, useToast, useStock, usePiAuth } from "../hooks/index.js";
+
 
 function LivreurApp({oracle,lang,setLang,onBack}){
   const[tab,setTab]=useState("accueil");
@@ -173,7 +175,7 @@ function LivreurApp({oracle,lang,setLang,onBack}){
                 <span style={{fontWeight:700,color:COL}}>{fmt(v.tarifA)} F</span>
               </div>
             ))}
-            <div style={{fontSize:11,color:C.muted,marginTop:8}}>Zone B ({">"}15km) : +75 FCFA/km</div>
+            <div style={{fontSize:11,color:C.muted,marginTop:8}}>Zone B (>15km) : +75 FCFA/km</div>
           </div>
         </div>
       )}

@@ -10,6 +10,8 @@ import { AppWrap, Toast, OracleBadge, TradingViewChart, Btn, Fld, Photo, BottomN
 
 import { supabase } from "../lib/supabase.js";
 
+import { useOracle, useToast, useStock, usePiAuth } from "../hooks/index.js";
+
 
 function AdminApp({oracle,lang,setLang,onBack}){
   const[section,setSection]=useState("dashboard");

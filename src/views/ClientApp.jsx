@@ -9,7 +9,8 @@ import { T } from "../data/translations.js";
 import { AppWrap, Toast, OracleBadge, TradingViewChart, Btn, Fld, Photo, BottomNav } from "../components/index.jsx";
 
 import { supabase } from "../lib/supabase.js";
-import { useToast } from "../hooks/index.js";
+
+import { useOracle, useToast, useStock, usePiAuth } from "../hooks/index.js";
 
 
 function ClientApp({oracle,stocks,dec,lang,setLang,onBack}){
@@ -155,8 +156,8 @@ function ClientApp({oracle,stocks,dec,lang,setLang,onBack}){
                             <div style={{background:epuise?C.red:faible?C.relais:br.color,height:4,borderRadius:3,width:`${Math.max(0,(rest/Math.max(1,sq))*100)}%`,transition:"width .3s"}}/>
                           </div>
                         </div>
-                        <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:20,color:"#0088cc"}}>{fmtPi(p.prix/oracle.rate)} π</div>
-                        <div style={{fontSize:10,color:C.muted,marginBottom:8}}>≈ {fmt(p.prix)} F</div>
+                        <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,color:br.color,fontSize:16,marginBottom:2}}>{fmt(p.pv)} F</div>
+                        <div style={{fontSize:10,color:C.muted,marginBottom:8}}>≈ π{(p.pv/oracle.rate).toFixed(3)}</div>
                         {epuise?(
                           <div style={{textAlign:"center",padding:"8px",background:C.red+"18",borderRadius:10,fontSize:11,fontWeight:700,color:C.red}}>{t.rupture}</div>
                         ):iq===0?(
