@@ -2119,6 +2119,7 @@ export default function MultiversEau(){
   const{user,role:piRole,loading}=piAuth;
   const[manualRole,setManualRole]=useState(null);
   const role=piRole||manualRole;
+  const setRole=setManualRole;
   const[lang,setLang]=useState("fr");
   const[showInscRelais,setShowInscRelais]=useState(false);
   const[showInscLiv,setShowInscLiv]=useState(false);
