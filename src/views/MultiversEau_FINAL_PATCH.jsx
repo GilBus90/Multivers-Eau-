@@ -2129,8 +2129,6 @@ export default function MultiversEau(){
   const{stocks,update,dec}=useStock(import.meta.env.VITE_GRAND_LOME_ID);
   const{toast,show}=useToast();
 
-  const isAdmin=piAuth.user?.username===CODE_INVITATION;
-
   // ── Détection automatique Super Admin ──────────────────────────────────
   useEffect(()=>{
     if(isAdmin&&!role) setManualRole("admin");
