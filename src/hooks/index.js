@@ -59,24 +59,27 @@ function useStock(){
 // ─── usePiAuth — SDK Pi Network ──────────────────────────────────────────
 function usePiAuth(){
   const[user,setUser]=useState(null);
-  const[role,setRole]=useState(null);
   const[loading,setLoading]=useState(true);
 
   useEffect(()=>{
     const inPi=typeof window!=="undefined"&&window.Pi;
-    if(!inPi){setUser({username:"demo_user",uid:"demo_uid"});setRole(null);setLoading(false);return;}
+    if(!inPi){
+      setUser({username:"demo_user",uid:"demo_uid"});
+      setLoading(false);
+      return;
+    }
     window.Pi.init({version:"2.0",sandbox:PI_SANDBOX});
     window.Pi.authenticate(["username","payments"],async(inc)=>{
-      try{await fetch(`/api/incomplete`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({paymentId:inc.identifier})});}catch(e){}
-    }).then(async(auth)=>{
+      try{await fetch(`/api/incomplete`,{method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({paymentId:inc.identifier})});
+      }catch(e){}
+    }).then((auth)=>{
       setUser(auth.user);
-      try{
-        const res=await fetch(`/api/role`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({accessToken:auth.accessToken,username:auth.user.username})});
-        const data=await res.json();setRole(data.role||"client");
-      }catch{setRole("client");}
-    }).catch(()=>{setRole("client");}).finally(()=>setLoading(false));
+    }).catch(()=>{}).finally(()=>setLoading(false));
   },[]);
-  return{user,role,loading,setRole};
+
+  return{user,loading};
 }
 
 // ════════════════════════════════════════════════════════════════════════════

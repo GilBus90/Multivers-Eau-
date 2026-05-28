@@ -2118,7 +2118,8 @@ export default function MultiversEau(){
   const piAuth=usePiAuth();
   const{user,role:piRole,loading}=piAuth;
   const[manualRole,setManualRole]=useState(null);
-  const role=piRole||manualRole;
+  const isAdmin=piAuth.user?.username===CODE_INVITATION;
+  const role=isAdmin?"admin":(piRole||manualRole);
   const setRole=setManualRole;
   const[lang,setLang]=useState("fr");
   const[showInscRelais,setShowInscRelais]=useState(false);
