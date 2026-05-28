@@ -1,5 +1,5 @@
 // ════════════════════════════════════════════════════════════════════════════
-// MULTIVERS'EAU — Super-App Pi Network · Distribution Eau Minérale · Togo
+// MULTIVERS'EAU — Super-App de l'écosystème Pi Network spécialisée dans la distribution d'Eau Minérale embouteillée au Togo
 // Version FINALE COMPLÈTE · 4 Rôles · Oracle CoinGecko · TradingView
 // Auteur: GilBus90 · Code invitation Pi: flashman90
 // ════════════════════════════════════════════════════════════════════════════
@@ -217,26 +217,28 @@ function useStock(relaisId){
 // Pi Auth
 function usePiAuth(){
   const[user,setUser]=useState(null);
-  const[role,setRole]=useState(null);
   const[loading,setLoading]=useState(true);
 
   useEffect(()=>{
     const inPi=typeof window!=="undefined"&&window.Pi;
-    if(!inPi){setUser({username:"demo_user",uid:"demo_uid"});setRole(null);setLoading(false);return;}
+    if(!inPi){
+      setUser({username:"demo_user",uid:"demo_uid"});
+      setLoading(false);
+      return;
+    }
     window.Pi.init({version:"2.0",sandbox:PI_SANDBOX});
     window.Pi.authenticate(["username","payments"],async(inc)=>{
-      try{await fetch(`/api/incomplete`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({paymentId:inc.identifier})});}catch(e){}
-    }).then(async(auth)=>{
+      try{await fetch(`/api/incomplete`,{method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({paymentId:inc.identifier})});
+      }catch(e){}
+    }).then((auth)=>{
       setUser(auth.user);
-      try{
-        const res=await fetch(`/api/role`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({accessToken:auth.accessToken,username:auth.user.username})});
-        const data=await res.json();setRole(data.role||"client");
-      }catch{setRole("client");}
-    }).catch(()=>{setRole("client");}).finally(()=>setLoading(false));
+    }).catch(()=>{}).finally(()=>setLoading(false));
   },[]);
-  return{user,role,loading,setRole};
-}
 
+  return{user,loading};
+}
 // ════════════════════════════════════════════════════════════════════════════
 // COMPOSANTS PARTAGÉS
 // ════════════════════════════════════════════════════════════════════════════
