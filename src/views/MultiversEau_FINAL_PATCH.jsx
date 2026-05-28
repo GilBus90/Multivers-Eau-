@@ -1398,7 +1398,7 @@ function LivreurApp({oracle,lang,setLang,onBack}){
                 <span style={{fontWeight:700,color:COL}}>{fmt(v.tarifA)} F</span>
               </div>
             ))}
-            <div style={{fontSize:11,color:C.muted,marginTop:8}}>Zone B (>15km) : +75 FCFA/km</div>
+            <div style={{fontSize:11,color:C.muted,marginTop:8}}>Zone B (&gt;15km) : +75 FCFA/km</div>
           </div>
         </div>
       )}
