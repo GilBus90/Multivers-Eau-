@@ -169,8 +169,9 @@ function useOracle(){
     if(modeManuel)return;
     setStatus("loading");
     try{
-      const r=await fetch("https://api.coingecko.com/api/v3/simple/price?ids=pi-network&vs_currencies=xof",{signal:AbortSignal.timeout(8000)});
-      const d=await r.json();const xof=d?.["pi-network"]?.xof;
+      const r=await fetch("https://api.coingecko.com/api/v3/simple/price?ids=pi-network&vs_currencies=xof,eur,usd",{signal:AbortSignal.timeout(8000)});
+      const d=await r.json();const pi=d?.["pi-network"];
+      const xof=pi?.xof||(pi?.eur?Math.round(pi.eur*655.957):0)||(pi?.usd?Math.round(pi.usd*600):0);
       if(xof>0){setRate(xof);setStatus("live");setTime(new Date());setHistory(h=>[...h.slice(-29),{t:new Date().toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"}),v:xof}]);}
       else throw new Error();
     }catch{setStatus("fallback");}
@@ -558,8 +559,8 @@ function LandingPage({onRole,oracle,lang,setLang}){
         {/* Accroche */}
         <div className="fu" style={{fontSize:14,color:"rgba(255,255,255,0.5)",textAlign:"center",lineHeight:1.75,marginBottom:10,maxWidth:290,animationDelay:".1s"}}>
           {lang==="fr"
-            ?"La première Super-App eau minérale Pi Network du Togo"
-            :"The first Pi Network mineral water Super-App in Togo"}
+            ?"La première Super-App de distribution d'eau minérale embouteillée au Togo dans l'écosystème Pi Network"
+            :"The first bottled mineral water distribution Super-App in Togo within the Pi Network ecosystem"}
         </div>
 
         {/* 3 bullets courts */}
@@ -590,7 +591,7 @@ function LandingPage({onRole,oracle,lang,setLang}){
 
         {/* Académie Pi link */}
         <button onClick={()=>setShowAcad(true)} style={{marginTop:16,background:"transparent",border:"none",color:"rgba(255,255,255,0.3)",fontSize:12,cursor:"pointer",padding:"4px 0"}}>
-          🎓 {lang==="fr"?"C'est quoi Pi Network ?":"What is Pi Network?"} · <span style={{color:C.admin}}>flashman90</span>
+          🎓 {lang==="fr"?"C'est quoi Pi Network ?":"What is Pi Network?"} · <span style={{color:C.admin}}></span>
         </button>
 
         {/* Admin Easter egg révélé */}
