@@ -591,7 +591,7 @@ function LandingPage({onRole,oracle,lang,setLang, defaultStep="splash"}){
 
         {/* Académie Pi link */}
         <button onClick={()=>setShowAcad(true)} style={{marginTop:16,background:"transparent",border:"none",color:"rgba(255,255,255,0.3)",fontSize:12,cursor:"pointer",padding:"4px 0"}}>
-          🎓 {lang==="fr"?"C'est quoi Pi Network ?":"What is Pi Network?"}
+          🎓 {lang==="fr"?"C'est quoi Pi Network ?":"What is Pi Network?"} 
         </button>
 
         {/* Admin Easter egg révélé */}
