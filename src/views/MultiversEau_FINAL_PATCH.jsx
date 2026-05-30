@@ -462,8 +462,8 @@ function AcademiePi({lang="fr",onClose}){
 // SMART ONBOARDING — Flow conversationnel · Admin complètement caché
 // Splash → Intention (3 choix) · Easter egg 7× tap → accès admin
 // ════════════════════════════════════════════════════════════════════════════
-function LandingPage({onRole,oracle,lang,setLang}){
-  const[step,setStep]=useState("splash"); // "splash" | "intention"
+function LandingPage({onRole,oracle,lang,setLang, defaultStep="splash"}){
+  const[step,setStep]=useState(defaultStep); // "splash" | "intention"
   const[showAcad,setShowAcad]=useState(false);
   const[tapCount,setTapCount]=useState(0);         // Easter egg admin
   const[adminVisible,setAdminVisible]=useState(false);
@@ -2128,6 +2128,7 @@ export default function MultiversEau(){
   const[showInscRelais,setShowInscRelais]=useState(false);
   const[showInscLiv,setShowInscLiv]=useState(false);
   const[prevRole,setPrevRole]=useState(null); // navigation retour
+  const[landingStep,setLandingStep]=useState("splash");
   const oracle=useOracle();
   const{stocks,update,dec}=useStock(import.meta.env.VITE_GRAND_LOME_ID);
   const{toast,show}=useToast();
@@ -2142,6 +2143,7 @@ export default function MultiversEau(){
   }
 
   const onBack=()=>{
+    setLandingStep("intention");
     setShowInscRelais(false);
     setShowInscLiv(false);
     if(isAdmin){
@@ -2164,7 +2166,8 @@ export default function MultiversEau(){
   if(!role)return(
     <div>
       <Toast data={toast}/>
-      <LandingPage onRole={(r)=>{
+      <LandingPage defaultStep={landingStep} onRole={(r)=>{
+        setLandingStep ("splash");
         if(r==="relais")setShowInscRelais(true);
         else if(r==="livreur")setShowInscLiv(true);
         else{setPrevRole(role);setRole(r);}
