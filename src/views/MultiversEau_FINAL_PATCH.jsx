@@ -250,7 +250,7 @@ const AppWrap=({children,mw=460})=>(
 );
 
 const Toast=({data})=>!data?null:(
-  <div style={{position:"fixed",bottom:90,left:"50%",transform:"translateX(-50%)",zIndex:9999,background:data.color,color:"#fff",borderRadius:16,padding:"13px 22px",fontWeight:700,fontSize:13,animation:"toastIn .3s ease",whiteSpace:"nowrap",maxWidth:"90vw",textAlign:"center",boxShadow:`0 8px 24px ${data.color}55`}}>
+  <div style={{position:"fixed",bottom:90,left:"50%",transform:"translateX(-50%)",zIndex:9999,background:data.color,color:"#0C1A2E",borderRadius:16,padding:"13px 22px",fontWeight:700,fontSize:13,animation:"toastIn .3s ease",whiteSpace:"nowrap",maxWidth:"90vw",textAlign:"center",boxShadow:`0 8px 24px ${data.color}55`}}>
     {data.msg}
   </div>
 );
@@ -263,7 +263,7 @@ function OracleBadge({oracle,lang,compact}){
       <div style={{width:7,height:7,borderRadius:"50%",background:col,boxShadow:`0 0 6px ${col}`,animation:oracle.status==="live"?"pulse 2s infinite":"none"}}/>
       <div>
         {!compact&&<div style={{fontSize:8,color:col,fontWeight:800,letterSpacing:1}}>{oracle.modeManuel?"TAUX FIXE":oracle.status==="live"?"ORACLE LIVE":"FALLBACK"}</div>}
-        <div style={{fontFamily:"'Poppins',sans-serif",fontSize:compact?12:15,fontWeight:900,color:"#fff"}}>1π = {fmt(oracle.rate)} F</div>
+        <div style={{fontFamily:"'Poppins',sans-serif",fontSize:compact?12:15,fontWeight:900,color:"#0C1A2E"}}>1π = {fmt(oracle.rate)} F</div>
       </div>
     </div>
   );
@@ -303,7 +303,7 @@ function Btn({children,onClick,color=C.client,disabled,size="md",variant="solid"
       width:full?"100%":"auto",padding:p,border:"none",borderRadius:14,cursor:disabled?"not-allowed":"pointer",
       fontFamily:"'Poppins',sans-serif",fontWeight:800,fontSize:fs,letterSpacing:.3,transition:"all .15s",
       background:disabled?C.border:variant==="outline"?`${color}18`:`linear-gradient(135deg,${color}CC,${color})`,
-      color:disabled?C.muted:variant==="outline"?color:"#fff",
+      color:disabled?C.muted:variant==="outline"?color:"#0C1A2E",
       border:variant==="outline"?`1.5px solid ${color}44`:"none",
       boxShadow:disabled||variant==="outline"?"none":`0 5px 18px ${color}33`,
     }}>{children}</button>
@@ -347,7 +347,7 @@ function BottomNav({tabs,active,onSelect,color}){
     <div style={{position:"fixed",bottom:0,left:"50%",transform:"translateX(-50%)",width:"100%",maxWidth:460,background:C.surf,borderTop:`1px solid ${C.border}`,display:"flex",zIndex:500,paddingBottom:"env(safe-area-inset-bottom)"}}>
       {tabs.map(t=>(
         <button key={t.id} onClick={()=>onSelect(t.id)} style={{flex:1,padding:"11px 0 9px",background:"transparent",border:"none",cursor:"pointer",display:"flex",flexDirection:"column",alignItems:"center",gap:3,position:"relative"}}>
-          {(t.badge||0)>0&&<div style={{position:"absolute",top:5,right:"calc(50% - 16px)",background:C.red,color:"#fff",borderRadius:"50%",width:15,height:15,display:"flex",alignItems:"center",justifyContent:"center",fontSize:8,fontWeight:900}}>{t.badge}</div>}
+          {(t.badge||0)>0&&<div style={{position:"absolute",top:5,right:"calc(50% - 16px)",background:C.red,color:"#0C1A2E",borderRadius:"50%",width:15,height:15,display:"flex",alignItems:"center",justifyContent:"center",fontSize:8,fontWeight:900}}>{t.badge}</div>}
           <span style={{fontSize:20}}>{t.icon}</span>
           <span style={{fontSize:9,fontWeight:active===t.id?800:500,color:active===t.id?color:C.muted}}>{t.label}</span>
           {active===t.id&&<div style={{position:"absolute",top:0,left:"50%",transform:"translateX(-50%)",width:28,height:2.5,background:color,borderRadius:2}}/>}
@@ -371,7 +371,7 @@ function CharteQualite({type="livreur",lang="fr",onAccept}){
     <div style={{fontFamily:"'Inter',sans-serif",background:C.bg,minHeight:"100vh",maxWidth:460,margin:"0 auto"}}>
       <div style={{background:"linear-gradient(135deg,#001A5E,#003DA8)",padding:"28px 20px 24px",textAlign:"center"}}>
         <div style={{fontSize:48,marginBottom:12}}>📜</div>
-        <div style={{fontFamily:"'Poppins',sans-serif",fontSize:22,fontWeight:900,color:"#fff"}}>Charte Qualité</div>
+        <div style={{fontFamily:"'Poppins',sans-serif",fontSize:22,fontWeight:900,color:"#0C1A2E"}}>Charte Qualité</div>
         <div style={{fontSize:13,color:"rgba(255,255,255,.7)",marginTop:4}}>Multivers'Eau — {type==="livreur"?lang==="fr"?"Charte du Livreur":"Delivery Driver Charter":lang==="fr"?"Charte du Relais":"Relay Charter"}</div>
       </div>
       <div style={{padding:"24px 18px"}}>
@@ -388,7 +388,7 @@ function CharteQualite({type="livreur",lang="fr",onAccept}){
           </div>
         ))}
         <div onClick={()=>setOk(o=>!o)} style={{display:"flex",alignItems:"center",gap:14,padding:"16px",margin:"20px 0",background:ok?C.green+"15":C.card,borderRadius:14,border:`2px solid ${ok?C.green:C.border}`,cursor:"pointer",transition:"all .2s"}}>
-          <div style={{width:28,height:28,borderRadius:8,flexShrink:0,background:ok?C.green:C.border,display:"flex",alignItems:"center",justifyContent:"center",color:"#fff",fontWeight:900,fontSize:16}}>{ok?"✓":""}</div>
+          <div style={{width:28,height:28,borderRadius:8,flexShrink:0,background:ok?C.green:C.border,display:"flex",alignItems:"center",justifyContent:"center",color:"#0C1A2E",fontWeight:900,fontSize:16}}>{ok?"✓":""}</div>
           <div style={{fontSize:13,fontWeight:600,color:C.text,lineHeight:1.5}}>
             {lang==="fr"?"Je m'engage à respecter intégralement la Charte Qualité Multivers'Eau et à agir en ambassadeur de l'écosystème Pi Network au Togo.":"I commit to fully respecting the Multivers'Eau Quality Charter and to act as an ambassador of the Pi Network ecosystem in Togo."}
           </div>
@@ -449,7 +449,7 @@ function AcademiePi({lang="fr",onClose}){
           {e>0&&<button onClick={()=>setE(x=>x-1)} style={{flex:1,padding:13,background:C.card2,border:`1px solid ${C.border}`,borderRadius:12,color:C.sub,fontWeight:600,cursor:"pointer"}}>{lang==="fr"?"← Préc.":"← Prev."}</button>}
           {e<STEPS.length-1
             ?<button onClick={()=>setE(x=>x+1)} style={{flex:2,padding:13,background:C.gadmin,border:"none",borderRadius:12,color:C.bg,fontWeight:900,fontSize:14,cursor:"pointer",fontFamily:"'Poppins',sans-serif"}}>{lang==="fr"?"Suivant →":"Next →"}</button>
-            :<button onClick={onClose} style={{flex:2,padding:13,background:`linear-gradient(135deg,${C.green}CC,${C.green})`,border:"none",borderRadius:12,color:"#fff",fontWeight:900,fontSize:14,cursor:"pointer",fontFamily:"'Poppins',sans-serif"}}>✅ {lang==="fr"?"Commencer":"Start"}</button>}
+            :<button onClick={onClose} style={{flex:2,padding:13,background:`linear-gradient(135deg,${C.green}CC,${C.green})`,border:"none",borderRadius:12,color:"#0C1A2E",fontWeight:900,fontSize:14,cursor:"pointer",fontFamily:"'Poppins',sans-serif"}}>✅ {lang==="fr"?"Commencer":"Start"}</button>}
         </div>
         <div style={{textAlign:"center",fontSize:11,color:C.muted,marginTop:10}}>{e+1} / {STEPS.length}</div>
       </div>
@@ -542,7 +542,7 @@ function LandingPage({onRole,oracle,lang,setLang, defaultStep="splash"}){
         ))}
 
         {/* Lang toggle */}
-        <button onClick={()=>setLang(l=>l==="fr"?"en":"fr")} style={{position:"absolute",top:20,right:20,background:"rgba(255,255,255,.1)",border:"1px solid rgba(255,255,255,.2)",borderRadius:20,padding:"5px 14px",color:"#fff",fontSize:12,fontWeight:700,cursor:"pointer"}}>
+        <button onClick={()=>setLang(l=>l==="fr"?"en":"fr")} style={{position:"absolute",top:20,right:20,background:"rgba(255,255,255,.1)",border:"1px solid rgba(255,255,255,.2)",borderRadius:20,padding:"5px 14px",color:"#0C1A2E",fontSize:12,fontWeight:700,cursor:"pointer"}}>
           {lang==="fr"?"🇬🇧 EN":"🇫🇷 FR"}
         </button>
 
@@ -579,13 +579,13 @@ function LandingPage({onRole,oracle,lang,setLang, defaultStep="splash"}){
         <div className="fu" style={{marginBottom:36,animationDelay:".22s"}}>
           <div style={{display:"flex",alignItems:"center",gap:8,background:"rgba(255,255,255,0.06)",borderRadius:24,padding:"8px 18px",border:"1px solid rgba(0,102,255,0.25)"}}>
             <div style={{width:7,height:7,borderRadius:"50%",background:oracle.status==="live"?"#22C55E":"#F59E0B",boxShadow:`0 0 6px ${oracle.status==="live"?"#22C55E":"#F59E0B"}`,animation:"pulse 2s infinite"}}/>
-            <span style={{fontSize:14,fontWeight:800,color:"#fff"}}>1π = {fmt(oracle.rate)} FCFA</span>
+            <span style={{fontSize:14,fontWeight:800,color:"#0C1A2E"}}>1π = {fmt(oracle.rate)} FCFA</span>
             <span style={{fontSize:9,color:"rgba(255,255,255,0.35)"}}>CoinGecko</span>
           </div>
         </div>
 
         {/* CTA principal */}
-        <button onClick={()=>setStep("intention")} className="fu" style={{width:"100%",maxWidth:320,padding:"18px 0",background:"linear-gradient(135deg,#0044CC,#0066FF)",border:"none",borderRadius:18,color:"#fff",fontFamily:"'Poppins',sans-serif",fontWeight:900,fontSize:17,cursor:"pointer",boxShadow:"0 8px 32px rgba(0,102,255,0.45)",animationDelay:".28s"}}>
+        <button onClick={()=>setStep("intention")} className="fu" style={{width:"100%",maxWidth:320,padding:"18px 0",background:"linear-gradient(135deg,#0044CC,#0066FF)",border:"none",borderRadius:18,color:"#0C1A2E",fontFamily:"'Poppins',sans-serif",fontWeight:900,fontSize:17,cursor:"pointer",boxShadow:"0 8px 32px rgba(0,102,255,0.45)",animationDelay:".28s"}}>
           {lang==="fr"?"Découvrir l'app →":"Discover the app →"}
         </button>
 
@@ -613,11 +613,11 @@ function LandingPage({onRole,oracle,lang,setLang, defaultStep="splash"}){
         {/* Header */}
         <div style={{background:"linear-gradient(160deg,#001040,#020818)",padding:"32px 22px 22px",textAlign:"center",position:"relative"}}>
           <button onClick={()=>setStep("splash")} style={{position:"absolute",top:18,left:16,background:"rgba(255,255,255,.08)",border:"none",borderRadius:10,padding:"6px 12px",color:"rgba(255,255,255,.5)",fontSize:11,cursor:"pointer"}}>← {lang==="fr"?"Retour":"Back"}</button>
-          <button onClick={()=>setLang(l=>l==="fr"?"en":"fr")} style={{position:"absolute",top:18,right:16,background:"rgba(255,255,255,.1)",border:"1px solid rgba(255,255,255,.2)",borderRadius:20,padding:"5px 14px",color:"#fff",fontSize:11,fontWeight:700,cursor:"pointer"}}>
+          <button onClick={()=>setLang(l=>l==="fr"?"en":"fr")} style={{position:"absolute",top:18,right:16,background:"rgba(255,255,255,.1)",border:"1px solid rgba(255,255,255,.2)",borderRadius:20,padding:"5px 14px",color:"#0C1A2E",fontSize:11,fontWeight:700,cursor:"pointer"}}>
             {lang==="fr"?"🇬🇧 EN":"🇫🇷 FR"}
           </button>
           <div style={{fontSize:30,marginBottom:10}}>💧</div>
-          <div style={{fontFamily:"'Poppins',sans-serif",fontSize:22,fontWeight:900,color:"#fff",marginBottom:6}}>
+          <div style={{fontFamily:"'Poppins',sans-serif",fontSize:22,fontWeight:900,color:"#0C1A2E",marginBottom:6}}>
             {lang==="fr"?"Que souhaitez-vous faire ?":"What would you like to do?"}
           </div>
           <div style={{fontSize:13,color:"rgba(255,255,255,0.4)",lineHeight:1.6,maxWidth:300,margin:"0 auto"}}>
@@ -634,7 +634,7 @@ function LandingPage({onRole,oracle,lang,setLang, defaultStep="splash"}){
               onClick={()=>onRole(c.id)}>
               <div style={{background:c.gradient,border:`1.5px solid ${c.border}`,borderRadius:22,padding:"22px 20px",cursor:"pointer",boxShadow:`0 8px 32px ${c.glow}`}}>
                 <div style={{fontSize:36,marginBottom:10}}>{c.icon}</div>
-                <div style={{fontFamily:"'Poppins',sans-serif",fontSize:19,fontWeight:900,color:"#fff",marginBottom:8}}>
+                <div style={{fontFamily:"'Poppins',sans-serif",fontSize:19,fontWeight:900,color:"#0C1A2E",marginBottom:8}}>
                   {lang==="fr"?c.fr:c.en}
                 </div>
                 <div style={{fontSize:13,color:"rgba(255,255,255,0.55)",lineHeight:1.65,marginBottom:14}}>
@@ -713,7 +713,7 @@ function InscriptionRelais({lang,onSubmit,onBack}){
             <div style={{fontFamily:"'Poppins',sans-serif",fontSize:19,fontWeight:900}}>🏪 {lang==="fr"?"Inscription Relais":"Relay Registration"}</div>
             <div style={{fontSize:11,color:C.sub}}>{lang==="fr"?"Formulaire standard Multivers'Eau":"Standard Multivers'Eau form"}</div>
           </div>
-          <button onClick={onBack} style={{background:"rgba(255,255,255,.08)",border:"none",borderRadius:8,padding:"6px 12px",color:"#fff",fontSize:11,cursor:"pointer"}}>{t.retour}</button>
+          <button onClick={onBack} style={{background:"rgba(255,255,255,.08)",border:"none",borderRadius:8,padding:"6px 12px",color:"#0C1A2E",fontSize:11,cursor:"pointer"}}>{t.retour}</button>
         </div>
         <div style={{display:"flex",gap:6,flexWrap:"wrap",marginBottom:10}}>
           {STEPS.map((s,i)=>(
@@ -880,7 +880,7 @@ function InscriptionLivreur({lang,onSubmit,onBack}){
             <div style={{fontFamily:"'Poppins',sans-serif",fontSize:19,fontWeight:900}}>🏍️ {lang==="fr"?"Inscription Livreur":"Driver Registration"}</div>
             <div style={{fontSize:11,color:C.sub}}>{lang==="fr"?"Formulaire standard — Toutes bulles":"Standard form — All bubbles"}</div>
           </div>
-          <button onClick={onBack} style={{background:"rgba(255,255,255,.08)",border:"none",borderRadius:8,padding:"6px 12px",color:"#fff",fontSize:11,cursor:"pointer"}}>{t.retour}</button>
+          <button onClick={onBack} style={{background:"rgba(255,255,255,.08)",border:"none",borderRadius:8,padding:"6px 12px",color:"#0C1A2E",fontSize:11,cursor:"pointer"}}>{t.retour}</button>
         </div>
         <div style={{display:"flex",gap:6,flexWrap:"wrap",marginBottom:10}}>
           {STEPS.map((s,i)=>(
@@ -981,7 +981,7 @@ function InscriptionLivreur({lang,onSubmit,onBack}){
               <div style={{padding:"10px 14px",borderRadius:12,background:C.green+"15",border:`1px solid ${C.green}33`,marginBottom:12,fontSize:13,color:C.green,fontWeight:700}}>✅ {lang==="fr"?"Charte Qualité signée":"Quality Charter signed"}</div>
             )}
             <div onClick={()=>upd("accepte",!form.accepte)} style={{display:"flex",alignItems:"flex-start",gap:12,padding:"14px 16px",borderRadius:14,cursor:"pointer",background:form.accepte?C.livreur+"15":C.card,border:`1.5px solid ${form.accepte?C.livreur:C.border}`,marginBottom:12}}>
-              <div style={{width:24,height:24,borderRadius:7,flexShrink:0,background:form.accepte?C.livreur:C.border,display:"flex",alignItems:"center",justifyContent:"center",color:"#fff",fontWeight:900,fontSize:14}}>{form.accepte?"✓":""}</div>
+              <div style={{width:24,height:24,borderRadius:7,flexShrink:0,background:form.accepte?C.livreur:C.border,display:"flex",alignItems:"center",justifyContent:"center",color:"#0C1A2E",fontWeight:900,fontSize:14}}>{form.accepte?"✓":""}</div>
               <div style={{fontSize:13,color:C.sub,lineHeight:1.5}}>{lang==="fr"?"J'accepte les conditions Multivers'Eau et je m'engage à protéger les produits et respecter les prix.":"I accept Multivers'Eau terms and commit to protecting products and respecting prices."}</div>
             </div>
           </div>
@@ -1094,20 +1094,19 @@ function ClientApp({oracle,stocks,dec,lang,setLang,onBack}){
           </div>
           <div style={{display:"flex",gap:8,alignItems:"center"}}>
             <OracleBadge oracle={oracle} lang={lang} compact/>
-            <button onClick={()=>setLang(l=>l==="fr"?"en":"fr")} style={{background:"rgba(255,255,255,.1)",border:"1px solid rgba(255,255,255,.2)",borderRadius:16,padding:"5px 10px",color:"#fff",fontSize:11,fontWeight:700,cursor:"pointer"}}>{t.lang}</button>
-            <button onClick={onBack} style={{background:"rgba(255,255,255,.08)",border:"none",borderRadius:8,padding:"5px 10px",color:"#fff",fontSize:11,cursor:"pointer"}}>{t.retour}</button>
+            <button onClick={()=>setLang(l=>l==="fr"?"en":"fr")} style={{background:"rgba(255,255,255,.1)",border:"1px solid rgba(255,255,255,.2)",borderRadius:16,padding:"5px 10px",color:"#0C1A2E",fontSize:11,fontWeight:700,cursor:"pointer"}}>{t.lang}</button>
+            <button onClick={onBack} style={{background:"rgba(255,255,255,.08)",border:"none",borderRadius:8,padding:"5px 10px",color:"#0C1A2E",fontSize:11,cursor:"pointer"}}>{t.retour}</button>
           </div>
         </div>
         {/* Académie Pi */}
         <div onClick={()=>setShowAcad(true)} style={{display:"flex",alignItems:"center",gap:8,padding:"7px 12px",borderRadius:12,cursor:"pointer",background:"rgba(0,212,255,.08)",border:"1px solid rgba(0,212,255,.2)",marginBottom:10}}>
           <span style={{fontSize:16}}>🎓</span>
           <span style={{fontSize:12,color:"rgba(255,255,255,.8)",fontWeight:600}}>{lang==="fr"?"C'est quoi Pi ? Académie Pi":"What is Pi? Pi Academy"}</span>
-          <strong style={{marginLeft:"auto",color:C.admin,fontSize:12}}>{CODE_INVITATION}</strong>
         </div>
         {/* Filtres */}
         <div style={{display:"flex",gap:6,overflowX:"auto",scrollbarWidth:"none"}}>
           {[{k:"all",label:lang==="fr"?"Tous":"All",col:COL},...Object.entries(BRANDS).map(([k,b])=>({k,label:`${b.emoji} ${b.label}`,col:b.color}))].map(f=>(
-            <button key={f.k} onClick={()=>setBrand(f.k)} style={{padding:"5px 13px",borderRadius:20,border:"none",cursor:"pointer",flexShrink:0,background:brand===f.k?f.col:"rgba(255,255,255,.08)",color:"#fff",fontWeight:brand===f.k?800:400,fontSize:12}}>{f.label}</button>
+            <button key={f.k} onClick={()=>setBrand(f.k)} style={{padding:"5px 13px",borderRadius:20,border:"none",cursor:"pointer",flexShrink:0,background:brand===f.k?f.col:"rgba(255,255,255,.08)",color:"#0C1A2E",fontWeight:brand===f.k?800:400,fontSize:12}}>{f.label}</button>
           ))}
         </div>
       </div>
@@ -1129,7 +1128,7 @@ function ClientApp({oracle,stocks,dec,lang,setLang,onBack}){
                     const epuise=rest<=0,faible=sq>0&&sq<=STOCK_MIN[p.id];
                     return(
                       <div key={p.id} style={{background:C.card,borderRadius:16,padding:13,border:`1.5px solid ${iq>0?br.color:C.border}`,opacity:epuise?.55:1,position:"relative",boxShadow:iq>0?`0 4px 16px ${br.color}22`:"none"}}>
-                        {iq>0&&<div style={{position:"absolute",top:-9,right:-9,background:br.color,color:"#fff",borderRadius:"50%",width:22,height:22,display:"flex",alignItems:"center",justifyContent:"center",fontSize:11,fontWeight:900}}>{iq}</div>}
+                        {iq>0&&<div style={{position:"absolute",top:-9,right:-9,background:br.color,color:"#0C1A2E",borderRadius:"50%",width:22,height:22,display:"flex",alignItems:"center",justifyContent:"center",fontSize:11,fontWeight:900}}>{iq}</div>}
                         <div style={{width:40,height:40,borderRadius:10,background:br.light,display:"flex",alignItems:"center",justifyContent:"center",fontSize:20,marginBottom:8}}>{p.icon}</div>
                         <div style={{fontFamily:"'Poppins',sans-serif",fontWeight:800,fontSize:13,marginBottom:1}}>{lang==="fr"?p.nFr:p.nEn}</div>
                         <div style={{fontSize:11,color:C.muted,marginBottom:2}}>{p.d}</div>
@@ -1143,17 +1142,17 @@ function ClientApp({oracle,stocks,dec,lang,setLang,onBack}){
                             <div style={{background:epuise?C.red:faible?C.relais:br.color,height:4,borderRadius:3,width:`${Math.max(0,(rest/Math.max(1,sq))*100)}%`,transition:"width .3s"}}/>
                           </div>
                         </div>
-                        <div style={{fontFamily:"'Poppins',sans-serif",fontWeight:900,color:"#fff",fontSize:18,marginBottom:2}}>π {(p.pv/oracle.rate).toFixed(3)}</div>
+                        <div style={{fontFamily:"'Poppins',sans-serif",fontWeight:900,color:"#0C1A2E",fontSize:18,marginBottom:2}}>π {(p.pv/oracle.rate).toFixed(3)}</div>
                         <div style={{fontSize:11,color:C.muted,marginBottom:8}}>≈ {fmt(p.pv)} FCFA</div>
                         {epuise?(
                           <div style={{textAlign:"center",padding:"8px",background:C.red+"18",borderRadius:10,fontSize:11,fontWeight:700,color:C.red}}>{t.rupture}</div>
                         ):iq===0?(
-                          <button onClick={()=>add(p.id)} style={{width:"100%",padding:"9px",background:`linear-gradient(135deg,${br.color}CC,${br.color})`,border:"none",borderRadius:10,color:"#fff",fontWeight:800,fontSize:12,cursor:"pointer",fontFamily:"'Poppins',sans-serif"}}>{t.ajouter}</button>
+                          <button onClick={()=>add(p.id)} style={{width:"100%",padding:"9px",background:`linear-gradient(135deg,${br.color}CC,${br.color})`,border:"none",borderRadius:10,color:"#0C1A2E",fontWeight:800,fontSize:12,cursor:"pointer",fontFamily:"'Poppins',sans-serif"}}>{t.ajouter}</button>
                         ):(
                           <div style={{display:"flex",alignItems:"center",gap:8}}>
                             <button onClick={()=>rem(p.id)} style={{width:30,height:30,borderRadius:"50%",background:C.card2,border:"none",fontWeight:900,fontSize:16,cursor:"pointer",color:C.text}}>−</button>
                             <span style={{flex:1,textAlign:"center",fontFamily:"'Poppins',sans-serif",fontWeight:900,fontSize:16,color:br.color}}>{iq}</span>
-                            <button onClick={()=>add(p.id)} style={{width:30,height:30,borderRadius:"50%",background:br.color,border:"none",fontWeight:900,fontSize:16,cursor:"pointer",color:"#fff"}}>+</button>
+                            <button onClick={()=>add(p.id)} style={{width:30,height:30,borderRadius:"50%",background:br.color,border:"none",fontWeight:900,fontSize:16,cursor:"pointer",color:"#0C1A2E"}}>+</button>
                           </div>
                         )}
                       </div>
@@ -1173,7 +1172,7 @@ function ClientApp({oracle,stocks,dec,lang,setLang,onBack}){
             <div style={{textAlign:"center",padding:"60px 0",color:C.muted}}>
               <div style={{fontSize:52,marginBottom:12}}>🛒</div>
               <div style={{fontSize:15,fontWeight:700}}>{lang==="fr"?"Votre panier est vide":"Your cart is empty"}</div>
-              <button onClick={()=>setTab("catalogue")} style={{marginTop:14,padding:"10px 24px",background:COL,border:"none",borderRadius:12,color:"#fff",fontWeight:700,cursor:"pointer",fontSize:13,fontFamily:"'Poppins',sans-serif"}}>{lang==="fr"?"Voir le catalogue":"View catalogue"}</button>
+              <button onClick={()=>setTab("catalogue")} style={{marginTop:14,padding:"10px 24px",background:COL,border:"none",borderRadius:12,color:"#0C1A2E",fontWeight:700,cursor:"pointer",fontSize:13,fontFamily:"'Poppins',sans-serif"}}>{lang==="fr"?"Voir le catalogue":"View catalogue"}</button>
             </div>
           ):(
             <>
@@ -1190,7 +1189,7 @@ function ClientApp({oracle,stocks,dec,lang,setLang,onBack}){
                     <div style={{display:"flex",alignItems:"center",gap:6}}>
                       <button onClick={()=>rem(id)} style={{width:27,height:27,borderRadius:"50%",background:C.card2,border:"none",cursor:"pointer",fontWeight:800,fontSize:14,color:C.text}}>−</button>
                       <span style={{fontWeight:800,minWidth:16,textAlign:"center"}}>{qty}</span>
-                      <button onClick={()=>add(id)} style={{width:27,height:27,borderRadius:"50%",background:br.color,border:"none",cursor:"pointer",fontWeight:800,fontSize:14,color:"#fff"}}>+</button>
+                      <button onClick={()=>add(id)} style={{width:27,height:27,borderRadius:"50%",background:br.color,border:"none",cursor:"pointer",fontWeight:800,fontSize:14,color:"#0C1A2E"}}>+</button>
                     </div>
                   </div>
                 );
@@ -1277,8 +1276,8 @@ function LivreurApp({oracle,lang,setLang,onBack}){
               <div style={{width:7,height:7,borderRadius:"50%",background:actif?C.green:C.red,animation:actif?"pulse 2s infinite":"none"}}/>
               <span style={{fontSize:10,fontWeight:700,color:actif?C.green:C.red}}>{actif?(lang==="fr"?"Actif":"Active"):(lang==="fr"?"Hors ligne":"Offline")}</span>
             </div>
-            <button onClick={()=>setLang(l=>l==="fr"?"en":"fr")} style={{background:"rgba(255,255,255,.1)",border:"none",borderRadius:16,padding:"4px 10px",color:"#fff",fontSize:10,fontWeight:700,cursor:"pointer"}}>{t.lang}</button>
-            <button onClick={onBack} style={{background:"rgba(255,255,255,.08)",border:"none",borderRadius:8,padding:"5px 10px",color:"#fff",fontSize:11,cursor:"pointer"}}>{t.retour}</button>
+            <button onClick={()=>setLang(l=>l==="fr"?"en":"fr")} style={{background:"rgba(255,255,255,.1)",border:"none",borderRadius:16,padding:"4px 10px",color:"#0C1A2E",fontSize:10,fontWeight:700,cursor:"pointer"}}>{t.lang}</button>
+            <button onClick={onBack} style={{background:"rgba(255,255,255,.08)",border:"none",borderRadius:8,padding:"5px 10px",color:"#0C1A2E",fontSize:11,cursor:"pointer"}}>{t.retour}</button>
           </div>
         </div>
       </div>
@@ -1313,7 +1312,7 @@ function LivreurApp({oracle,lang,setLang,onBack}){
                 </div>
                 <div style={{display:"flex",gap:10}}>
                   <button onClick={()=>window.open(`https://maps.google.com/?q=${encodeURIComponent(enCours.adresse)}`,"_blank")} style={{flex:1,padding:"11px",background:"#003A5C",border:`1px solid ${C.admin}33`,borderRadius:10,color:C.admin,fontWeight:700,cursor:"pointer",fontSize:12}}>🗺️ Maps</button>
-                  <button onClick={()=>livrer(enCours.id)} style={{flex:2,padding:"11px",background:C.green,border:"none",borderRadius:10,color:"#fff",fontWeight:800,cursor:"pointer",fontSize:13,fontFamily:"'Poppins',sans-serif"}}>{t.confirmerLiv}</button>
+                  <button onClick={()=>livrer(enCours.id)} style={{flex:2,padding:"11px",background:C.green,border:"none",borderRadius:10,color:"#0C1A2E",fontWeight:800,cursor:"pointer",fontSize:13,fontFamily:"'Poppins',sans-serif"}}>{t.confirmerLiv}</button>
                 </div>
               </div>
             </div>
@@ -1501,8 +1500,8 @@ function RelaisApp({oracle,stocks,update,lang,setLang,onBack}){
               <div style={{width:7,height:7,borderRadius:"50%",background:ouvert?C.green:C.red,animation:ouvert?"pulse 2s infinite":"none"}}/>
               <span style={{fontSize:10,fontWeight:700,color:ouvert?C.green:C.red}}>{ouvert?(lang==="fr"?"Ouvert":"Open"):(lang==="fr"?"Fermé":"Closed")}</span>
             </div>
-            <button onClick={()=>setLang(l=>l==="fr"?"en":"fr")} style={{background:"rgba(255,255,255,.1)",border:"none",borderRadius:16,padding:"4px 10px",color:"#fff",fontSize:10,fontWeight:700,cursor:"pointer"}}>{t.lang}</button>
-            <button onClick={onBack} style={{background:"rgba(255,255,255,.08)",border:"none",borderRadius:8,padding:"5px 10px",color:"#fff",fontSize:11,cursor:"pointer"}}>{t.retour}</button>
+            <button onClick={()=>setLang(l=>l==="fr"?"en":"fr")} style={{background:"rgba(255,255,255,.1)",border:"none",borderRadius:16,padding:"4px 10px",color:"#0C1A2E",fontSize:10,fontWeight:700,cursor:"pointer"}}>{t.lang}</button>
+            <button onClick={onBack} style={{background:"rgba(255,255,255,.08)",border:"none",borderRadius:8,padding:"5px 10px",color:"#0C1A2E",fontSize:11,cursor:"pointer"}}>{t.retour}</button>
           </div>
         </div>
       </div>
@@ -1782,7 +1781,7 @@ function AdminApp({oracle,lang,setLang,onBack}){
           {NAV.map(n=>(
             <button key={n.id} onClick={()=>setSection(n.id)} style={{display:"flex",alignItems:"center",gap:8,width:"100%",padding:"9px 12px",borderRadius:10,background:section===n.id?COL+"18":"transparent",border:section===n.id?`1px solid ${COL}33`:"1px solid transparent",color:section===n.id?COL:C.muted,fontWeight:section===n.id?700:500,fontSize:12,cursor:"pointer",marginBottom:4,textAlign:"left",position:"relative"}}>
               <span>{n.icon}</span>{n.label}
-              {(n.badge||0)>0&&<span style={{marginLeft:"auto",background:C.red,color:"#fff",borderRadius:"50%",width:16,height:16,display:"flex",alignItems:"center",justifyContent:"center",fontSize:9,fontWeight:900}}>{n.badge}</span>}
+              {(n.badge||0)>0&&<span style={{marginLeft:"auto",background:C.red,color:"#0C1A2E",borderRadius:"50%",width:16,height:16,display:"flex",alignItems:"center",justifyContent:"center",fontSize:9,fontWeight:900}}>{n.badge}</span>}
             </button>
           ))}
           <div style={{marginTop:"auto"}}>
@@ -1892,7 +1891,7 @@ function AdminApp({oracle,lang,setLang,onBack}){
                     {!dec&&(
                       <div style={{display:"flex",gap:10}}>
                         <button onClick={()=>rejeter(c.id)} style={{flex:1,padding:12,background:C.red+"22",border:`1px solid ${C.red}44`,borderRadius:10,color:C.red,fontWeight:700,cursor:"pointer"}}>❌ {lang==="fr"?"Rejeter":"Reject"}</button>
-                        <button onClick={()=>valider(c.id)} style={{flex:2,padding:12,background:`linear-gradient(135deg,${C.green}CC,${C.green})`,border:"none",borderRadius:10,color:"#fff",fontWeight:900,cursor:"pointer",fontFamily:"'Poppins',sans-serif",fontSize:14}}>✅ {lang==="fr"?"Validation Finale":"Final Validation"}</button>
+                        <button onClick={()=>valider(c.id)} style={{flex:2,padding:12,background:`linear-gradient(135deg,${C.green}CC,${C.green})`,border:"none",borderRadius:10,color:"#0C1A2E",fontWeight:900,cursor:"pointer",fontFamily:"'Poppins',sans-serif",fontSize:14}}>✅ {lang==="fr"?"Validation Finale":"Final Validation"}</button>
                       </div>
                     )}
                   </div>
