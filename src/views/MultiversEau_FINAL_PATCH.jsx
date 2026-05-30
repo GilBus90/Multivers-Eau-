@@ -18,9 +18,9 @@ const FRAIS_RESEAU_PI = 0.010;
 
 // ── DESIGN SYSTEM ─────────────────────────────────────────────────────────────
 const C = {
-  bg:"#0A1F3D",surf:"#0D2850",card:"#0F3060",card2:"#123570",border:"#1E2A42",
+  bg:"#F0F9FF",surf:"#E0F2FE",card:"#FFFFFF",card2:"#EFF8FF",border:"#1E2A42",
   client:"#0066FF",livreur:"#FF6B00",relais:"#F59E0B",admin:"#00D4FF",
-  green:"#22C55E",red:"#EF4444",muted:"#4A5568",sub:"#7A8899",text:"#EEF2FF",
+  green:"#22C55E",red:"#EF4444",muted:"#1E40AF",sub:"#3B82F6",text:"#EEF2FF",
   gclient:"linear-gradient(135deg,#003DA8,#0066FF)",
   glivreur:"linear-gradient(135deg,#CC3D00,#FF6B00)",
   grelais:"linear-gradient(135deg,#B45309,#F59E0B)",
@@ -591,7 +591,7 @@ function LandingPage({onRole,oracle,lang,setLang, defaultStep="splash"}){
 
         {/* Académie Pi link */}
         <button onClick={()=>setShowAcad(true)} style={{marginTop:16,background:"transparent",border:"none",color:"rgba(255,255,255,0.3)",fontSize:12,cursor:"pointer",padding:"4px 0"}}>
-          🎓 {lang==="fr"?"C'est quoi Pi Network ?":"What is Pi Network?"} · <span style={{color:C.admin}}></span>
+          🎓 {lang==="fr"?"C'est quoi Pi Network ?":"What is Pi Network?"}
         </button>
 
         {/* Admin Easter egg révélé */}
