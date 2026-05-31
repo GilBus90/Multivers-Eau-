@@ -917,7 +917,7 @@ function InscriptionLivreur({lang,onSubmit,onBack}){
           <div>
             <div style={{borderLeft:`3px solid ${C.livreur}`,paddingLeft:12,marginBottom:18}}>
               <div style={{fontSize:10,color:C.livreur,fontWeight:800}}>SECTION 2</div>
-              <div style={{fontFamily:"'Poppins',sans-serif",fontSize:16,fontWeight:800}}>{lang==="fr"?"Détails du Véhicule":"Vehicle Details"}</div>
+              <div style={{fontFamily:"'Poppins',sans-serif",fontSize:16,fontWeight:800,color:"#111"}}>{lang==="fr"?"Détails du Véhicule":"Vehicle Details"}</div>
             </div>
             <div style={{marginBottom:16}}>
               <div style={{fontSize:10,fontWeight:800,color:C.sub,letterSpacing:1,marginBottom:8}}>{lang==="fr"?"TYPE D'ENGIN":"VEHICLE TYPE"}<span style={{color:C.red}}> *</span></div>
@@ -926,7 +926,7 @@ function InscriptionLivreur({lang,onSubmit,onBack}){
                   <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:4}}>
                     <div style={{width:22,height:22,borderRadius:"50%",background:form.vehicule===v.id?C.livreur:C.border,display:"flex",alignItems:"center",justifyContent:"center",color:form.vehicule===v.id?"#fff":C.muted,fontSize:12,fontWeight:900,flexShrink:0}}>{form.vehicule===v.id?"✓":""}</div>
                     <span style={{fontSize:20}}>{v.icon}</span>
-                    <span style={{fontWeight:700,color:form.vehicule===v.id?C.livreur:C.text,fontSize:13}}>{v.label}</span>
+                    <span style={{fontWeight:700,color:form.vehicule===v.id?C.livreur:"#111",fontSize:13}}>{v.label}</span>
                   </div>
                   <div style={{fontSize:11,color:C.sub,marginLeft:32}}>{v.desc}</div>
                   {v.alert&&form.vehicule===v.id&&(
@@ -987,7 +987,7 @@ function InscriptionLivreur({lang,onSubmit,onBack}){
           </div>
         )}
       </div>
-      <div style={{position:"fixed",bottom:0,left:"50%",transform:"translateX(-50%)",width:"100%",maxWidth:460,background:C.surf,borderTop:`1px solid ${C.border}`,padding:"14px 18px",paddingBottom:"calc(14px + env(safe-area-inset-bottom))",display:"flex",gap:10}}>
+      <div style={{position:"fixed",bottom:0,left:"50%",transform:"translateX(-50%)",width:"100%",maxWidth:460,background:"#0C1A2E",borderTop:`1px solid ${C.border}`,padding:"14px 18px",paddingBottom:"calc(14px + env(safe-area-inset-bottom))",display:"flex",gap:10}}>
         {etape>1&&<button onClick={()=>setEtape(e=>e-1)} style={{flex:1,padding:13,background:C.card2,border:`1px solid ${C.border}`,borderRadius:12,color:C.muted,fontWeight:600,cursor:"pointer"}}>{t.retour}</button>}
         {etape<4
           ?<button onClick={()=>canNext[etape]&&setEtape(e=>e+1)} style={{flex:2,padding:13,background:canNext[etape]?C.glivreur:C.border,border:"none",borderRadius:12,color:canNext[etape]?"#fff":C.muted,fontWeight:800,fontSize:14,cursor:canNext[etape]?"pointer":"not-allowed",fontFamily:"'Poppins',sans-serif"}}>{t.suivant}</button>
