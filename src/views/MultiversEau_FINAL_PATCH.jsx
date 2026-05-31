@@ -501,7 +501,7 @@ function LandingPage({onRole,oracle,lang,setLang, defaultStep="splash"}){
     {
       id:"livreur",
       icon:"🏍️",
-      gradient:"linear-gradient(135deg,#1A0900,#2D1500)",
+      gradient:"linear-gradient(135deg,#2D1200,#8B2500)",
       border:"rgba(255,107,0,0.4)",
       glow:"rgba(180,60,0,0.3)",
       tagColor:"#FF9A4D",
@@ -516,7 +516,7 @@ function LandingPage({onRole,oracle,lang,setLang, defaultStep="splash"}){
     {
       id:"relais",
       icon:"🏪",
-      gradient:"linear-gradient(135deg,#1A1000,#2D1C00)",
+      gradient:"linear-gradient(135deg,#2D1C00,#8B5500)",
       border:"rgba(245,158,11,0.4)",
       glow:"rgba(180,120,0,0.25)",
       tagColor:"#F59E0B",
@@ -608,12 +608,12 @@ function LandingPage({onRole,oracle,lang,setLang, defaultStep="splash"}){
   // ── ÉCRAN 2 : INTENTION — "Que souhaitez-vous faire ?" ───────────────────
   return(
     <AppWrap>
-      <div style={{background:"linear-gradient(180deg,#020818,#040C22)",minHeight:"100vh",padding:"0 0 32px"}}>
+      <div style={{background:"linear-gradient(180deg,#0A1628,#0D2240)",minHeight:"100vh",padding:"0 0 32px"}}>
 
         {/* Header */}
         <div style={{background:"linear-gradient(160deg,#001040,#020818)",padding:"32px 22px 22px",textAlign:"center",position:"relative"}}>
           <button onClick={()=>setStep("splash")} style={{position:"absolute",top:18,left:16,background:"rgba(255,255,255,.08)",border:"none",borderRadius:10,padding:"6px 12px",color:"rgba(255,255,255,.5)",fontSize:11,cursor:"pointer"}}>← {lang==="fr"?"Retour":"Back"}</button>
-          <button onClick={()=>setLang(l=>l==="fr"?"en":"fr")} style={{position:"absolute",top:18,right:16,background:"rgba(255,255,255,.1)",border:"1px solid rgba(255,255,255,.2)",borderRadius:20,padding:"5px 14px",color:"#0C1A2E",fontSize:11,fontWeight:700,cursor:"pointer"}}>
+          <button onClick={()=>setLang(l=>l==="fr"?"en":"fr")} style={{position:"absolute",top:18,right:16,background:"rgba(255,255,255,.1)",border:"1px solid rgba(255,255,255,.2)",borderRadius:20,padding:"5px 14px",color:"#fff",fontSize:11,fontWeight:700,cursor:"pointer"}}>
             {lang==="fr"?"🇬🇧 EN":"🇫🇷 FR"}
           </button>
           <div style={{fontSize:30,marginBottom:10}}>💧</div>
@@ -666,7 +666,7 @@ function LandingPage({onRole,oracle,lang,setLang, defaultStep="splash"}){
             <span style={{marginLeft:"auto",color:C.admin,fontSize:16}}>→</span>
           </div>
           {/* Oracle footer */}
-          <div style={{textAlign:"center",marginTop:16,fontSize:11,color:"rgba(255,255,255,.2)"}}>
+          <div style={{textAlign:"center",marginTop:16,fontSize:11,color:"rgba(255,255,255,.8)"}}>
             <span onClick={()=>{setTapCount(n=>{const next=n+1;if(next>=7){setAdminVisible(true);return 0;}return next;})}} style={{cursor:"default"}}>
               {lang==="fr"?"Prix Oracle CoinGecko · 1π =":"CoinGecko Oracle · 1π ="} {fmt(oracle.rate)} FCFA
             </span>
