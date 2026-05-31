@@ -1794,7 +1794,7 @@ function AdminApp({oracle,lang,setLang,onBack}){
                 <div style={{fontFamily:"'Poppins',sans-serif",fontSize:13,fontWeight:900,color:COL}}>{fmt(oracle.rate)} F</div>
               </div>
               <button onClick={()=>setLang(l=>l==="fr"?"en":"fr")} style={{background:C.card2,border:`1px solid ${C.border}`,borderRadius:8,padding:"6px 10px",color:C.muted,fontSize:11,cursor:"pointer"}}>{lang==="fr"?"🇬🇧":"🇫🇷"}</button>
-              <button onClick={onBack} style={{background:C.card2,border:`1px solid ${C.border}`,borderRadius:8,padding:"6px 10px",color:C.muted,fontSize:11,cursor:"pointer"}}>←</button>
+              <button onClick={onBack} style={{background:"#0066FF",border:"none",borderRadius:8,padding:"6px 14px",color:"#fff",fontSize:13,fontWeight:700,cursor:"pointer"}}>← Retour</button>
             </div>
           </div>
           {/* Nav horizontale scrollable */}
@@ -1839,7 +1839,7 @@ function AdminApp({oracle,lang,setLang,onBack}){
           {section==="dashboard"&&(
             <div>
               <div style={{fontFamily:"'Poppins',sans-serif",fontSize:20,fontWeight:900,marginBottom:4,color:"#111"}}>{lang==="fr"?"Vue d'ensemble":"Overview"}</div>
-              <div style={{color:C.sub,fontSize:13,marginBottom:18}}>{new Date().toLocaleDateString(lang==="fr"?"fr-FR":"en-GB",{weekday:"long",day:"numeric",month:"long",year:"numeric"})}</div>
+              <div style={{color:"#333",fontSize:13,marginBottom:18}}>{new Date().toLocaleDateString(lang==="fr"?"fr-FR":"en-GB",{weekday:"long",day:"numeric",month:"long",year:"numeric"})}</div>
               <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:12,marginBottom:20}}>
                 {[{i:"📦",l:lang==="fr"?"Commandes/jour":"Orders/day",v:"42",col:COL},{i:"💧",l:"Pi collecté",v:`π${fmtPi(totalPi)}`,col:COL},{i:"💰",l:lang==="fr"?"Commission Admin":"Admin commission",v:`π${fmtPi(adminPi)}`,col:C.relais},{i:"🌍",l:lang==="fr"?"Relais actifs":"Active relays",v:`${RELAIS.filter(r=>r.actif).length}/${RELAIS.length}`,col:C.green}].map(k=>(
                   <div key={k.l} style={{background:C.card,borderRadius:14,padding:"16px 18px",border:`1px solid ${C.border}`,position:"relative",overflow:"hidden"}}>
@@ -1873,7 +1873,7 @@ function AdminApp({oracle,lang,setLang,onBack}){
           {section==="validation"&&(
             <div>
               <div style={{fontFamily:"'Poppins',sans-serif",fontSize:20,fontWeight:900,marginBottom:4,color:"#111"}}>🛡️ {lang==="fr"?"Centre de Validation":"Validation Center"}</div>
-              <div style={{color:C.sub,fontSize:13,marginBottom:18}}>{lang==="fr"?"Double verrou · Étape finale Super Admin":"Double lock · Final Super Admin step"}</div>
+              <div style={{color:"#333",fontSize:13,marginBottom:18}}>{lang==="fr"?"Double verrou · Étape finale Super Admin":"Double lock · Final Super Admin step"}</div>
               <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:12,marginBottom:20}}>
                 {[{l:lang==="fr"?"En attente":"Pending",v:CANDIDATS.filter(c=>!decisions[c.id]).length,col:C.relais},{l:lang==="fr"?"Validés":"Validated",v:Object.values(decisions).filter(d=>d==="valide").length,col:C.green},{l:lang==="fr"?"Rejetés":"Rejected",v:Object.values(decisions).filter(d=>d==="rejete").length,col:C.red}].map(k=>(
                   <div key={k.l} style={{background:C.card,borderRadius:12,padding:"14px 16px",border:`1px solid ${k.col}33`}}>
@@ -1889,7 +1889,7 @@ function AdminApp({oracle,lang,setLang,onBack}){
                   <div key={c.id} style={{background:C.card,borderRadius:16,padding:"18px 20px",marginBottom:14,border:`1.5px solid ${dc}33`,opacity:dec?.7:1}}>
                     <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:12}}>
                       <div>
-                        <div style={{fontFamily:"'Poppins',sans-serif",fontSize:16,fontWeight:900}}>{c.nom}</div>
+                        <div style={{fontFamily:"'Poppins',sans-serif",fontSize:16,fontWeight:900,color:"#111"}}>{c.nom}</div>
                         <div style={{fontSize:12,color:C.sub}}>{c.vehicule} · {c.immat} · {c.region} · {c.distDepot} {lang==="fr"?"du dépôt":"from depot"}</div>
                       </div>
                       <span style={{fontSize:11,fontWeight:700,padding:"4px 12px",borderRadius:20,background:`${dc}22`,color:dc}}>
@@ -1938,7 +1938,7 @@ function AdminApp({oracle,lang,setLang,onBack}){
           {section==="oracle"&&(
             <div>
               <div style={{fontFamily:"'Poppins',sans-serif",fontSize:20,fontWeight:900,marginBottom:4,color:"#111"}}>💹 {lang==="fr"?"Oracle & Configuration":"Oracle & Configuration"}</div>
-              <div style={{color:C.sub,fontSize:13,marginBottom:18}}>Source : CoinGecko API · PIUSDT</div>
+              <div style={{color:"#333",fontSize:13,marginBottom:18}}>Source : CoinGecko API · PIUSDT</div>
               {/* Taux actuel */}
               <div style={{background:`linear-gradient(135deg,${C.card},#0D1A30)`,borderRadius:18,padding:"20px 22px",marginBottom:18,border:`1px solid ${COL}44`,boxShadow:`0 0 30px ${COL}11`}}>
                 <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:14}}>
@@ -2013,7 +2013,7 @@ function AdminApp({oracle,lang,setLang,onBack}){
           {section==="relais"&&(
             <div>
               <div style={{fontFamily:"'Poppins',sans-serif",fontSize:20,fontWeight:900,marginBottom:4,color:"#111"}}>🌍 {lang==="fr"?"Réseau des Relais":"Relay Network"}</div>
-              <div style={{color:C.sub,fontSize:13,marginBottom:18}}>6 {lang==="fr"?"régions":"regions"} · {RELAIS.filter(r=>r.actif).length} {lang==="fr"?"actifs":"active"}</div>
+              <div style={{color:"#333",fontSize:13,marginBottom:18}}>6 {lang==="fr"?"régions":"regions"} · {RELAIS.filter(r=>r.actif).length} {lang==="fr"?"actifs":"active"}</div>
               {/* 3 Hubs */}
               <div style={{background:C.card,borderRadius:16,padding:"16px 18px",marginBottom:18,border:`1px solid ${COL}44`}}>
                 <div style={{fontFamily:"'Poppins',sans-serif",fontSize:14,fontWeight:800,color:COL,marginBottom:12}}>🗺️ {lang==="fr"?"Stratégie 3 Hubs — Grand Lomé":"3 Hubs Strategy — Grand Lomé"}</div>
@@ -2055,10 +2055,10 @@ function AdminApp({oracle,lang,setLang,onBack}){
           {section==="prix"&&(
             <div>
               <div style={{fontFamily:"'Poppins',sans-serif",fontSize:20,fontWeight:900,marginBottom:4,color:"#111"}}>💰 {lang==="fr"?"Gestion des Prix Planchers":"Floor Price Management"}</div>
-              <div style={{color:C.sub,fontSize:13,marginBottom:18}}>{lang==="fr"?"Arrêté interministériel Togo · 110 FCFA/tonne-km (groupage) · Décembre 2024":"Togo ministerial order · 110 FCFA/tonne-km (groupage) · December 2024"}</div>
+              <div style={{color:"#333",fontSize:13,marginBottom:18}}>{lang==="fr"?"Arrêté interministériel Togo · 110 FCFA/tonne-km (groupage) · Décembre 2024":"Togo ministerial order · 110 FCFA/tonne-km (groupage) · December 2024"}</div>
               {/* Tableau planchers produits phares */}
               <div style={{background:C.card,borderRadius:16,padding:"16px 18px",border:`1px solid ${C.border}`}}>
-                <div style={{fontFamily:"'Poppins',sans-serif",fontSize:14,fontWeight:800,marginBottom:14}}>📋 {lang==="fr"?"Planchers régionaux — Cartons 1,5L × 12":"Regional floors — Cartons 1.5L × 12"}</div>
+                <div style={{fontFamily:"'Poppins',sans-serif",fontSize:14,fontWeight:800,marginBottom:14,color:"#111"}}>📋 {lang==="fr"?"Planchers régionaux — tous produits":"Regional floors — all products"}</div>
                 <div style={{overflowX:"auto"}}>
                   <table style={{width:"100%",borderCollapse:"collapse",fontSize:12}}>
                     <thead>
@@ -2074,7 +2074,7 @@ function AdminApp({oracle,lang,setLang,onBack}){
                         <tr key={rid} style={{borderBottom:`1px solid ${C.border}11`,background:i%2===0?"transparent":C.card2+"44"}}>
                           <td style={{padding:"8px 6px",color:C.sub,fontWeight:600}}>{rinfo.label}</td>
                           {["v1","v2","v3","v4","c1","c2","c3","t1","t2","t3"].map(pid=>(
-                            <td key={pid} style={{padding:"8px 6px",textAlign:"right",fontFamily:"'Poppins',sans-serif",fontWeight:800,color:C.text}}>{fmt(PLANCHERS[pid]?.[rid]||0)} F</td>
+                            <td key={pid} style={{padding:"8px 6px",textAlign:"right",fontFamily:"'Poppins',sans-serif",fontWeight:800,color:"#111"}}>{fmt(PLANCHERS[pid]?.[rid]||0)} F</td>
                           ))}
                         </tr>
                       ))}
