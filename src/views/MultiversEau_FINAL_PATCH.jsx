@@ -318,7 +318,7 @@ function Fld({label,value,onChange,placeholder,type="text",req,note,lang}){
         {label}{req&&<span style={{color:C.red}}> *</span>}
       </div>
       <input type={type} value={value} onChange={onChange} placeholder={placeholder}
-        style={{width:"100%",padding:"12px 14px",background:C.card2,border:`1.5px solid ${C.border}`,borderRadius:10,color:C.text,fontSize:14,outline:"none",fontFamily:"'Inter',sans-serif"}}
+        style={{width:"100%",padding:"12px 14px",background:"#fff",border:`1.5px solid ${C.border}`,borderRadius:10,color:"#111",fontSize:14,outline:"none",fontFamily:"'Inter',sans-serif"}}
         onFocus={e=>e.target.style.borderColor=C.admin} onBlur={e=>e.target.style.borderColor=C.border}/>
       {note&&<div style={{fontSize:11,color:C.muted,marginTop:4}}>{note}</div>}
     </div>
@@ -897,7 +897,7 @@ function InscriptionLivreur({lang,onSubmit,onBack}){
           <div>
             <div style={{borderLeft:`3px solid ${C.livreur}`,paddingLeft:12,marginBottom:18}}>
               <div style={{fontSize:10,color:C.livreur,fontWeight:800}}>SECTION 1</div>
-              <div style={{fontFamily:"'Poppins',sans-serif",fontSize:16,fontWeight:800,color:C.text}}>{lang==="fr"?"Identité & Localisation":"Identity & Location"}</div>
+              <div style={{fontFamily:"'Poppins',sans-serif",fontSize:16,fontWeight:800,color:"#111"}}>{lang==="fr"?"Identité & Localisation":"Identity & Location"}</div>
             </div>
             <Fld label={lang==="fr"?"NOM ET PRÉNOMS":"FULL NAME"} value={form.nom} onChange={e=>upd("nom",e.target.value)} placeholder={lang==="fr"?"Ex: Kofi Mensah":"Ex: Kofi Mensah"} req lang={lang}/>
             <Fld label={lang==="fr"?"NUMÉRO WHATSAPP":"WHATSAPP NUMBER"} value={form.tel} onChange={e=>upd("tel",e.target.value)} placeholder="+228 90 XX XX XX" type="tel" req lang={lang}/>
@@ -908,7 +908,7 @@ function InscriptionLivreur({lang,onSubmit,onBack}){
                   <div key={r} onClick={()=>upd("region",r)} style={{padding:"10px 14px",borderRadius:10,cursor:"pointer",textAlign:"center",background:form.region===r?C.livreur+"22":C.card2,border:`1.5px solid ${form.region===r?C.livreur:C.border}`,fontSize:12,fontWeight:700,color:form.region===r?C.livreur:"#111"}}>{r}</div>
                 ))}
               </div>
-              <div style={{fontSize:11,color:C.muted,marginTop:6}}>⚠️ {lang==="fr"?"Vous devez habiter à moins de 5 km du dépôt":"You must live within 5 km of the depot"}</div>
+              <div style={{fontSize:11,color:C.muted,marginTop:6}}>⚠️ {lang==="fr"?"Vous devez habiter à moins de 2 km du dépôt":"You must live within 2 km of the depot"}</div>
             </div>
             <Fld label={lang==="fr"?"QUARTIER DE RÉSIDENCE":"HOME DISTRICT"} value={form.quartier} onChange={e=>upd("quartier",e.target.value)} placeholder={lang==="fr"?"Ex: Segbé, Adidogomé...":"Ex: Segbé, Adidogomé..."} req lang={lang}/>
           </div>
