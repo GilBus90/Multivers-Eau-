@@ -608,10 +608,10 @@ function LandingPage({onRole,oracle,lang,setLang, defaultStep="splash"}){
   // ── ÉCRAN 2 : INTENTION — "Que souhaitez-vous faire ?" ───────────────────
   return(
     <AppWrap>
-      <div style={{background:"linear-gradient(180deg,#0A1628,#0D2240)",minHeight:"100vh",padding:"0 0 32px"}}>
+      <div style={{background:"linear-gradient(180deg,#0D3B7A,#0A2E5C)",minHeight:"100vh",padding:"0 0 32px"}}>
 
         {/* Header */}
-        <div style={{background:"linear-gradient(160deg,#001040,#020818)",padding:"32px 22px 22px",textAlign:"center",position:"relative"}}>
+        <div style={{background:"linear-gradient(160deg,#0D3B7A,#1A5FAD)",padding:"32px 22px 22px",textAlign:"center",position:"relative"}}>
           <button onClick={()=>setStep("splash")} style={{position:"absolute",top:18,left:16,background:"rgba(255,255,255,.08)",border:"none",borderRadius:10,padding:"6px 12px",color:"rgba(255,255,255,.5)",fontSize:11,cursor:"pointer"}}>← {lang==="fr"?"Retour":"Back"}</button>
           <button onClick={()=>setLang(l=>l==="fr"?"en":"fr")} style={{position:"absolute",top:18,right:16,background:"rgba(255,255,255,.1)",border:"1px solid rgba(255,255,255,.2)",borderRadius:20,padding:"5px 14px",color:"#fff",fontSize:11,fontWeight:700,cursor:"pointer"}}>
             {lang==="fr"?"🇬🇧 EN":"🇫🇷 FR"}
@@ -666,7 +666,7 @@ function LandingPage({onRole,oracle,lang,setLang, defaultStep="splash"}){
             <span style={{marginLeft:"auto",color:C.admin,fontSize:16}}>→</span>
           </div>
           {/* Oracle footer */}
-          <div style={{textAlign:"center",marginTop:16,fontSize:11,color:"rgba(255,255,255,.8)"}}>
+          <div style={{textAlign:"center",marginTop:16,fontSize:11,color:"rgba(255,255,255,.9)",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}>
             <span onClick={()=>{setTapCount(n=>{const next=n+1;if(next>=7){setAdminVisible(true);return 0;}return next;})}} style={{cursor:"default"}}>
               {lang==="fr"?"Prix Oracle CoinGecko · 1π =":"CoinGecko Oracle · 1π ="} {fmt(oracle.rate)} FCFA
             </span>
