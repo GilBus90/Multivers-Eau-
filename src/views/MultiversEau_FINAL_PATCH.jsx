@@ -547,7 +547,7 @@ function LandingPage({onRole,oracle,lang,setLang, defaultStep="splash"}){
         </button>
 
         {/* Logo */}
-        <div style={{width:108,height:108,borderRadius:"50%",background:"linear-gradient(135deg,#0033A8,#0066FF)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:50,marginBottom:28,boxShadow:"0 0 70px rgba(0,102,255,0.55)",animation:"dropFall .75s cubic-bezier(.22,.68,0,1.2) both",userSelect:"none"}}>
+        <div onClick={handleLogoTap} style={{width:108,height:108,borderRadius:"50%",background:"linear-gradient(135deg,#0033A8,#0066FF)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:50,marginBottom:28,boxShadow:"0 0 70px rgba(0,102,255,0.55)",animation:"dropFall .75s cubic-bezier(.22,.68,0,1.2) both",userSelect:"none",cursor:"pointer"}}>
           💧
         </div>
 
