@@ -964,7 +964,7 @@ function InscriptionLivreur({lang,onSubmit,onBack}){
           <div>
             <div style={{borderLeft:`3px solid ${C.livreur}`,paddingLeft:12,marginBottom:18}}>
               <div style={{fontSize:10,color:C.livreur,fontWeight:800}}>SECTION 4</div>
-              <div style={{fontFamily:"'Poppins',sans-serif",fontSize:16,fontWeight:800}}>{lang==="fr"?"Écosystème Pi":"Pi Ecosystem"}</div>
+              <div style={{fontFamily:"'Poppins',sans-serif",fontSize:16,fontWeight:800,color:"#111"}}>{lang==="fr"?"Écosystème Pi":"Pi Ecosystem"}</div>
             </div>
             <Fld label={lang==="fr"?"ADRESSE WALLET PI (CLÉ G...)":"PI WALLET ADDRESS (G... KEY)"} value={form.wallet} onChange={e=>upd("wallet",e.target.value)} placeholder="GDIFY...ET7HH" req lang={lang} note={lang==="fr"?"C'est ici que vous recevrez 90% des frais de livraison en Pi":"You receive 90% of delivery fees in Pi here"}/>
             <div style={{background:"linear-gradient(135deg,#0A1520,#0F1E30)",border:`2px solid ${C.admin}44`,borderRadius:16,padding:"16px 18px",marginBottom:18,textAlign:"center"}}>
@@ -991,7 +991,7 @@ function InscriptionLivreur({lang,onSubmit,onBack}){
         {etape>1&&<button onClick={()=>setEtape(e=>e-1)} style={{flex:1,padding:13,background:C.card2,border:`1px solid ${C.border}`,borderRadius:12,color:C.muted,fontWeight:600,cursor:"pointer"}}>{t.retour}</button>}
         {etape<4
           ?<button onClick={()=>canNext[etape]&&setEtape(e=>e+1)} style={{flex:2,padding:13,background:canNext[etape]?C.glivreur:C.border,border:"none",borderRadius:12,color:canNext[etape]?"#fff":C.muted,fontWeight:800,fontSize:14,cursor:canNext[etape]?"pointer":"not-allowed",fontFamily:"'Poppins',sans-serif"}}>{t.suivant}</button>
-          :<button onClick={()=>canNext[4]&&onSubmit(form)} style={{flex:2,padding:13,background:canNext[4]?C.glivreur:C.border,border:"none",borderRadius:12,color:canNext[4]?"#fff":C.muted,fontWeight:900,fontSize:14,cursor:canNext[4]?"pointer":"not-allowed",fontFamily:"'Poppins',sans-serif"}}>🏍️ {lang==="fr"?"Soumettre ma candidature":"Submit my application"}</button>}
+          :<button onClick={()=>canNext[4]&&onSubmit(form)} style={{flex:2,padding:13,background:canNext[4]?C.glivreur:C.border,border:"none",borderRadius:12,color:canNext[4]?"#fff":C.muted,fontWeight:900,fontSize:14,cursor:canNext[4]?"pointer":"not-allowed",fontFamily:"'Poppins',sans-serif"}}>🏍️ {lang==="fr"?"Soumettre":"Submit"}</button>}
       </div>
     </AppWrap>
   );
