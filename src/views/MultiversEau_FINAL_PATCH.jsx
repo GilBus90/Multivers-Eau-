@@ -382,7 +382,7 @@ function CharteQualite({type="livreur",lang="fr",onAccept}){
           <div key={e.icon} style={{display:"flex",alignItems:"flex-start",gap:14,padding:"16px",marginBottom:12,background:C.card,borderRadius:14,border:`1px solid ${C.border}`}}>
             <span style={{fontSize:26,flexShrink:0}}>{e.icon}</span>
             <div>
-              <div style={{fontFamily:"'Poppins',sans-serif",fontWeight:800,color:C.text,fontSize:14,marginBottom:4}}>{lang==="fr"?e.fr:e.en}</div>
+              <div style={{fontFamily:"'Poppins',sans-serif",fontWeight:800,color:"#111",fontSize:14,marginBottom:4}}>{lang==="fr"?e.fr:e.en}</div>
               <div style={{fontSize:13,color:C.sub,lineHeight:1.5}}>{lang==="fr"?e.fr2:e.en2}</div>
             </div>
           </div>
