@@ -880,7 +880,7 @@ function InscriptionLivreur({lang,onSubmit,onBack}){
             <div style={{fontFamily:"'Poppins',sans-serif",fontSize:19,fontWeight:900}}>🏍️ {lang==="fr"?"Inscription Livreur":"Driver Registration"}</div>
             <div style={{fontSize:11,color:C.sub}}>{lang==="fr"?"Formulaire standard — Toutes bulles":"Standard form — All bubbles"}</div>
           </div>
-          <button onClick={onBack} style={{background:"rgba(255,255,255,.08)",border:"none",borderRadius:8,padding:"6px 12px",color:"#0C1A2E",fontSize:11,cursor:"pointer"}}>{t.retour}</button>
+          <button onClick={onBack} style={{background:"rgba(255,255,255,.08)",border:"none",borderRadius:8,padding:"6px 12px",color:"#fff",fontSize:11,cursor:"pointer"}}>{t.retour}</button>
         </div>
         <div style={{display:"flex",gap:6,flexWrap:"wrap",marginBottom:10}}>
           {STEPS.map((s,i)=>(
@@ -897,7 +897,7 @@ function InscriptionLivreur({lang,onSubmit,onBack}){
           <div>
             <div style={{borderLeft:`3px solid ${C.livreur}`,paddingLeft:12,marginBottom:18}}>
               <div style={{fontSize:10,color:C.livreur,fontWeight:800}}>SECTION 1</div>
-              <div style={{fontFamily:"'Poppins',sans-serif",fontSize:16,fontWeight:800}}>{lang==="fr"?"Identité & Localisation":"Identity & Location"}</div>
+              <div style={{fontFamily:"'Poppins',sans-serif",fontSize:16,fontWeight:800,color:C.text}}>{lang==="fr"?"Identité & Localisation":"Identity & Location"}</div>
             </div>
             <Fld label={lang==="fr"?"NOM ET PRÉNOMS":"FULL NAME"} value={form.nom} onChange={e=>upd("nom",e.target.value)} placeholder={lang==="fr"?"Ex: Kofi Mensah":"Ex: Kofi Mensah"} req lang={lang}/>
             <Fld label={lang==="fr"?"NUMÉRO WHATSAPP":"WHATSAPP NUMBER"} value={form.tel} onChange={e=>upd("tel",e.target.value)} placeholder="+228 90 XX XX XX" type="tel" req lang={lang}/>
@@ -905,7 +905,7 @@ function InscriptionLivreur({lang,onSubmit,onBack}){
               <div style={{fontSize:10,fontWeight:800,color:C.sub,letterSpacing:1,marginBottom:8}}>{lang==="fr"?"RÉGION D'ACTIVITÉ":"ACTIVITY REGION"}<span style={{color:C.red}}> *</span></div>
               <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}}>
                 {REGS.map(r=>(
-                  <div key={r} onClick={()=>upd("region",r)} style={{padding:"10px 14px",borderRadius:10,cursor:"pointer",textAlign:"center",background:form.region===r?C.livreur+"22":C.card2,border:`1.5px solid ${form.region===r?C.livreur:C.border}`,fontSize:12,fontWeight:700,color:form.region===r?C.livreur:C.text}}>{r}</div>
+                  <div key={r} onClick={()=>upd("region",r)} style={{padding:"10px 14px",borderRadius:10,cursor:"pointer",textAlign:"center",background:form.region===r?C.livreur+"22":C.card2,border:`1.5px solid ${form.region===r?C.livreur:C.border}`,fontSize:12,fontWeight:700,color:form.region===r?C.livreur:"#111"}}>{r}</div>
                 ))}
               </div>
               <div style={{fontSize:11,color:C.muted,marginTop:6}}>⚠️ {lang==="fr"?"Vous devez habiter à moins de 5 km du dépôt":"You must live within 5 km of the depot"}</div>
@@ -987,7 +987,7 @@ function InscriptionLivreur({lang,onSubmit,onBack}){
           </div>
         )}
       </div>
-      <div style={{position:"fixed",bottom:0,left:"50%",transform:"translateX(-50%)",width:"100%",maxWidth:460,background:C.surf,borderTop:`1px solid ${C.border}`,padding:"14px 18px",display:"flex",gap:10}}>
+      <div style={{position:"fixed",bottom:0,left:"50%",transform:"translateX(-50%)",width:"100%",maxWidth:460,background:C.surf,borderTop:`1px solid ${C.border}`,padding:"14px 18px",paddingBottom:"calc(14px + env(safe-area-inset-bottom))",display:"flex",gap:10}}>
         {etape>1&&<button onClick={()=>setEtape(e=>e-1)} style={{flex:1,padding:13,background:C.card2,border:`1px solid ${C.border}`,borderRadius:12,color:C.muted,fontWeight:600,cursor:"pointer"}}>{t.retour}</button>}
         {etape<4
           ?<button onClick={()=>canNext[etape]&&setEtape(e=>e+1)} style={{flex:2,padding:13,background:canNext[etape]?C.glivreur:C.border,border:"none",borderRadius:12,color:canNext[etape]?"#fff":C.muted,fontWeight:800,fontSize:14,cursor:canNext[etape]?"pointer":"not-allowed",fontFamily:"'Poppins',sans-serif"}}>{t.suivant}</button>
