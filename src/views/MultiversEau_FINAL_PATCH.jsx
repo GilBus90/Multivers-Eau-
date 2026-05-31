@@ -375,7 +375,7 @@ function CharteQualite({type="livreur",lang="fr",onAccept}){
         <div style={{fontSize:13,color:"rgba(255,255,255,.7)",marginTop:4}}>Multivers'Eau — {type==="livreur"?lang==="fr"?"Charte du Livreur":"Delivery Driver Charter":lang==="fr"?"Charte du Relais":"Relay Charter"}</div>
       </div>
       <div style={{padding:"24px 18px"}}>
-        <div style={{fontSize:14,color:C.sub,lineHeight:1.7,marginBottom:20,padding:"14px 16px",background:C.card,borderRadius:14,border:`1px solid ${C.border}`}}>
+        <div style={{fontSize:14,color:"#111",lineHeight:1.7,marginBottom:20,padding:"14px 16px",background:C.card,borderRadius:14,border:`1px solid ${C.border}`}}>
           {lang==="fr"?"En rejoignant Multivers'Eau, je m'engage à respecter les engagements suivants pour garantir la qualité du service et la confiance des clients dans tout le Togo.":"By joining Multivers'Eau, I commit to respecting the following commitments to guarantee service quality and customer trust throughout Togo."}
         </div>
         {ENGAGEMENTS.map(e=>(
@@ -383,13 +383,13 @@ function CharteQualite({type="livreur",lang="fr",onAccept}){
             <span style={{fontSize:26,flexShrink:0}}>{e.icon}</span>
             <div>
               <div style={{fontFamily:"'Poppins',sans-serif",fontWeight:800,color:"#111",fontSize:14,marginBottom:4}}>{lang==="fr"?e.fr:e.en}</div>
-              <div style={{fontSize:13,color:C.sub,lineHeight:1.5}}>{lang==="fr"?e.fr2:e.en2}</div>
+              <div style={{fontSize:13,color:"#333",lineHeight:1.5}}>{lang==="fr"?e.fr2:e.en2}</div>
             </div>
           </div>
         ))}
         <div onClick={()=>setOk(o=>!o)} style={{display:"flex",alignItems:"center",gap:14,padding:"16px",margin:"20px 0",background:ok?C.green+"15":C.card,borderRadius:14,border:`2px solid ${ok?C.green:C.border}`,cursor:"pointer",transition:"all .2s"}}>
           <div style={{width:28,height:28,borderRadius:8,flexShrink:0,background:ok?C.green:C.border,display:"flex",alignItems:"center",justifyContent:"center",color:"#0C1A2E",fontWeight:900,fontSize:16}}>{ok?"✓":""}</div>
-          <div style={{fontSize:13,fontWeight:600,color:C.text,lineHeight:1.5}}>
+          <div style={{fontSize:13,fontWeight:600,color:"#111",lineHeight:1.5}}>
             {lang==="fr"?"Je m'engage à respecter intégralement la Charte Qualité Multivers'Eau et à agir en ambassadeur de l'écosystème Pi Network au Togo.":"I commit to fully respecting the Multivers'Eau Quality Charter and to act as an ambassador of the Pi Network ecosystem in Togo."}
           </div>
         </div>
