@@ -288,7 +288,7 @@ function TradingViewChart(){
         <span style={{fontFamily:"'Poppins',sans-serif",fontSize:13,fontWeight:800,color:C.admin}}>PIUSDT — TradingView Live</span>
         <span style={{fontSize:10,color:C.muted,marginLeft:"auto"}}>MEXC Exchange</span>
       </div>
-      <div ref={ref} className="tradingview-widget-container" style={{height:300,background:C.surf,borderRadius:"0 0 12px 12px",overflow:"hidden",border:`1px solid ${C.border}`,borderTop:"none"}}>
+      <div ref={ref} className="tradingview-widget-container" style={{height:420,background:C.surf,borderRadius:"0 0 12px 12px",overflow:"hidden",border:`1px solid ${C.border}`,borderTop:"none"}}>
         <div className="tradingview-widget-container__widget" style={{height:"100%",width:"100%"}}/>
       </div>
     </div>
@@ -1461,7 +1461,7 @@ function RelaisApp({oracle,stocks,update,lang,setLang,onBack}){
     <AppWrap>
       <div style={{background:"linear-gradient(160deg,#1A0E00,#2D1800)",padding:"28px 20px 24px",textAlign:"center"}}>
         <div style={{fontSize:48,marginBottom:12}}>💼</div>
-        <div style={{fontFamily:"'Poppins',sans-serif",fontSize:20,fontWeight:900,marginBottom:4}}>{lang==="fr"?"Choisissez votre régime fiscal":"Choose your tax regime"}</div>
+        <div style={{fontFamily:"'Poppins',sans-serif",fontSize:20,fontWeight:900,marginBottom:4,color:"#111"}}>{lang==="fr"?"Choisissez votre régime fiscal":"Choose your tax regime"}</div>
         <div style={{fontSize:13,color:C.sub}}>{lang==="fr"?"Ce choix définit votre gestion comptable dans l'app":"This defines your accounting management in the app"}</div>
       </div>
       <div style={{padding:"20px 18px"}}>
@@ -1838,7 +1838,7 @@ function AdminApp({oracle,lang,setLang,onBack}){
 
           {section==="dashboard"&&(
             <div>
-              <div style={{fontFamily:"'Poppins',sans-serif",fontSize:20,fontWeight:900,marginBottom:4}}>{lang==="fr"?"Vue d'ensemble":"Overview"}</div>
+              <div style={{fontFamily:"'Poppins',sans-serif",fontSize:20,fontWeight:900,marginBottom:4,color:"#111"}}>{lang==="fr"?"Vue d'ensemble":"Overview"}</div>
               <div style={{color:C.sub,fontSize:13,marginBottom:18}}>{new Date().toLocaleDateString(lang==="fr"?"fr-FR":"en-GB",{weekday:"long",day:"numeric",month:"long",year:"numeric"})}</div>
               <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:12,marginBottom:20}}>
                 {[{i:"📦",l:lang==="fr"?"Commandes/jour":"Orders/day",v:"42",col:COL},{i:"💧",l:"Pi collecté",v:`π${fmtPi(totalPi)}`,col:COL},{i:"💰",l:lang==="fr"?"Commission Admin":"Admin commission",v:`π${fmtPi(adminPi)}`,col:C.relais},{i:"🌍",l:lang==="fr"?"Relais actifs":"Active relays",v:`${RELAIS.filter(r=>r.actif).length}/${RELAIS.length}`,col:C.green}].map(k=>(
@@ -1872,7 +1872,7 @@ function AdminApp({oracle,lang,setLang,onBack}){
 
           {section==="validation"&&(
             <div>
-              <div style={{fontFamily:"'Poppins',sans-serif",fontSize:20,fontWeight:900,marginBottom:4}}>🛡️ {lang==="fr"?"Centre de Validation":"Validation Center"}</div>
+              <div style={{fontFamily:"'Poppins',sans-serif",fontSize:20,fontWeight:900,marginBottom:4,color:"#111"}}>🛡️ {lang==="fr"?"Centre de Validation":"Validation Center"}</div>
               <div style={{color:C.sub,fontSize:13,marginBottom:18}}>{lang==="fr"?"Double verrou · Étape finale Super Admin":"Double lock · Final Super Admin step"}</div>
               <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:12,marginBottom:20}}>
                 {[{l:lang==="fr"?"En attente":"Pending",v:CANDIDATS.filter(c=>!decisions[c.id]).length,col:C.relais},{l:lang==="fr"?"Validés":"Validated",v:Object.values(decisions).filter(d=>d==="valide").length,col:C.green},{l:lang==="fr"?"Rejetés":"Rejected",v:Object.values(decisions).filter(d=>d==="rejete").length,col:C.red}].map(k=>(
@@ -1937,7 +1937,7 @@ function AdminApp({oracle,lang,setLang,onBack}){
 
           {section==="oracle"&&(
             <div>
-              <div style={{fontFamily:"'Poppins',sans-serif",fontSize:20,fontWeight:900,marginBottom:4}}>💹 {lang==="fr"?"Oracle & Configuration":"Oracle & Configuration"}</div>
+              <div style={{fontFamily:"'Poppins',sans-serif",fontSize:20,fontWeight:900,marginBottom:4,color:"#111"}}>💹 {lang==="fr"?"Oracle & Configuration":"Oracle & Configuration"}</div>
               <div style={{color:C.sub,fontSize:13,marginBottom:18}}>Source : CoinGecko API · PIUSDT</div>
               {/* Taux actuel */}
               <div style={{background:`linear-gradient(135deg,${C.card},#0D1A30)`,borderRadius:18,padding:"20px 22px",marginBottom:18,border:`1px solid ${COL}44`,boxShadow:`0 0 30px ${COL}11`}}>
@@ -2012,7 +2012,7 @@ function AdminApp({oracle,lang,setLang,onBack}){
 
           {section==="relais"&&(
             <div>
-              <div style={{fontFamily:"'Poppins',sans-serif",fontSize:20,fontWeight:900,marginBottom:4}}>🌍 {lang==="fr"?"Réseau des Relais":"Relay Network"}</div>
+              <div style={{fontFamily:"'Poppins',sans-serif",fontSize:20,fontWeight:900,marginBottom:4,color:"#111"}}>🌍 {lang==="fr"?"Réseau des Relais":"Relay Network"}</div>
               <div style={{color:C.sub,fontSize:13,marginBottom:18}}>6 {lang==="fr"?"régions":"regions"} · {RELAIS.filter(r=>r.actif).length} {lang==="fr"?"actifs":"active"}</div>
               {/* 3 Hubs */}
               <div style={{background:C.card,borderRadius:16,padding:"16px 18px",marginBottom:18,border:`1px solid ${COL}44`}}>
@@ -2054,7 +2054,7 @@ function AdminApp({oracle,lang,setLang,onBack}){
 
           {section==="prix"&&(
             <div>
-              <div style={{fontFamily:"'Poppins',sans-serif",fontSize:20,fontWeight:900,marginBottom:4}}>💰 {lang==="fr"?"Gestion des Prix Planchers":"Floor Price Management"}</div>
+              <div style={{fontFamily:"'Poppins',sans-serif",fontSize:20,fontWeight:900,marginBottom:4,color:"#111"}}>💰 {lang==="fr"?"Gestion des Prix Planchers":"Floor Price Management"}</div>
               <div style={{color:C.sub,fontSize:13,marginBottom:18}}>{lang==="fr"?"Arrêté interministériel Togo · 110 FCFA/tonne-km (groupage) · Décembre 2024":"Togo ministerial order · 110 FCFA/tonne-km (groupage) · December 2024"}</div>
               {/* Tableau planchers produits phares */}
               <div style={{background:C.card,borderRadius:16,padding:"16px 18px",border:`1px solid ${C.border}`}}>
@@ -2064,7 +2064,7 @@ function AdminApp({oracle,lang,setLang,onBack}){
                     <thead>
                       <tr style={{borderBottom:`2px solid ${C.border}`}}>
                         <th style={{textAlign:"left",padding:"8px 6px",color:C.sub,fontWeight:700,fontSize:10}}>RÉGION</th>
-                        {[{label:"Voltic",col:"#0080FF"},{label:"Cristal",col:"#00A87A"},{label:"Vitale",col:"#9333EA"}].map(b=>(
+                        {[{label:"Voltic",col:BRANDS.voltic.color},{label:"Cristal",col:BRANDS.cristal.color},{label:"Vitale",col:BRANDS.vitale.color}].map(b=>(
                           <th key={b.label} style={{textAlign:"right",padding:"8px 6px",color:b.col,fontWeight:700,fontSize:10}}>{b.label}</th>
                         ))}
                       </tr>
@@ -2073,7 +2073,7 @@ function AdminApp({oracle,lang,setLang,onBack}){
                       {Object.entries(REGIONS_INFO).map(([rid,rinfo],i)=>(
                         <tr key={rid} style={{borderBottom:`1px solid ${C.border}11`,background:i%2===0?"transparent":C.card2+"44"}}>
                           <td style={{padding:"8px 6px",color:C.sub,fontWeight:600}}>{rinfo.label}</td>
-                          {["v1","c1","t1"].map(pid=>(
+                          {["v1","v2","v3","v4","c1","c2","c3","t1","t2","t3"].map(pid=>(
                             <td key={pid} style={{padding:"8px 6px",textAlign:"right",fontFamily:"'Poppins',sans-serif",fontWeight:800,color:C.text}}>{fmt(PLANCHERS[pid]?.[rid]||0)} F</td>
                           ))}
                         </tr>
