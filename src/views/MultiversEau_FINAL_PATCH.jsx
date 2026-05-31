@@ -944,7 +944,7 @@ function InscriptionLivreur({lang,onSubmit,onBack}){
           <div>
             <div style={{borderLeft:`3px solid ${C.livreur}`,paddingLeft:12,marginBottom:18}}>
               <div style={{fontSize:10,color:C.livreur,fontWeight:800}}>SECTION 3</div>
-              <div style={{fontFamily:"'Poppins',sans-serif",fontSize:16,fontWeight:800}}>{lang==="fr"?"Équipements & Preuves":"Equipment & Proof"}</div>
+              <div style={{fontFamily:"'Poppins',sans-serif",fontSize:16,fontWeight:800,color:"#111"}}>{lang==="fr"?"Équipements & Preuves":"Equipment & Proof"}</div>
             </div>
             {selectedV&&(
               <div style={{background:C.client+"15",border:`1px solid ${C.client}33`,borderRadius:12,padding:"12px 14px",marginBottom:16}}>
