@@ -97,9 +97,9 @@ const CATALOGUE=[
 ];
 
 const BRANDS={
-  voltic: {label:"Voltic",emoji:"💧",color:"#0080FF",light:"#0080FF15"},
-  cristal:{label:"Cristal",emoji:"🫧",color:"#00A87A",light:"#00A87A15"},
-  vitale: {label:"Eau Vitale",emoji:"✨",color:"#9333EA",light:"#9333EA15"},
+  voltic: {label:"Voltic",emoji:"💧",color:"#56CCF2",light:"#56CCF215"},
+  cristal:{label:"Cristal",emoji:"🫧",color:"#F9A8D4",light:"#F9A8D415"},
+  vitale: {label:"Eau Vitale",emoji:"✨",color:"#E0F2FE",light:"#E0F2FE15"},
 };
 
 // Prix planchers régionaux (110 FCFA/tonne-km · Arrêté déc 2024)
@@ -1106,7 +1106,7 @@ function ClientApp({oracle,stocks,dec,lang,setLang,onBack}){
         {/* Filtres */}
         <div style={{display:"flex",gap:6,overflowX:"auto",scrollbarWidth:"none"}}>
           {[{k:"all",label:lang==="fr"?"Tous":"All",col:COL},...Object.entries(BRANDS).map(([k,b])=>({k,label:`${b.emoji} ${b.label}`,col:b.color}))].map(f=>(
-            <button key={f.k} onClick={()=>setBrand(f.k)} style={{padding:"5px 13px",borderRadius:20,border:"none",cursor:"pointer",flexShrink:0,background:brand===f.k?f.col:"rgba(255,255,255,.08)",color:"#0C1A2E",fontWeight:brand===f.k?800:400,fontSize:12}}>{f.label}</button>
+            <button key={f.k} onClick={()=>setBrand(f.k)} style={{padding:"5px 13px",borderRadius:20,border:"none",cursor:"pointer",flexShrink:0,background:brand===f.k?f.col:"rgba(255,255,255,.08)",color:"#fff",fontWeight:brand===f.k?800:400,fontSize:12}}>{f.label}</button>
           ))}
         </div>
       </div>
@@ -1135,17 +1135,17 @@ function ClientApp({oracle,stocks,dec,lang,setLang,onBack}){
                         <div style={{fontSize:10,color:br.color,marginBottom:6}}>{lang==="fr"?p.noteF:p.noteE}</div>
                         {/* Stock bar */}
                         <div style={{marginBottom:8}}>
-                          <div style={{fontSize:10,color:epuise?C.red:faible?C.relais:C.green,marginBottom:3}}>
+                          <div style={{fontSize:10,color:epuise?"#CC0000":faible?"#FF6B00":"#16A34A",marginBottom:3}}>
                             {epuise?t.rupture:faible?`⚠️ ${rest} ${p.u}${rest>1?"s":""}`:` ${rest} ${p.u}${rest>1?"s":""}`}
                           </div>
                           <div style={{background:C.border,borderRadius:3,height:4}}>
                             <div style={{background:epuise?C.red:faible?C.relais:br.color,height:4,borderRadius:3,width:`${Math.max(0,(rest/Math.max(1,sq))*100)}%`,transition:"width .3s"}}/>
                           </div>
                         </div>
-                        <div style={{fontFamily:"'Poppins',sans-serif",fontWeight:900,color:br.color,fontSize:18,marginBottom:2}}>π {(p.pv/oracle.rate).toFixed(3)}</div>
+                        <div style={{fontFamily:"'Poppins',sans-serif",fontWeight:900,color:"#111",fontSize:18,marginBottom:2}}>π {(p.pv/oracle.rate).toFixed(3)}</div>
                         <div style={{fontSize:11,color:"#111",marginBottom:8}}>≈ {fmt(p.pv)} FCFA</div>
                         {epuise?(
-                          <div style={{textAlign:"center",padding:"8px",background:C.red+"18",borderRadius:10,fontSize:11,fontWeight:700,color:C.red}}>{t.rupture}</div>
+                          <div style={{textAlign:"center",padding:"8px",background:C.red+"18",borderRadius:10,fontSize:11,fontWeight:700,color:"#CC0000"}}>{t.rupture}</div>
                         ):iq===0?(
                           <button onClick={()=>add(p.id)} style={{width:"100%",padding:"9px",background:`linear-gradient(135deg,${br.color}CC,${br.color})`,border:"none",borderRadius:10,color:"#0C1A2E",fontWeight:800,fontSize:12,cursor:"pointer",fontFamily:"'Poppins',sans-serif"}}>{t.ajouter}</button>
                         ):(
