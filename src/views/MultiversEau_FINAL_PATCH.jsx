@@ -594,11 +594,20 @@ function LandingPage({onRole,oracle,lang,setLang, defaultStep="splash"}){
           🎓 {lang==="fr"?"C'est quoi Pi Network ?":"What is Pi Network?"} 
         </button>
 
-        {/* Admin Easter egg révélé */}
         {adminVisible&&(
-          <button onClick={()=>onRole("admin")} style={{marginTop:12,background:"transparent",border:`1px solid ${C.admin}44`,borderRadius:12,padding:"6px 18px",color:C.admin,fontSize:11,fontWeight:700,cursor:"pointer",animation:"fadeUp .3s ease both"}}>
-            🔐 {lang==="fr"?"Accès Super Admin":"Super Admin Access"}
-          </button>
+          <div style={{marginTop:12,background:"rgba(0,0,0,.6)",borderRadius:16,padding:"20px",border:`1px solid ${C.admin}44`,animation:"fadeUp .3s ease both",width:"100%",maxWidth:300}}>
+            <div style={{fontFamily:"'Poppins',sans-serif",fontSize:13,fontWeight:800,color:C.admin,marginBottom:12,textAlign:"center"}}>🔐 Super Admin</div>
+            <input id="adm-email" type="email" placeholder="Email admin" style={{width:"100%",padding:"10px 12px",borderRadius:10,border:`1px solid ${C.admin}44`,background:"rgba(255,255,255,.08)",color:"#fff",fontSize:13,outline:"none",marginBottom:8,boxSizing:"border-box"}}/>
+            <input id="adm-pwd" type="password" placeholder="Mot de passe" style={{width:"100%",padding:"10px 12px",borderRadius:10,border:`1px solid ${C.admin}44`,background:"rgba(255,255,255,.08)",color:"#fff",fontSize:13,outline:"none",marginBottom:12,boxSizing:"border-box"}}/>
+            <button onClick={()=>{
+              const e=document.getElementById("adm-email")?.value;
+              const p=document.getElementById("adm-pwd")?.value;
+              if(e==="admin@multiverseau.tg"&&p==="MVE2025#SuperAdmin"){onRole("admin");}
+              else{alert("Identifiants incorrects");}
+            }} style={{width:"100%",padding:"10px",background:`linear-gradient(135deg,${C.admin}CC,${C.admin})`,border:"none",borderRadius:10,color:"#0C1A2E",fontWeight:900,cursor:"pointer",fontFamily:"'Poppins',sans-serif",fontSize:13}}>
+              Connexion →
+            </button>
+          </div>
         )}
       </div>
       {showAcad&&<AcademiePi lang={lang} onClose={()=>setShowAcad(false)}/>}
