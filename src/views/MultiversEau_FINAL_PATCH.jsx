@@ -617,7 +617,7 @@ function LandingPage({onRole,oracle,lang,setLang, defaultStep="splash"}){
             {lang==="fr"?"🇬🇧 EN":"🇫🇷 FR"}
           </button>
           <div style={{fontSize:30,marginBottom:10}}>💧</div>
-          <div style={{fontFamily:"'Poppins',sans-serif",fontSize:22,fontWeight:900,color:"#0C1A2E",marginBottom:6}}>
+          <div style={{fontFamily:"'Poppins',sans-serif",fontSize:22,fontWeight:900,color:"#fff",marginBottom:6}}>
             {lang==="fr"?"Que souhaitez-vous faire ?":"What would you like to do?"}
           </div>
           <div style={{fontSize:13,color:"rgba(255,255,255,0.4)",lineHeight:1.6,maxWidth:300,margin:"0 auto"}}>
@@ -634,7 +634,7 @@ function LandingPage({onRole,oracle,lang,setLang, defaultStep="splash"}){
               onClick={()=>onRole(c.id)}>
               <div style={{background:c.gradient,border:`1.5px solid ${c.border}`,borderRadius:22,padding:"22px 20px",cursor:"pointer",boxShadow:`0 8px 32px ${c.glow}`}}>
                 <div style={{fontSize:36,marginBottom:10}}>{c.icon}</div>
-                <div style={{fontFamily:"'Poppins',sans-serif",fontSize:19,fontWeight:900,color:"#0C1A2E",marginBottom:8}}>
+                <div style={{fontFamily:"'Poppins',sans-serif",fontSize:19,fontWeight:900,color:"#fff",marginBottom:8}}>
                   {lang==="fr"?c.fr:c.en}
                 </div>
                 <div style={{fontSize:13,color:"rgba(255,255,255,0.55)",lineHeight:1.65,marginBottom:14}}>
