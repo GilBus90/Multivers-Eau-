@@ -1127,7 +1127,7 @@ function ClientApp({oracle,stocks,dec,lang,setLang,onBack}){
                     const sq=stocks[p.id]||0,iq=panier[p.id]||0,rest=sq-iq;
                     const epuise=rest<=0,faible=sq>0&&sq<=STOCK_MIN[p.id];
                     return(
-                      <div key={p.id} style={{background:C.card,borderRadius:16,padding:13,border:`1.5px solid ${iq>0?br.color:C.border}`,opacity:epuise?.55:1,position:"relative",boxShadow:iq>0?`0 4px 16px ${br.color}22`:"none"}}>
+                      <div key={p.id} style={{background:"#fff",borderRadius:16,padding:13,border:`1.5px solid ${iq>0?br.color:C.border}`,opacity:epuise?.55:1,position:"relative",boxShadow:iq>0?`0 4px 16px ${br.color}22`:"none"}}>
                         {iq>0&&<div style={{position:"absolute",top:-9,right:-9,background:br.color,color:"#0C1A2E",borderRadius:"50%",width:22,height:22,display:"flex",alignItems:"center",justifyContent:"center",fontSize:11,fontWeight:900}}>{iq}</div>}
                         <div style={{width:40,height:40,borderRadius:10,background:br.color+"33",display:"flex",alignItems:"center",justifyContent:"center",fontSize:20,marginBottom:8}}>{p.icon}</div>
                         <div style={{fontFamily:"'Poppins',sans-serif",fontWeight:800,fontSize:13,marginBottom:1,color:"#000"}}>{lang==="fr"?p.nFr:p.nEn}</div>
