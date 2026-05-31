@@ -263,7 +263,7 @@ function OracleBadge({oracle,lang,compact}){
       <div style={{width:7,height:7,borderRadius:"50%",background:col,boxShadow:`0 0 6px ${col}`,animation:oracle.status==="live"?"pulse 2s infinite":"none"}}/>
       <div>
         {!compact&&<div style={{fontSize:8,color:col,fontWeight:800,letterSpacing:1}}>{oracle.modeManuel?"TAUX FIXE":oracle.status==="live"?"ORACLE LIVE":"FALLBACK"}</div>}
-        <div style={{fontFamily:"'Poppins',sans-serif",fontSize:compact?12:15,fontWeight:900,color:"#0C1A2E"}}>1π = {fmt(oracle.rate)} F</div>
+        <div style={{fontFamily:"'Poppins',sans-serif",fontSize:compact?12:15,fontWeight:900,color:"#fff"}}>1π = {fmt(oracle.rate)} F</div>
       </div>
     </div>
   );
@@ -1094,8 +1094,8 @@ function ClientApp({oracle,stocks,dec,lang,setLang,onBack}){
           </div>
           <div style={{display:"flex",gap:8,alignItems:"center"}}>
             <OracleBadge oracle={oracle} lang={lang} compact/>
-            <button onClick={()=>setLang(l=>l==="fr"?"en":"fr")} style={{background:"rgba(255,255,255,.1)",border:"1px solid rgba(255,255,255,.2)",borderRadius:16,padding:"5px 10px",color:"#0C1A2E",fontSize:11,fontWeight:700,cursor:"pointer"}}>{t.lang}</button>
-            <button onClick={onBack} style={{background:"rgba(255,255,255,.08)",border:"none",borderRadius:8,padding:"5px 10px",color:"#0C1A2E",fontSize:11,cursor:"pointer"}}>{t.retour}</button>
+            <button onClick={()=>setLang(l=>l==="fr"?"en":"fr")} style={{background:"rgba(255,255,255,.1)",border:"1px solid rgba(255,255,255,.2)",borderRadius:16,padding:"5px 10px",color:"#fff",fontSize:11,fontWeight:700,cursor:"pointer"}}>{t.lang}</button>
+            <button onClick={onBack} style={{background:"rgba(255,255,255,.08)",border:"none",borderRadius:8,padding:"5px 10px",color:"#fff",fontSize:11,cursor:"pointer"}}>{t.retour}</button>
           </div>
         </div>
         {/* Académie Pi */}
@@ -1129,9 +1129,9 @@ function ClientApp({oracle,stocks,dec,lang,setLang,onBack}){
                     return(
                       <div key={p.id} style={{background:"#fff",borderRadius:16,padding:13,border:`1.5px solid ${iq>0?br.color:C.border}`,opacity:epuise?.55:1,position:"relative",boxShadow:iq>0?`0 4px 16px ${br.color}22`:"none"}}>
                         {iq>0&&<div style={{position:"absolute",top:-9,right:-9,background:br.color,color:"#0C1A2E",borderRadius:"50%",width:22,height:22,display:"flex",alignItems:"center",justifyContent:"center",fontSize:11,fontWeight:900}}>{iq}</div>}
-                        <div style={{width:40,height:40,borderRadius:10,background:br.color+"33",display:"flex",alignItems:"center",justifyContent:"center",fontSize:20,marginBottom:8}}>{p.icon}</div>
+                        <div style={{width:40,height:40,borderRadius:10,background:br.color+"44",display:"flex",alignItems:"center",justifyContent:"center",fontSize:24,marginBottom:8}}>{p.icon}</div>
                         <div style={{fontFamily:"'Poppins',sans-serif",fontWeight:800,fontSize:13,marginBottom:1,color:"#000"}}>{lang==="fr"?p.nFr:p.nEn}</div>
-                        <div style={{fontSize:11,color:C.sub,marginBottom:2}}>{p.d}</div>
+                        <div style={{fontSize:11,color:"#111",marginBottom:2}}>{p.d}</div>
                         <div style={{fontSize:10,color:br.color,marginBottom:6}}>{lang==="fr"?p.noteF:p.noteE}</div>
                         {/* Stock bar */}
                         <div style={{marginBottom:8}}>
@@ -1142,8 +1142,8 @@ function ClientApp({oracle,stocks,dec,lang,setLang,onBack}){
                             <div style={{background:epuise?C.red:faible?C.relais:br.color,height:4,borderRadius:3,width:`${Math.max(0,(rest/Math.max(1,sq))*100)}%`,transition:"width .3s"}}/>
                           </div>
                         </div>
-                        <div style={{fontFamily:"'Poppins',sans-serif",fontWeight:900,color:"#0C1A2E",fontSize:18,marginBottom:2}}>π {(p.pv/oracle.rate).toFixed(3)}</div>
-                        <div style={{fontSize:11,color:C.muted,marginBottom:8}}>≈ {fmt(p.pv)} FCFA</div>
+                        <div style={{fontFamily:"'Poppins',sans-serif",fontWeight:900,color:br.color,fontSize:18,marginBottom:2}}>π {(p.pv/oracle.rate).toFixed(3)}</div>
+                        <div style={{fontSize:11,color:"#111",marginBottom:8}}>≈ {fmt(p.pv)} FCFA</div>
                         {epuise?(
                           <div style={{textAlign:"center",padding:"8px",background:C.red+"18",borderRadius:10,fontSize:11,fontWeight:700,color:C.red}}>{t.rupture}</div>
                         ):iq===0?(
@@ -1277,7 +1277,7 @@ function LivreurApp({oracle,lang,setLang,onBack}){
               <span style={{fontSize:10,fontWeight:700,color:actif?C.green:C.red}}>{actif?(lang==="fr"?"Actif":"Active"):(lang==="fr"?"Hors ligne":"Offline")}</span>
             </div>
             <button onClick={()=>setLang(l=>l==="fr"?"en":"fr")} style={{background:"rgba(255,255,255,.1)",border:"none",borderRadius:16,padding:"4px 10px",color:"#0C1A2E",fontSize:10,fontWeight:700,cursor:"pointer"}}>{t.lang}</button>
-            <button onClick={onBack} style={{background:"rgba(255,255,255,.08)",border:"none",borderRadius:8,padding:"5px 10px",color:"#0C1A2E",fontSize:11,cursor:"pointer"}}>{t.retour}</button>
+            <button onClick={onBack} style={{background:"rgba(255,255,255,.08)",border:"none",borderRadius:8,padding:"5px 10px",color:"#fff",fontSize:11,cursor:"pointer"}}>{t.retour}</button>
           </div>
         </div>
       </div>
@@ -1501,7 +1501,7 @@ function RelaisApp({oracle,stocks,update,lang,setLang,onBack}){
               <span style={{fontSize:10,fontWeight:700,color:ouvert?C.green:C.red}}>{ouvert?(lang==="fr"?"Ouvert":"Open"):(lang==="fr"?"Fermé":"Closed")}</span>
             </div>
             <button onClick={()=>setLang(l=>l==="fr"?"en":"fr")} style={{background:"rgba(255,255,255,.1)",border:"none",borderRadius:16,padding:"4px 10px",color:"#0C1A2E",fontSize:10,fontWeight:700,cursor:"pointer"}}>{t.lang}</button>
-            <button onClick={onBack} style={{background:"rgba(255,255,255,.08)",border:"none",borderRadius:8,padding:"5px 10px",color:"#0C1A2E",fontSize:11,cursor:"pointer"}}>{t.retour}</button>
+            <button onClick={onBack} style={{background:"rgba(255,255,255,.08)",border:"none",borderRadius:8,padding:"5px 10px",color:"#fff",fontSize:11,cursor:"pointer"}}>{t.retour}</button>
           </div>
         </div>
       </div>
