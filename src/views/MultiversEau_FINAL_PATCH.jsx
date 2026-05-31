@@ -1780,9 +1780,35 @@ function AdminApp({oracle,lang,setLang,onBack}){
     <div style={{background:C.bg,minHeight:"100vh",fontFamily:"'Inter',sans-serif",color:C.text}}>
       <link href={GF} rel="stylesheet"/><style>{GCSS}</style>
       <Toast data={toast}/>
-      <div style={{display:"flex",minHeight:"100vh"}}>
-        {/* Sidebar */}
-        <div style={{width:190,background:C.surf,borderRight:`1px solid ${C.border}`,display:"flex",flexDirection:"column",padding:"18px 10px",position:"sticky",top:0,height:"100vh",flexShrink:0}}>
+      <div style={{display:"flex",flexDirection:"column",minHeight:"100vh"}}>
+        {/* Header mobile Admin */}
+        <div style={{background:C.surf,borderBottom:`1px solid ${C.border}`,padding:"12px 16px",position:"sticky",top:0,zIndex:200}}>
+          <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:10}}>
+            <div>
+              <div style={{fontFamily:"'Poppins',sans-serif",fontSize:15,fontWeight:900,color:COL}}>💧 Multivers'Eau</div>
+              <div style={{fontSize:10,color:C.muted}}>Super Admin</div>
+            </div>
+            <div style={{display:"flex",gap:8,alignItems:"center"}}>
+              <div style={{background:C.bg,borderRadius:8,padding:"6px 10px",border:`1px solid ${COL}22`}}>
+                <div style={{fontSize:9,color:C.muted,fontWeight:700}}>ORACLE</div>
+                <div style={{fontFamily:"'Poppins',sans-serif",fontSize:13,fontWeight:900,color:COL}}>{fmt(oracle.rate)} F</div>
+              </div>
+              <button onClick={()=>setLang(l=>l==="fr"?"en":"fr")} style={{background:C.card2,border:`1px solid ${C.border}`,borderRadius:8,padding:"6px 10px",color:C.muted,fontSize:11,cursor:"pointer"}}>{lang==="fr"?"🇬🇧":"🇫🇷"}</button>
+              <button onClick={onBack} style={{background:C.card2,border:`1px solid ${C.border}`,borderRadius:8,padding:"6px 10px",color:C.muted,fontSize:11,cursor:"pointer"}}>←</button>
+            </div>
+          </div>
+          {/* Nav horizontale scrollable */}
+          <div style={{display:"flex",gap:6,overflowX:"auto",scrollbarWidth:"none"}}>
+            {NAV.map(n=>(
+              <button key={n.id} onClick={()=>setSection(n.id)} style={{padding:"6px 14px",borderRadius:20,border:"none",cursor:"pointer",flexShrink:0,background:section===n.id?COL:"rgba(0,0,0,.06)",color:section===n.id?"#fff":C.muted,fontWeight:section===n.id?700:500,fontSize:12,position:"relative",whiteSpace:"nowrap"}}>
+                {n.icon} {n.label}
+                {(n.badge||0)>0&&<span style={{marginLeft:4,background:C.red,color:"#fff",borderRadius:"50%",width:16,height:16,display:"inline-flex",alignItems:"center",justifyContent:"center",fontSize:9,fontWeight:900}}>{n.badge}</span>}
+              </button>
+            ))}
+          </div>
+        </div>
+        {/* Faux div pour remplacer sidebar - vide */}
+        <div style={{display:"none"}}>
           <div style={{marginBottom:20,padding:"0 8px"}}>
             <div style={{fontFamily:"'Poppins',sans-serif",fontSize:16,fontWeight:900,color:COL}}>💧 Multivers'Eau</div>
             <div style={{fontSize:10,color:C.muted,marginTop:2}}>Super Admin</div>
@@ -1808,7 +1834,7 @@ function AdminApp({oracle,lang,setLang,onBack}){
         </div>
 
         {/* Main */}
-        <div style={{flex:1,padding:"22px",overflowY:"auto",minWidth:0}}>
+        <div style={{flex:1,padding:"16px",overflowY:"auto",paddingBottom:20}}>
 
           {section==="dashboard"&&(
             <div>
