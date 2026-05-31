@@ -577,9 +577,9 @@ function LandingPage({onRole,oracle,lang,setLang, defaultStep="splash"}){
 
         {/* Oracle badge */}
         <div className="fu" style={{marginBottom:36,animationDelay:".22s"}}>
-          <div style={{display:"flex",alignItems:"center",gap:8,background:"rgba(255,255,255,0.06)",borderRadius:24,padding:"8px 18px",border:"1px solid rgba(0,102,255,0.25)"}}>
+          <div style={{display:"flex",alignItems:"center",gap:8,background:"rgba(255,255,255,0.06)",borderRadius:24,padding:"8px 18px",color:"#fff",border:"1px solid rgba(0,102,255,0.25)"}}>
             <div style={{width:7,height:7,borderRadius:"50%",background:oracle.status==="live"?"#22C55E":"#F59E0B",boxShadow:`0 0 6px ${oracle.status==="live"?"#22C55E":"#F59E0B"}`,animation:"pulse 2s infinite"}}/>
-            <span style={{fontSize:14,fontWeight:800,color:"#0C1A2E"}}>1π = {fmt(oracle.rate)} FCFA</span>
+            <span style={{fontSize:14,fontWeight:800,color:"#fff"}}>1π = {fmt(oracle.rate)} FCFA</span>
             <span style={{fontSize:9,color:"rgba(255,255,255,0.35)"}}>CoinGecko</span>
           </div>
         </div>
