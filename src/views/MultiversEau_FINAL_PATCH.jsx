@@ -534,7 +534,7 @@ function LandingPage({onRole,oracle,lang,setLang, defaultStep="splash"}){
   if(step==="splash")return(
     <AppWrap>
       <style>{`@keyframes dropFall{0%{transform:translateY(-50px) scale(.8);opacity:0}60%{transform:translateY(6px) scale(1.05)}100%{transform:translateY(0) scale(1);opacity:1}}@keyframes ringPulse{0%,100%{opacity:.06}50%{opacity:.14}}`}</style>
-      <div style={{background:"linear-gradient(180deg,#020818 0%,#030D2E 50%,#050A1A 100%)",minHeight:"100vh",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",padding:"0 24px",position:"relative",overflow:"hidden"}}>
+      <div style={{background:"linear-gradient(180deg,#0A2560 0%,#0D3580 50%,#0A2560 100%)",minHeight:"100vh",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",padding:"0 24px",position:"relative",overflow:"hidden"}}>
         
         {/* Anneaux animés */}
         {[360,260,170,90].map((s,i)=>(
@@ -585,12 +585,12 @@ function LandingPage({onRole,oracle,lang,setLang, defaultStep="splash"}){
         </div>
 
         {/* CTA principal */}
-        <button onClick={()=>setStep("intention")} className="fu" style={{width:"100%",maxWidth:320,padding:"18px 0",background:"linear-gradient(135deg,#0044CC,#0066FF)",border:"none",borderRadius:18,color:"#0C1A2E",fontFamily:"'Poppins',sans-serif",fontWeight:900,fontSize:17,cursor:"pointer",boxShadow:"0 8px 32px rgba(0,102,255,0.45)",animationDelay:".28s"}}>
+        <button onClick={()=>setStep("intention")} className="fu" style={{width:"100%",maxWidth:320,padding:"18px 0",background:"linear-gradient(135deg,#0044CC,#0066FF)",border:"none",borderRadius:18,color:"#fff",fontFamily:"'Poppins',sans-serif",fontWeight:900,fontSize:17,cursor:"pointer",boxShadow:"0 8px 32px rgba(0,102,255,0.45)",animationDelay:".28s"}}>
           {lang==="fr"?"Découvrir l'app →":"Discover the app →"}
         </button>
 
         {/* Académie Pi link */}
-        <button onClick={()=>setShowAcad(true)} style={{marginTop:16,background:"transparent",border:"none",color:"rgba(255,255,255,0.3)",fontSize:12,cursor:"pointer",padding:"4px 0"}}>
+        <button onClick={()=>setShowAcad(true)} style={{marginTop:16,background:"transparent",border:"none",color:"rgba(255,255,255,0.85)",fontSize:12,cursor:"pointer",padding:"4px 0"}}>
           🎓 {lang==="fr"?"C'est quoi Pi Network ?":"What is Pi Network?"} 
         </button>
 
