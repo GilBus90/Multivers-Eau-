@@ -97,9 +97,9 @@ const CATALOGUE=[
 ];
 
 const BRANDS={
-  voltic: {label:"Voltic",emoji:"💧",color:"#56CCF2",light:"#56CCF215"},
-  cristal:{label:"Cristal",emoji:"🫧",color:"#F9A8D4",light:"#F9A8D415"},
-  vitale: {label:"Eau Vitale",emoji:"✨",color:"#E0F2FE",light:"#E0F2FE15"},
+  voltic: {label:"Voltic",emoji:"💧",color:"#1D4ED8",light:"#1D4ED820"},
+  cristal:{label:"Cristal",emoji:"🫧",color:"#BE185D",light:"#BE185D20"},
+  vitale: {label:"Eau Vitale",emoji:"✨",color:"#0369A1",light:"#0369A120"},
 };
 
 // Prix planchers régionaux (110 FCFA/tonne-km · Arrêté déc 2024)
