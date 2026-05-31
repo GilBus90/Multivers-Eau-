@@ -542,7 +542,7 @@ function LandingPage({onRole,oracle,lang,setLang, defaultStep="splash"}){
         ))}
 
         {/* Lang toggle */}
-        <button onClick={()=>setLang(l=>l==="fr"?"en":"fr")} style={{position:"absolute",top:20,right:20,background:"rgba(255,255,255,.1)",border:"1px solid rgba(255,255,255,.2)",borderRadius:20,padding:"5px 14px",color:"#0C1A2E",fontSize:12,fontWeight:700,cursor:"pointer"}}>
+        <button onClick={()=>setLang(l=>l==="fr"?"en":"fr")} style={{position:"absolute",top:20,right:20,background:"rgba(255,255,255,.1)",border:"1px solid rgba(255,255,255,.2)",borderRadius:20,padding:"5px 14px",color:"#fff",fontSize:12,fontWeight:700,cursor:"pointer"}}>
           {lang==="fr"?"🇬🇧 EN":"🇫🇷 FR"}
         </button>
 
@@ -612,7 +612,7 @@ function LandingPage({onRole,oracle,lang,setLang, defaultStep="splash"}){
 
         {/* Header */}
         <div style={{background:"linear-gradient(160deg,#0D3B7A,#1A5FAD)",padding:"32px 22px 22px",textAlign:"center",position:"relative"}}>
-          <button onClick={()=>setStep("splash")} style={{position:"absolute",top:18,left:16,background:"rgba(255,255,255,.08)",border:"none",borderRadius:10,padding:"6px 12px",color:"rgba(255,255,255,.5)",fontSize:11,cursor:"pointer"}}>← {lang==="fr"?"Retour":"Back"}</button>
+          <button onClick={()=>setStep("splash")} style={{position:"absolute",top:18,left:16,background:"rgba(255,255,255,.08)",border:"none",borderRadius:10,padding:"6px 12px",color:"#fff",fontSize:11,fontWeight:700,cursor:"pointer"}}>← {lang==="fr"?"Retour":"Back"}</button>
           <button onClick={()=>setLang(l=>l==="fr"?"en":"fr")} style={{position:"absolute",top:18,right:16,background:"rgba(255,255,255,.1)",border:"1px solid rgba(255,255,255,.2)",borderRadius:20,padding:"5px 14px",color:"#fff",fontSize:11,fontWeight:700,cursor:"pointer"}}>
             {lang==="fr"?"🇬🇧 EN":"🇫🇷 FR"}
           </button>
