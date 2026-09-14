@@ -300,7 +300,7 @@ function Btn({children,onClick,color=C.client,disabled,size="md",variant="solid"
   const fs=size==="lg"?16:size==="sm"?12:14;
   return(
     <button onClick={onClick} disabled={disabled} style={{
-      width:full?"100%":"auto",padding:p,border:"none",borderRadius:14,cursor:disabled?"not-allowed":"pointer",
+      width:full?"100%":"auto",padding:p,borderRadius:14,cursor:disabled?"not-allowed":"pointer",
       fontFamily:"'Poppins',sans-serif",fontWeight:800,fontSize:fs,letterSpacing:.3,transition:"all .15s",
       background:disabled?C.border:variant==="outline"?`${color}18`:`linear-gradient(135deg,${color}CC,${color})`,
       color:disabled?C.muted:variant==="outline"?color:"#0C1A2E",
