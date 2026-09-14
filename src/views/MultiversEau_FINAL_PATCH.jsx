@@ -1461,7 +1461,7 @@ function RelaisApp({oracle,stocks,update,lang,setLang,onBack}){
     <AppWrap>
       <div style={{background:"linear-gradient(160deg,#1A0E00,#2D1800)",padding:"28px 20px 24px",textAlign:"center"}}>
         <div style={{fontSize:48,marginBottom:12}}>💼</div>
-        <div style={{fontFamily:"'Poppins',sans-serif",fontSize:20,fontWeight:900,marginBottom:4,color:"#111"}}>{lang==="fr"?"Choisissez votre régime fiscal":"Choose your tax regime"}</div>
+        <div style={{fontFamily:"'Poppins',sans-serif",fontSize:20,fontWeight:900,marginBottom:4,color:"#fff"}}>{lang==="fr"?"Choisissez votre régime fiscal":"Choose your tax regime"}</div>
         <div style={{fontSize:13,color:"#1E40AF"}}>{lang==="fr"?"Ce choix définit votre gestion comptable dans l'app":"This defines your accounting management in the app"}</div>
       </div>
       <div style={{padding:"20px 18px"}}>
