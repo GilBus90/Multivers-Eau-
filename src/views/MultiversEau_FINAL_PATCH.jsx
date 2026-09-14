@@ -30,7 +30,7 @@ const gRole=(r)=>({client:C.gclient,livreur:C.glivreur,relais:C.grelais,admin:C.
 const fmt=(n)=>Math.round(n).toLocaleString("fr-FR");
 const fmtPi=(n)=>Number(n).toFixed(3);
 const GF="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&family=Inter:wght@400;500;600&display=swap";
-const GCSS=`*{box-sizing:border-box;margin:0;padding:0}::-webkit-scrollbar{width:3px;height:3px}::-webkit-scrollbar-thumb{background:#1E2A42;border-radius:2px}input::placeholder,textarea::placeholder{color:#4A5568}
+const GCSS=`*{box-sizing:border-box;margin:0;padding:0}::-webkit-scrollbar{width:3px;height:3px}::-webkit-scrollbar-thumb{background:#1E2A42;border-radius:2px}input::placeholder,textarea::placeholder{color:#888}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 @keyframes toastIn{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}@keyframes spin{to{transform:rotate(360deg)}}
 .fu{animation:fadeUp .35s ease both}.spin{animation:spin 1s linear infinite}`;
@@ -244,7 +244,7 @@ function usePiAuth(){
 // COMPOSANTS PARTAGÉS
 // ════════════════════════════════════════════════════════════════════════════
 const AppWrap=({children,mw=460})=>(
-  <div style={{background:C.bg,minHeight:"100vh",fontFamily:"'Inter',sans-serif",color:C.text,maxWidth:mw,margin:"0 auto"}}>
+  <div style={{background:C.bg,minHeight:"100vh",fontFamily:"'Inter',sans-serif",color:"#111",maxWidth:mw,margin:"0 auto"}}>
     <link href={GF} rel="stylesheet"/><style>{GCSS}</style>{children}
   </div>
 );
@@ -286,7 +286,7 @@ function TradingViewChart(){
       <div style={{display:"flex",alignItems:"center",gap:8,padding:"10px 14px",background:C.surf,borderRadius:"12px 12px 0 0",border:`1px solid ${C.border}`,borderBottom:"none"}}>
         <div style={{width:7,height:7,borderRadius:"50%",background:C.green,animation:"pulse 2s infinite"}}/>
         <span style={{fontFamily:"'Poppins',sans-serif",fontSize:13,fontWeight:800,color:C.admin}}>PIUSDT — TradingView Live</span>
-        <span style={{fontSize:10,color:C.muted,marginLeft:"auto"}}>MEXC Exchange</span>
+        <span style={{fontSize:10,color:"#333",marginLeft:"auto"}}>MEXC Exchange</span>
       </div>
       <div ref={ref} className="tradingview-widget-container" style={{height:420,background:C.surf,borderRadius:"0 0 12px 12px",overflow:"hidden",border:`1px solid ${C.border}`,borderTop:"none"}}>
         <div className="tradingview-widget-container__widget" style={{height:"100%",width:"100%"}}/>
@@ -314,13 +314,13 @@ function Fld({label,value,onChange,placeholder,type="text",req,note,lang}){
   const lc=lang||"fr";
   return(
     <div style={{marginBottom:14}}>
-      <div style={{fontSize:10,fontWeight:800,color:C.sub,letterSpacing:1,marginBottom:5}}>
+      <div style={{fontSize:10,fontWeight:800,color:"#1E40AF",letterSpacing:1,marginBottom:5}}>
         {label}{req&&<span style={{color:C.red}}> *</span>}
       </div>
       <input type={type} value={value} onChange={onChange} placeholder={placeholder}
         style={{width:"100%",padding:"12px 14px",background:"#fff",border:`1.5px solid ${C.border}`,borderRadius:10,color:"#111",fontSize:14,outline:"none",fontFamily:"'Inter',sans-serif"}}
         onFocus={e=>e.target.style.borderColor=C.admin} onBlur={e=>e.target.style.borderColor=C.border}/>
-      {note&&<div style={{fontSize:11,color:C.muted,marginTop:4}}>{note}</div>}
+      {note&&<div style={{fontSize:11,color:"#333",marginTop:4}}>{note}</div>}
     </div>
   );
 }
@@ -329,11 +329,11 @@ function Photo({label,note,req}){
   const[prev,setPrev]=useState(null);
   return(
     <div style={{marginBottom:14}}>
-      <div style={{fontSize:10,fontWeight:800,color:C.sub,letterSpacing:1,marginBottom:4}}>{label}{req&&<span style={{color:C.red}}> *</span>}</div>
-      {note&&<div style={{fontSize:11,color:C.muted,marginBottom:6}}>{note}</div>}
+      <div style={{fontSize:10,fontWeight:800,color:"#1E40AF",letterSpacing:1,marginBottom:4}}>{label}{req&&<span style={{color:C.red}}> *</span>}</div>
+      {note&&<div style={{fontSize:11,color:"#333",marginBottom:6}}>{note}</div>}
       <label style={{display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",height:prev?130:90,borderRadius:12,cursor:"pointer",background:prev?"transparent":C.card2,border:`2px dashed ${prev?C.green:C.border}`,overflow:"hidden"}}>
         {prev?<img src={prev} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/>
-              :<><div style={{fontSize:26,marginBottom:4}}>📷</div><div style={{fontSize:11,color:C.muted}}>Appuyer pour prendre / importer</div></>}
+              :<><div style={{fontSize:26,marginBottom:4}}>📷</div><div style={{fontSize:11,color:"#333"}}>Appuyer pour prendre / importer</div></>}
         <input type="file" accept="image/*" capture="environment" style={{display:"none"}}
           onChange={e=>{const f=e.target.files[0];if(f)setPrev(URL.createObjectURL(f));}}/>
       </label>
@@ -349,7 +349,7 @@ function BottomNav({tabs,active,onSelect,color}){
         <button key={t.id} onClick={()=>onSelect(t.id)} style={{flex:1,padding:"11px 0 9px",background:"transparent",border:"none",cursor:"pointer",display:"flex",flexDirection:"column",alignItems:"center",gap:3,position:"relative"}}>
           {(t.badge||0)>0&&<div style={{position:"absolute",top:5,right:"calc(50% - 16px)",background:C.red,color:"#0C1A2E",borderRadius:"50%",width:15,height:15,display:"flex",alignItems:"center",justifyContent:"center",fontSize:8,fontWeight:900}}>{t.badge}</div>}
           <span style={{fontSize:20}}>{t.icon}</span>
-          <span style={{fontSize:9,fontWeight:active===t.id?800:500,color:active===t.id?color:C.muted}}>{t.label}</span>
+          <span style={{fontSize:9,fontWeight:active===t.id?800:500,color:active===t.id?color:"#333"}}>{t.label}</span>
           {active===t.id&&<div style={{position:"absolute",top:0,left:"50%",transform:"translateX(-50%)",width:28,height:2.5,background:color,borderRadius:2}}/>}
         </button>
       ))}
@@ -393,7 +393,7 @@ function CharteQualite({type="livreur",lang="fr",onAccept}){
             {lang==="fr"?"Je m'engage à respecter intégralement la Charte Qualité Multivers'Eau et à agir en ambassadeur de l'écosystème Pi Network au Togo.":"I commit to fully respecting the Multivers'Eau Quality Charter and to act as an ambassador of the Pi Network ecosystem in Togo."}
           </div>
         </div>
-        <div style={{fontSize:11,color:C.muted,textAlign:"center",marginBottom:16}}>🔒 {lang==="fr"?"Signature numérique horodatée · Enregistrée sur la blockchain Pi":"Digital timestamp signature · Recorded on Pi blockchain"}</div>
+        <div style={{fontSize:11,color:"#333",textAlign:"center",marginBottom:16}}>🔒 {lang==="fr"?"Signature numérique horodatée · Enregistrée sur la blockchain Pi":"Digital timestamp signature · Recorded on Pi blockchain"}</div>
         <Btn size="lg" color={C.client} disabled={!ok} onClick={onAccept}>
           {ok?(lang==="fr"?"✅ Signer & Continuer":"✅ Sign & Continue"):(lang==="fr"?"Cochez la case pour continuer":"Check the box to continue")}
         </Btn>
@@ -420,7 +420,7 @@ function AcademiePi({lang="fr",onClose}){
       <div style={{background:C.surf,borderRadius:"28px 28px 0 0",width:"100%",maxWidth:460,padding:"28px 22px 40px",maxHeight:"88vh",overflowY:"auto"}}>
         <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:16}}>
           <div style={{fontFamily:"'Poppins',sans-serif",fontSize:16,fontWeight:900,color:C.admin}}>🎓 {lang==="fr"?"Académie Pi":"Pi Academy"}</div>
-          <button onClick={onClose} style={{background:C.card2,border:"none",borderRadius:"50%",width:34,height:34,cursor:"pointer",fontSize:18,color:C.sub}}>×</button>
+          <button onClick={onClose} style={{background:"#fff",border:"none",borderRadius:"50%",width:34,height:34,cursor:"pointer",fontSize:18,color:"#1E40AF"}}>×</button>
         </div>
         <div style={{background:C.border,borderRadius:4,height:5,marginBottom:22}}>
           <div style={{background:C.admin,height:5,borderRadius:4,width:`${pct}%`,transition:"width .3s"}}/>
@@ -428,30 +428,30 @@ function AcademiePi({lang="fr",onClose}){
         <div style={{textAlign:"center",marginBottom:22}}>
           <div style={{fontSize:52,marginBottom:14}}>{s.icon}</div>
           <div style={{fontFamily:"'Poppins',sans-serif",fontSize:20,fontWeight:900,marginBottom:12}}>{lang==="fr"?s.fr:s.en}</div>
-          {(s.cfr||s.cen)&&<div style={{fontSize:14,color:C.sub,lineHeight:1.7}}>{lang==="fr"?s.cfr:s.cen}</div>}
+          {(s.cfr||s.cen)&&<div style={{fontSize:14,color:"#1E40AF",lineHeight:1.7}}>{lang==="fr"?s.cfr:s.cen}</div>}
           {s.pts&&s.pts.map(p=>(
             <div key={p.i} style={{display:"flex",alignItems:"flex-start",gap:12,padding:"12px 14px",background:C.card,borderRadius:12,marginBottom:8,textAlign:"left"}}>
               <span style={{fontSize:20}}>{p.i}</span>
-              <div><div style={{fontWeight:700}}>{lang==="fr"?p.fr:p.en}</div><div style={{fontSize:12,color:C.sub}}>{lang==="fr"?p.dfr:p.den}</div></div>
+              <div><div style={{fontWeight:700}}>{lang==="fr"?p.fr:p.en}</div><div style={{fontSize:12,color:"#1E40AF"}}>{lang==="fr"?p.dfr:p.den}</div></div>
             </div>
           ))}
           {s.code&&(
             <div style={{margin:"16px 0",background:"linear-gradient(135deg,#0A1828,#0D2040)",borderRadius:16,padding:"16px 20px",border:`2px solid ${C.admin}44`}}>
               <div style={{fontSize:11,color:C.admin,fontWeight:800,marginBottom:8}}>{lang==="fr"?"VOTRE CODE D'INVITATION":"YOUR INVITATION CODE"}</div>
               <div style={{fontFamily:"'Poppins',sans-serif",fontSize:28,fontWeight:900,color:C.admin,letterSpacing:3}}>{s.code}</div>
-              <div style={{fontSize:11,color:C.muted,marginTop:6}}>{lang==="fr"?s.notefr:s.noteen}</div>
+              <div style={{fontSize:11,color:"#333",marginTop:6}}>{lang==="fr"?s.notefr:s.noteen}</div>
             </div>
           )}
           {s.action&&<div style={{margin:"16px 0",background:C.green+"15",border:`1px solid ${C.green}33`,borderRadius:12,padding:"12px 16px",fontSize:14,fontWeight:700,color:C.green}}>🔍 {s.action}</div>}
           {(s.warnfr||s.warnen)&&<div style={{margin:"16px 0",background:"#78350F18",border:"2px solid #D9770644",borderRadius:12,padding:"14px 16px",fontSize:13,fontWeight:600,color:"#F59E0B",lineHeight:1.6,textAlign:"left"}}>{lang==="fr"?s.warnfr:s.warnen}</div>}
         </div>
         <div style={{display:"flex",gap:10}}>
-          {e>0&&<button onClick={()=>setE(x=>x-1)} style={{flex:1,padding:13,background:C.card2,border:`1px solid ${C.border}`,borderRadius:12,color:C.sub,fontWeight:600,cursor:"pointer"}}>{lang==="fr"?"← Préc.":"← Prev."}</button>}
+          {e>0&&<button onClick={()=>setE(x=>x-1)} style={{flex:1,padding:13,background:"#fff",border:`1px solid ${C.border}`,borderRadius:12,color:"#1E40AF",fontWeight:600,cursor:"pointer"}}>{lang==="fr"?"← Préc.":"← Prev."}</button>}
           {e<STEPS.length-1
             ?<button onClick={()=>setE(x=>x+1)} style={{flex:2,padding:13,background:C.gadmin,border:"none",borderRadius:12,color:C.bg,fontWeight:900,fontSize:14,cursor:"pointer",fontFamily:"'Poppins',sans-serif"}}>{lang==="fr"?"Suivant →":"Next →"}</button>
             :<button onClick={onClose} style={{flex:2,padding:13,background:`linear-gradient(135deg,${C.green}CC,${C.green})`,border:"none",borderRadius:12,color:"#0C1A2E",fontWeight:900,fontSize:14,cursor:"pointer",fontFamily:"'Poppins',sans-serif"}}>✅ {lang==="fr"?"Commencer":"Start"}</button>}
         </div>
-        <div style={{textAlign:"center",fontSize:11,color:C.muted,marginTop:10}}>{e+1} / {STEPS.length}</div>
+        <div style={{textAlign:"center",fontSize:11,color:"#333",marginTop:10}}>{e+1} / {STEPS.length}</div>
       </div>
     </div>
   );
@@ -720,7 +720,7 @@ function InscriptionRelais({lang,onSubmit,onBack}){
         <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12}}>
           <div>
             <div style={{fontFamily:"'Poppins',sans-serif",fontSize:19,fontWeight:900}}>🏪 {lang==="fr"?"Inscription Relais":"Relay Registration"}</div>
-            <div style={{fontSize:11,color:C.sub}}>{lang==="fr"?"Formulaire standard Multivers'Eau":"Standard Multivers'Eau form"}</div>
+            <div style={{fontSize:11,color:"#1E40AF"}}>{lang==="fr"?"Formulaire standard Multivers'Eau":"Standard Multivers'Eau form"}</div>
           </div>
           <button onClick={onBack} style={{background:"rgba(255,255,255,.08)",border:"none",borderRadius:8,padding:"6px 12px",color:"#0C1A2E",fontSize:11,cursor:"pointer"}}>{t.retour}</button>
         </div>
@@ -745,7 +745,7 @@ function InscriptionRelais({lang,onSubmit,onBack}){
             <Fld label={lang==="fr"?"NOM DU DÉPÔT / BULLE":"DEPOT / BUBBLE NAME"} value={form.depot} onChange={e=>upd("depot",e.target.value)} placeholder={lang==="fr"?"Ex: Dépôt Bè Centre":"Ex: Bè Centre Depot"} req lang={lang}/>
             <Fld label={lang==="fr"?"NUMÉRO WHATSAPP":"WHATSAPP NUMBER"} value={form.tel} onChange={e=>upd("tel",e.target.value)} placeholder="+228 90 XX XX XX" type="tel" req lang={lang}/>
             <div style={{marginBottom:14}}>
-              <div style={{fontSize:10,fontWeight:800,color:C.sub,letterSpacing:1,marginBottom:8}}>{lang==="fr"?"RÉGION":"REGION"}<span style={{color:C.red}}> *</span></div>
+              <div style={{fontSize:10,fontWeight:800,color:"#1E40AF",letterSpacing:1,marginBottom:8}}>{lang==="fr"?"RÉGION":"REGION"}<span style={{color:C.red}}> *</span></div>
               <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}}>
                 {REGS.map(r=>(
                   <div key={r} onClick={()=>upd("region",r)} style={{padding:"10px 14px",borderRadius:10,cursor:"pointer",textAlign:"center",background:form.region===r?C.relais+"22":C.card2,border:`1.5px solid ${form.region===r?C.relais:C.border}`,fontSize:12,fontWeight:700,color:form.region===r?C.relais:C.text}}>{r}</div>
@@ -762,7 +762,7 @@ function InscriptionRelais({lang,onSubmit,onBack}){
               <div style={{fontFamily:"'Poppins',sans-serif",fontSize:16,fontWeight:800}}>{lang==="fr"?"Infrastructure de Stockage":"Storage Infrastructure"}</div>
             </div>
             <div style={{marginBottom:16}}>
-              <div style={{fontSize:10,fontWeight:800,color:C.sub,letterSpacing:1,marginBottom:8}}>{lang==="fr"?"TYPE DE LOCAL":"LOCAL TYPE"}<span style={{color:C.red}}> *</span></div>
+              <div style={{fontSize:10,fontWeight:800,color:"#1E40AF",letterSpacing:1,marginBottom:8}}>{lang==="fr"?"TYPE DE LOCAL":"LOCAL TYPE"}<span style={{color:C.red}}> *</span></div>
               {LOC.map(l=>(
                 <div key={l.id} onClick={()=>upd("typeLocal",l.id)} style={{display:"flex",alignItems:"center",gap:12,padding:"12px 14px",borderRadius:12,cursor:"pointer",marginBottom:8,background:form.typeLocal===l.id?C.relais+"18":C.card2,border:`1.5px solid ${form.typeLocal===l.id?C.relais:C.border}`}}>
                   <div style={{width:22,height:22,borderRadius:"50%",background:form.typeLocal===l.id?C.relais:C.border,display:"flex",alignItems:"center",justifyContent:"center",color:C.bg,fontSize:11,fontWeight:900}}>{form.typeLocal===l.id?"✓":""}</div>
@@ -772,15 +772,15 @@ function InscriptionRelais({lang,onSubmit,onBack}){
               ))}
             </div>
             <div style={{marginBottom:16}}>
-              <div style={{fontSize:10,fontWeight:800,color:C.sub,letterSpacing:1,marginBottom:8}}>{lang==="fr"?"CAPACITÉ DE STOCKAGE":"STORAGE CAPACITY"}<span style={{color:C.red}}> *</span></div>
+              <div style={{fontSize:10,fontWeight:800,color:"#1E40AF",letterSpacing:1,marginBottom:8}}>{lang==="fr"?"CAPACITÉ DE STOCKAGE":"STORAGE CAPACITY"}<span style={{color:C.red}}> *</span></div>
               <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
-                <div><div style={{fontSize:11,color:C.muted,marginBottom:4}}>{lang==="fr"?"En cartons":"In cartons"}</div><Fld label="" value={form.capaciteC} onChange={e=>upd("capaciteC",e.target.value)} placeholder={lang==="fr"?"Ex: 200":"Ex: 200"} type="number" lang={lang}/></div>
-                <div><div style={{fontSize:11,color:C.muted,marginBottom:4}}>{lang==="fr"?"En packs":"In packs"}</div><Fld label="" value={form.capaciteP} onChange={e=>upd("capaciteP",e.target.value)} placeholder={lang==="fr"?"Ex: 500":"Ex: 500"} type="number" lang={lang}/></div>
+                <div><div style={{fontSize:11,color:"#333",marginBottom:4}}>{lang==="fr"?"En cartons":"In cartons"}</div><Fld label="" value={form.capaciteC} onChange={e=>upd("capaciteC",e.target.value)} placeholder={lang==="fr"?"Ex: 200":"Ex: 200"} type="number" lang={lang}/></div>
+                <div><div style={{fontSize:11,color:"#333",marginBottom:4}}>{lang==="fr"?"En packs":"In packs"}</div><Fld label="" value={form.capaciteP} onChange={e=>upd("capaciteP",e.target.value)} placeholder={lang==="fr"?"Ex: 500":"Ex: 500"} type="number" lang={lang}/></div>
               </div>
             </div>
             <div style={{background:C.relais+"15",border:`1px solid ${C.relais}33`,borderRadius:12,padding:"10px 14px",marginBottom:14}}>
               <div style={{fontSize:12,fontWeight:700,color:C.relais,marginBottom:4}}>📷 {lang==="fr"?"Photos obligatoires":"Mandatory photos"}</div>
-              <div style={{fontSize:11,color:C.muted}}>{lang==="fr"?"Vérification propreté & absence d'exposition au soleil":"Cleanliness & no sun exposure verification"}</div>
+              <div style={{fontSize:11,color:"#333"}}>{lang==="fr"?"Vérification propreté & absence d'exposition au soleil":"Cleanliness & no sun exposure verification"}</div>
             </div>
             <Photo label={lang==="fr"?"PHOTO INTÉRIEUR DU LOCAL":"INTERIOR PHOTO"} note={lang==="fr"?"Montrer l'espace de stockage":"Show storage space"} req/>
             <Photo label={lang==="fr"?"PHOTO EXTÉRIEUR DU LOCAL":"EXTERIOR PHOTO"} note={lang==="fr"?"Façade du dépôt":"Depot facade"} req/>
@@ -794,7 +794,7 @@ function InscriptionRelais({lang,onSubmit,onBack}){
             </div>
             <Fld label={lang==="fr"?"NOMBRE DE LIVREURS DISPONIBLES":"NUMBER OF AVAILABLE DRIVERS"} value={form.nbLiv} onChange={e=>upd("nbLiv",e.target.value)} placeholder={lang==="fr"?"Ex: 3":"Ex: 3"} type="number" req lang={lang} note={lang==="fr"?"Livreurs déjà présents dans votre zone":"Drivers already present in your zone"}/>
             <div>
-              <div style={{fontSize:10,fontWeight:800,color:C.sub,letterSpacing:1,marginBottom:8}}>{lang==="fr"?"TYPES D'ENGINS GÉRÉS":"TYPES OF VEHICLES MANAGED"}<span style={{color:C.red}}> *</span></div>
+              <div style={{fontSize:10,fontWeight:800,color:"#1E40AF",letterSpacing:1,marginBottom:8}}>{lang==="fr"?"TYPES D'ENGINS GÉRÉS":"TYPES OF VEHICLES MANAGED"}<span style={{color:C.red}}> *</span></div>
               {ENGS.map(e=>(
                 <div key={e.id} onClick={()=>toggleEngin(e.id)} style={{display:"flex",alignItems:"center",gap:12,padding:"12px 14px",borderRadius:12,cursor:"pointer",marginBottom:8,background:form.engins.includes(e.id)?C.relais+"18":C.card2,border:`1.5px solid ${form.engins.includes(e.id)?C.relais:C.border}`}}>
                   <div style={{width:22,height:22,borderRadius:6,background:form.engins.includes(e.id)?C.relais:C.border,display:"flex",alignItems:"center",justifyContent:"center",color:C.bg,fontSize:12,fontWeight:900}}>{form.engins.includes(e.id)?"✓":""}</div>
@@ -813,20 +813,20 @@ function InscriptionRelais({lang,onSubmit,onBack}){
             </div>
             {/* Régime fiscal */}
             <div style={{marginBottom:16}}>
-              <div style={{fontSize:10,fontWeight:800,color:C.sub,letterSpacing:1,marginBottom:8}}>{lang==="fr"?"RÉGIME FISCAL":"TAX REGIME"}<span style={{color:C.red}}> *</span></div>
+              <div style={{fontSize:10,fontWeight:800,color:"#1E40AF",letterSpacing:1,marginBottom:8}}>{lang==="fr"?"RÉGIME FISCAL":"TAX REGIME"}<span style={{color:C.red}}> *</span></div>
               {Object.values(REGIMES).map(r=>(
                 <div key={r.id} onClick={()=>upd("regime",r.id)} style={{padding:"12px 14px",borderRadius:12,cursor:"pointer",marginBottom:8,background:form.regime===r.id?r.color+"18":C.card2,border:`1.5px solid ${form.regime===r.id?r.color:C.border}`}}>
                   <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:4}}>
                     <div style={{display:"flex",alignItems:"center",gap:8}}>
                       <div style={{width:22,height:22,borderRadius:"50%",background:form.regime===r.id?r.color:C.border,border:`1.5px solid ${r.color}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:11,fontWeight:900,color:form.regime===r.id?"#0B0804":C.muted}}>{r.num}</div>
-                      <span style={{fontWeight:700,color:form.regime===r.id?r.color:C.text,fontSize:13}}>{r.label}</span>
+                      <span style={{fontWeight:700,color:form.regime===r.id?r.color:"#111",fontSize:13}}>{r.label}</span>
                     </div>
                     {form.regime===r.id&&<span style={{color:r.color}}>✓</span>}
                   </div>
-                  <div style={{fontSize:11,color:C.sub,marginLeft:30,marginBottom:4}}>{r.desc}</div>
+                  <div style={{fontSize:11,color:"#1E40AF",marginLeft:30,marginBottom:4}}>{r.desc}</div>
                   <div style={{display:"flex",gap:6,marginLeft:30}}>
                     {[{l:"NIF",ok:r.nif},{l:"TVA",ok:r.tva},{l:"IMF ✓",ok:r.imf}].map(b=>(
-                      <span key={b.l} style={{fontSize:9,fontWeight:700,padding:"2px 7px",borderRadius:8,background:b.ok?r.color+"22":"rgba(255,255,255,.05)",color:b.ok?r.color:C.muted}}>{b.l}</span>
+                      <span key={b.l} style={{fontSize:9,fontWeight:700,padding:"2px 7px",borderRadius:8,background:b.ok?r.color+"22":"rgba(255,255,255,.05)",color:b.ok?r.color:"#333"}}>{b.l}</span>
                     ))}
                   </div>
                 </div>
@@ -848,13 +848,13 @@ function InscriptionRelais({lang,onSubmit,onBack}){
             )}
             <div onClick={()=>upd("accepte",!form.accepte)} style={{display:"flex",alignItems:"flex-start",gap:12,padding:"14px 16px",borderRadius:14,cursor:"pointer",background:form.accepte?C.relais+"15":C.card,border:`1.5px solid ${form.accepte?C.relais:C.border}`,marginBottom:12}}>
               <div style={{width:24,height:24,borderRadius:7,flexShrink:0,background:form.accepte?C.relais:C.border,display:"flex",alignItems:"center",justifyContent:"center",color:"#0B0804",fontWeight:900,fontSize:14}}>{form.accepte?"✓":""}</div>
-              <div style={{fontSize:13,color:C.sub,lineHeight:1.5}}>{lang==="fr"?"J'accepte les conditions de partenariat Multivers'Eau et m'engage à respecter les prix fixes de la plateforme.":"I accept Multivers'Eau partnership terms and commit to respecting the platform's fixed prices."}</div>
+              <div style={{fontSize:13,color:"#1E40AF",lineHeight:1.5}}>{lang==="fr"?"J'accepte les conditions de partenariat Multivers'Eau et m'engage à respecter les prix fixes de la plateforme.":"I accept Multivers'Eau partnership terms and commit to respecting the platform's fixed prices."}</div>
             </div>
           </div>
         )}
       </div>
       <div style={{position:"fixed",bottom:0,left:"50%",transform:"translateX(-50%)",width:"100%",maxWidth:460,background:C.surf,borderTop:`1px solid ${C.border}`,padding:"14px 18px",display:"flex",gap:10}}>
-        {etape>1&&<button onClick={()=>setEtape(e=>e-1)} style={{flex:1,padding:13,background:C.card2,border:`1px solid ${C.border}`,borderRadius:12,color:C.muted,fontWeight:600,cursor:"pointer"}}>{t.retour}</button>}
+        {etape>1&&<button onClick={()=>setEtape(e=>e-1)} style={{flex:1,padding:13,background:"#fff",border:`1px solid ${C.border}`,borderRadius:12,color:"#333",fontWeight:600,cursor:"pointer"}}>{t.retour}</button>}
         {etape<4
           ?<button onClick={()=>canNext[etape]&&setEtape(e=>e+1)} style={{flex:2,padding:13,background:canNext[etape]?C.grelais:C.border,border:"none",borderRadius:12,color:canNext[etape]?"#0B0804":C.muted,fontWeight:800,fontSize:14,cursor:canNext[etape]?"pointer":"not-allowed",fontFamily:"'Poppins',sans-serif"}}>{t.suivant}</button>
           :<button onClick={()=>canNext[4]&&onSubmit(form)} style={{flex:2,padding:13,background:canNext[4]?C.grelais:C.border,border:"none",borderRadius:12,color:canNext[4]?"#0B0804":C.muted,fontWeight:900,fontSize:14,cursor:canNext[4]?"pointer":"not-allowed",fontFamily:"'Poppins',sans-serif"}}>🏪 {lang==="fr"?"Soumettre ma candidature":"Submit my application"}</button>}
@@ -887,7 +887,7 @@ function InscriptionLivreur({lang,onSubmit,onBack}){
         <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12}}>
           <div>
             <div style={{fontFamily:"'Poppins',sans-serif",fontSize:19,fontWeight:900}}>🏍️ {lang==="fr"?"Inscription Livreur":"Driver Registration"}</div>
-            <div style={{fontSize:11,color:C.sub}}>{lang==="fr"?"Formulaire standard — Toutes bulles":"Standard form — All bubbles"}</div>
+            <div style={{fontSize:11,color:"#1E40AF"}}>{lang==="fr"?"Formulaire standard — Toutes bulles":"Standard form — All bubbles"}</div>
           </div>
           <button onClick={onBack} style={{background:"rgba(255,255,255,.08)",border:"none",borderRadius:8,padding:"6px 12px",color:"#fff",fontSize:11,cursor:"pointer"}}>{t.retour}</button>
         </div>
@@ -911,13 +911,13 @@ function InscriptionLivreur({lang,onSubmit,onBack}){
             <Fld label={lang==="fr"?"NOM ET PRÉNOMS":"FULL NAME"} value={form.nom} onChange={e=>upd("nom",e.target.value)} placeholder={lang==="fr"?"Ex: Kofi Mensah":"Ex: Kofi Mensah"} req lang={lang}/>
             <Fld label={lang==="fr"?"NUMÉRO WHATSAPP":"WHATSAPP NUMBER"} value={form.tel} onChange={e=>upd("tel",e.target.value)} placeholder="+228 90 XX XX XX" type="tel" req lang={lang}/>
             <div style={{marginBottom:14}}>
-              <div style={{fontSize:10,fontWeight:800,color:C.sub,letterSpacing:1,marginBottom:8}}>{lang==="fr"?"RÉGION D'ACTIVITÉ":"ACTIVITY REGION"}<span style={{color:C.red}}> *</span></div>
+              <div style={{fontSize:10,fontWeight:800,color:"#1E40AF",letterSpacing:1,marginBottom:8}}>{lang==="fr"?"RÉGION D'ACTIVITÉ":"ACTIVITY REGION"}<span style={{color:C.red}}> *</span></div>
               <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}}>
                 {REGS.map(r=>(
                   <div key={r} onClick={()=>upd("region",r)} style={{padding:"10px 14px",borderRadius:10,cursor:"pointer",textAlign:"center",background:form.region===r?C.livreur+"22":C.card2,border:`1.5px solid ${form.region===r?C.livreur:C.border}`,fontSize:12,fontWeight:700,color:form.region===r?C.livreur:"#111"}}>{r}</div>
                 ))}
               </div>
-              <div style={{fontSize:11,color:C.muted,marginTop:6}}>⚠️ {lang==="fr"?"Vous devez habiter à moins de 2 km du dépôt":"You must live within 2 km of the depot"}</div>
+              <div style={{fontSize:11,color:"#333",marginTop:6}}>⚠️ {lang==="fr"?"Vous devez habiter à moins de 2 km du dépôt":"You must live within 2 km of the depot"}</div>
             </div>
             <Fld label={lang==="fr"?"QUARTIER DE RÉSIDENCE":"HOME DISTRICT"} value={form.quartier} onChange={e=>upd("quartier",e.target.value)} placeholder={lang==="fr"?"Ex: Segbé, Adidogomé...":"Ex: Segbé, Adidogomé..."} req lang={lang}/>
           </div>
@@ -929,7 +929,7 @@ function InscriptionLivreur({lang,onSubmit,onBack}){
               <div style={{fontFamily:"'Poppins',sans-serif",fontSize:16,fontWeight:800,color:"#111"}}>{lang==="fr"?"Détails du Véhicule":"Vehicle Details"}</div>
             </div>
             <div style={{marginBottom:16}}>
-              <div style={{fontSize:10,fontWeight:800,color:C.sub,letterSpacing:1,marginBottom:8}}>{lang==="fr"?"TYPE D'ENGIN":"VEHICLE TYPE"}<span style={{color:C.red}}> *</span></div>
+              <div style={{fontSize:10,fontWeight:800,color:"#1E40AF",letterSpacing:1,marginBottom:8}}>{lang==="fr"?"TYPE D'ENGIN":"VEHICLE TYPE"}<span style={{color:C.red}}> *</span></div>
               {FLOTTE.map(v=>(
                 <div key={v.id} onClick={()=>upd("vehicule",v.id)} style={{padding:"13px 16px",borderRadius:14,cursor:"pointer",marginBottom:8,background:form.vehicule===v.id?C.livreur+"18":C.card2,border:`1.5px solid ${form.vehicule===v.id?C.livreur:C.border}`}}>
                   <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:4}}>
@@ -937,7 +937,7 @@ function InscriptionLivreur({lang,onSubmit,onBack}){
                     <span style={{fontSize:20}}>{v.icon}</span>
                     <span style={{fontWeight:700,color:form.vehicule===v.id?C.livreur:"#111",fontSize:13}}>{v.label}</span>
                   </div>
-                  <div style={{fontSize:11,color:C.sub,marginLeft:32}}>{v.desc}</div>
+                  <div style={{fontSize:11,color:"#1E40AF",marginLeft:32}}>{v.desc}</div>
                   {v.alert&&form.vehicule===v.id&&(
                     <div style={{marginLeft:32,marginTop:6,background:C.relais+"18",border:`1px solid ${C.relais}44`,borderRadius:8,padding:"5px 10px",fontSize:11,color:C.relais,fontWeight:700}}>{v.alert}</div>
                   )}
@@ -958,14 +958,14 @@ function InscriptionLivreur({lang,onSubmit,onBack}){
             {selectedV&&(
               <div style={{background:C.client+"15",border:`1px solid ${C.client}33`,borderRadius:12,padding:"12px 14px",marginBottom:16}}>
                 <div style={{fontSize:11,color:C.client,fontWeight:800,marginBottom:6}}>{lang==="fr"?"ÉQUIPEMENTS REQUIS POUR":"REQUIRED EQUIPMENT FOR"} {selectedV.label.toUpperCase()}</div>
-                {selectedV.equip.map(e=><div key={e} style={{fontSize:12,color:C.sub,marginBottom:3}}>✓ {e}</div>)}
+                {selectedV.equip.map(e=><div key={e} style={{fontSize:12,color:"#1E40AF",marginBottom:3}}>✓ {e}</div>)}
               </div>
             )}
             <Photo label={lang==="fr"?"PHOTO DE L'ENGIN":"VEHICLE PHOTO"} note={lang==="fr"?"Photo claire, plaque visible":"Clear photo, plate visible"} req/>
             <Photo label={lang==="fr"?"PHOTO DE L'ÉQUIPEMENT":"EQUIPMENT PHOTO"} note={selectedV?.id==="moto_bache"?(lang==="fr"?"Montrer clairement la MINIBÂCHE NOIRE + attaches":"Clearly show BLACK TARP + straps"):(lang==="fr"?"Sac isotherme ou bâche selon votre engin":"Isothermal bag or tarp per vehicle")} req/>
             <div style={{background:C.relais+"15",border:`1px solid ${C.relais}33`,borderRadius:12,padding:"12px 14px",marginTop:8}}>
               <div style={{fontSize:12,fontWeight:700,color:C.relais,marginBottom:4}}>⚠️ {lang==="fr"?"Double vérification":"Double verification"}</div>
-              <div style={{fontSize:11,color:C.sub,lineHeight:1.5}}>{lang==="fr"?"Le Relais vérifiera physiquement vos équipements avant de recommander votre profil au Super Admin.":"The Relay will physically verify your equipment before recommending your profile to the Super Admin."}</div>
+              <div style={{fontSize:11,color:"#1E40AF",lineHeight:1.5}}>{lang==="fr"?"Le Relais vérifiera physiquement vos équipements avant de recommander votre profil au Super Admin.":"The Relay will physically verify your equipment before recommending your profile to the Super Admin."}</div>
             </div>
           </div>
         )}
@@ -978,9 +978,9 @@ function InscriptionLivreur({lang,onSubmit,onBack}){
             <Fld label={lang==="fr"?"ADRESSE WALLET PI (CLÉ G...)":"PI WALLET ADDRESS (G... KEY)"} value={form.wallet} onChange={e=>upd("wallet",e.target.value)} placeholder="GDIFY...ET7HH" req lang={lang} note={lang==="fr"?"C'est ici que vous recevrez 90% des frais de livraison en Pi":"You receive 90% of delivery fees in Pi here"}/>
             <div style={{background:"linear-gradient(135deg,#0A1520,#0F1E30)",border:`2px solid ${C.admin}44`,borderRadius:16,padding:"16px 18px",marginBottom:18,textAlign:"center"}}>
               <div style={{fontSize:11,color:C.admin,fontWeight:800,marginBottom:8}}>{lang==="fr"?"VOUS N'AVEZ PAS ENCORE PI ?":"DON'T HAVE PI YET?"}</div>
-              <div style={{fontSize:13,color:C.sub,marginBottom:10}}>{lang==="fr"?"Code d'invitation :":"Invitation code:"}</div>
+              <div style={{fontSize:13,color:"#1E40AF",marginBottom:10}}>{lang==="fr"?"Code d'invitation :":"Invitation code:"}</div>
               <div style={{fontFamily:"'Poppins',sans-serif",fontSize:26,fontWeight:900,color:C.admin,letterSpacing:3}}>{CODE_INVITATION}</div>
-              <div style={{fontSize:11,color:C.muted,marginTop:6}}>{lang==="fr"?"Minez du Pi gratuitement depuis votre téléphone":"Mine Pi for free from your phone"}</div>
+              <div style={{fontSize:11,color:"#333",marginTop:6}}>{lang==="fr"?"Minez du Pi gratuitement depuis votre téléphone":"Mine Pi for free from your phone"}</div>
             </div>
             {!charteOk?(
               <button onClick={()=>setShowCharte(true)} style={{width:"100%",padding:"12px",background:C.livreur+"18",border:`1.5px solid ${C.livreur}44`,borderRadius:12,color:C.livreur,fontWeight:700,cursor:"pointer",marginBottom:12,fontSize:13}}>
@@ -991,13 +991,13 @@ function InscriptionLivreur({lang,onSubmit,onBack}){
             )}
             <div onClick={()=>upd("accepte",!form.accepte)} style={{display:"flex",alignItems:"flex-start",gap:12,padding:"14px 16px",borderRadius:14,cursor:"pointer",background:form.accepte?C.livreur+"15":C.card,border:`1.5px solid ${form.accepte?C.livreur:C.border}`,marginBottom:12}}>
               <div style={{width:24,height:24,borderRadius:7,flexShrink:0,background:form.accepte?C.livreur:C.border,display:"flex",alignItems:"center",justifyContent:"center",color:"#0C1A2E",fontWeight:900,fontSize:14}}>{form.accepte?"✓":""}</div>
-              <div style={{fontSize:13,color:C.sub,lineHeight:1.5}}>{lang==="fr"?"J'accepte les conditions Multivers'Eau et je m'engage à protéger les produits et respecter les prix.":"I accept Multivers'Eau terms and commit to protecting products and respecting prices."}</div>
+              <div style={{fontSize:13,color:"#1E40AF",lineHeight:1.5}}>{lang==="fr"?"J'accepte les conditions Multivers'Eau et je m'engage à protéger les produits et respecter les prix.":"I accept Multivers'Eau terms and commit to protecting products and respecting prices."}</div>
             </div>
           </div>
         )}
       </div>
       <div style={{position:"fixed",bottom:0,left:"50%",transform:"translateX(-50%)",width:"100%",maxWidth:460,background:"#0C1A2E",borderTop:`1px solid ${C.border}`,padding:"14px 18px",paddingBottom:"calc(14px + env(safe-area-inset-bottom))",display:"flex",gap:10}}>
-        {etape>1&&<button onClick={()=>setEtape(e=>e-1)} style={{flex:1,padding:13,background:C.card2,border:`1px solid ${C.border}`,borderRadius:12,color:C.muted,fontWeight:600,cursor:"pointer"}}>{t.retour}</button>}
+        {etape>1&&<button onClick={()=>setEtape(e=>e-1)} style={{flex:1,padding:13,background:"#fff",border:`1px solid ${C.border}`,borderRadius:12,color:"#333",fontWeight:600,cursor:"pointer"}}>{t.retour}</button>}
         {etape<4
           ?<button onClick={()=>canNext[etape]&&setEtape(e=>e+1)} style={{flex:2,padding:13,background:canNext[etape]?C.glivreur:C.border,border:"none",borderRadius:12,color:canNext[etape]?"#fff":C.muted,fontWeight:800,fontSize:14,cursor:canNext[etape]?"pointer":"not-allowed",fontFamily:"'Poppins',sans-serif"}}>{t.suivant}</button>
           :<button onClick={()=>canNext[4]&&onSubmit(form)} style={{flex:2,padding:13,background:canNext[4]?C.glivreur:C.border,border:"none",borderRadius:12,color:canNext[4]?"#fff":C.muted,fontWeight:900,fontSize:14,cursor:canNext[4]?"pointer":"not-allowed",fontFamily:"'Poppins',sans-serif"}}>🏍️ {lang==="fr"?"Soumettre":"Submit"}</button>}
@@ -1159,7 +1159,7 @@ function ClientApp({oracle,stocks,dec,lang,setLang,onBack}){
                           <button onClick={()=>add(p.id)} style={{width:"100%",padding:"9px",background:`linear-gradient(135deg,${br.color}CC,${br.color})`,border:"none",borderRadius:10,color:"#0C1A2E",fontWeight:800,fontSize:12,cursor:"pointer",fontFamily:"'Poppins',sans-serif"}}>{t.ajouter}</button>
                         ):(
                           <div style={{display:"flex",alignItems:"center",gap:8}}>
-                            <button onClick={()=>rem(p.id)} style={{width:30,height:30,borderRadius:"50%",background:C.card2,border:"none",fontWeight:900,fontSize:16,cursor:"pointer",color:C.text}}>−</button>
+                            <button onClick={()=>rem(p.id)} style={{width:30,height:30,borderRadius:"50%",background:"#fff",border:"none",fontWeight:900,fontSize:16,cursor:"pointer",color:"#111"}}>−</button>
                             <span style={{flex:1,textAlign:"center",fontFamily:"'Poppins',sans-serif",fontWeight:900,fontSize:16,color:br.color}}>{iq}</span>
                             <button onClick={()=>add(p.id)} style={{width:30,height:30,borderRadius:"50%",background:br.color,border:"none",fontWeight:900,fontSize:16,cursor:"pointer",color:"#0C1A2E"}}>+</button>
                           </div>
@@ -1178,7 +1178,7 @@ function ClientApp({oracle,stocks,dec,lang,setLang,onBack}){
       {tab==="panier"&&(
         <div style={{padding:"16px",paddingBottom:100}}>
           {panierCount===0?(
-            <div style={{textAlign:"center",padding:"60px 0",color:C.muted}}>
+            <div style={{textAlign:"center",padding:"60px 0",color:"#333"}}>
               <div style={{fontSize:52,marginBottom:12}}>🛒</div>
               <div style={{fontSize:15,fontWeight:700}}>{lang==="fr"?"Votre panier est vide":"Your cart is empty"}</div>
               <button onClick={()=>setTab("catalogue")} style={{marginTop:14,padding:"10px 24px",background:COL,border:"none",borderRadius:12,color:"#0C1A2E",fontWeight:700,cursor:"pointer",fontSize:13,fontFamily:"'Poppins',sans-serif"}}>{lang==="fr"?"Voir le catalogue":"View catalogue"}</button>
@@ -1192,11 +1192,11 @@ function ClientApp({oracle,stocks,dec,lang,setLang,onBack}){
                     <div style={{width:36,height:36,borderRadius:10,background:br.light,display:"flex",alignItems:"center",justifyContent:"center",fontSize:18}}>{p.icon}</div>
                     <div style={{flex:1}}>
                       <div style={{fontWeight:700,fontSize:13}}>{br.label} {lang==="fr"?p.nFr:p.nEn}</div>
-                      <div style={{fontSize:11,color:C.muted}}>{p.d} · {qty} {p.u}{qty>1?"s":""}</div>
+                      <div style={{fontSize:11,color:"#333"}}>{p.d} · {qty} {p.u}{qty>1?"s":""}</div>
                       <div style={{fontWeight:800,color:br.color,fontSize:13}}>{fmt(p.pv*qty)} F</div>
                     </div>
                     <div style={{display:"flex",alignItems:"center",gap:6}}>
-                      <button onClick={()=>rem(id)} style={{width:27,height:27,borderRadius:"50%",background:C.card2,border:"none",cursor:"pointer",fontWeight:800,fontSize:14,color:C.text}}>−</button>
+                      <button onClick={()=>rem(id)} style={{width:27,height:27,borderRadius:"50%",background:"#fff",border:"none",cursor:"pointer",fontWeight:800,fontSize:14,color:"#111"}}>−</button>
                       <span style={{fontWeight:800,minWidth:16,textAlign:"center"}}>{qty}</span>
                       <button onClick={()=>add(id)} style={{width:27,height:27,borderRadius:"50%",background:br.color,border:"none",cursor:"pointer",fontWeight:800,fontSize:14,color:"#0C1A2E"}}>+</button>
                     </div>
@@ -1205,16 +1205,16 @@ function ClientApp({oracle,stocks,dec,lang,setLang,onBack}){
               })}
               <div style={{background:C.card,borderRadius:16,padding:"14px 16px",margin:"16px 0"}}>
                 {[{l:t.sousTotal,v:`${fmt(subtotal)} FCFA`},{l:t.fraisReseau,v:"π 0,010"}].map(r=>(
-                  <div key={r.l} style={{display:"flex",justifyContent:"space-between",marginBottom:8,fontSize:13}}><span style={{color:C.sub}}>{r.l}</span><span style={{fontWeight:700}}>{r.v}</span></div>
+                  <div key={r.l} style={{display:"flex",justifyContent:"space-between",marginBottom:8,fontSize:13}}><span style={{color:"#1E40AF"}}>{r.l}</span><span style={{fontWeight:700}}>{r.v}</span></div>
                 ))}
                 <div style={{display:"flex",justifyContent:"space-between",fontSize:15,fontWeight:800,paddingTop:10,borderTop:`1px solid ${C.border}`}}>
                   <span>{t.total}</span>
                   <div style={{textAlign:"right"}}>
                     <div style={{fontFamily:"'Poppins',sans-serif",fontSize:22,fontWeight:900,color:COL}}>π {totalPi}</div>
-                    <div style={{fontSize:11,color:C.muted}}>≈ {fmt(subtotal)} FCFA</div>
+                    <div style={{fontSize:11,color:"#333"}}>≈ {fmt(subtotal)} FCFA</div>
                   </div>
                 </div>
-                <div style={{fontSize:10,color:C.muted,textAlign:"center",marginTop:8}}>
+                <div style={{fontSize:10,color:"#333",textAlign:"center",marginTop:8}}>
                   {t.oracleSource} · {t.majLe} {new Date().toLocaleDateString(lang==="fr"?"fr-FR":"en-GB")} {t.a} {new Date().toLocaleTimeString(lang==="fr"?"fr-FR":"en-GB")}
                   {oracle.modeManuel&&<span style={{color:C.relais}}> · ⚠️ {lang==="fr"?"Taux fixe":"Fixed rate"}</span>}
                 </div>
@@ -1222,7 +1222,7 @@ function ClientApp({oracle,stocks,dec,lang,setLang,onBack}){
               {payStatus==="loading"?(
                 <div style={{textAlign:"center",padding:"16px",background:C.card,borderRadius:14}}>
                   <div style={{fontSize:28,marginBottom:8}}>⏳</div>
-                  <div style={{color:C.sub}}>{t.paiementCours}</div>
+                  <div style={{color:"#1E40AF"}}>{t.paiementCours}</div>
                 </div>
               ):payStatus==="success"?(
                 <div style={{textAlign:"center",padding:"20px",background:C.green+"15",borderRadius:14,border:`1px solid ${C.green}33`}}>
@@ -1278,7 +1278,7 @@ function LivreurApp({oracle,lang,setLang,onBack}){
         <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
           <div>
             <div style={{fontFamily:"'Poppins',sans-serif",fontSize:17,fontWeight:900}}>🏍️ {lang==="fr"?"Espace Livreur":"Driver Space"}</div>
-            <div style={{fontSize:10,color:C.sub}}>Kofi Mensah · {lang==="fr"?"Dépôt Segbé":"Segbé Depot"}</div>
+            <div style={{fontSize:10,color:"#1E40AF"}}>Kofi Mensah · {lang==="fr"?"Dépôt Segbé":"Segbé Depot"}</div>
           </div>
           <div style={{display:"flex",gap:8,alignItems:"center"}}>
             <div onClick={()=>setActif(a=>!a)} style={{display:"flex",alignItems:"center",gap:6,padding:"5px 12px",borderRadius:20,cursor:"pointer",background:actif?C.green+"22":C.red+"22",border:`1px solid ${actif?C.green:C.red}44`}}>
@@ -1298,7 +1298,7 @@ function LivreurApp({oracle,lang,setLang,onBack}){
               <div key={k.l} style={{background:C.card,borderRadius:14,padding:"12px 10px",textAlign:"center",border:`1px solid ${k.col}22`}}>
                 <div style={{fontSize:18}}>{k.i}</div>
                 <div style={{fontFamily:"'Poppins',sans-serif",fontSize:16,fontWeight:900,color:k.col,marginTop:4}}>{k.v}</div>
-                <div style={{fontSize:9,color:C.muted,marginTop:2}}>{k.l}</div>
+                <div style={{fontSize:9,color:"#333",marginTop:2}}>{k.l}</div>
               </div>
             ))}
           </div>
@@ -1307,16 +1307,16 @@ function LivreurApp({oracle,lang,setLang,onBack}){
               <div style={{fontSize:10,color:COL,fontWeight:800,letterSpacing:1,marginBottom:8}}>🏍️ {t.courseEnCours.toUpperCase()}</div>
               <div style={{background:C.card,borderRadius:16,padding:16,border:`2px solid ${COL}`,boxShadow:`0 0 20px ${COL}18`}}>
                 <div style={{fontFamily:"'Poppins',sans-serif",fontWeight:900,fontSize:15,marginBottom:4}}>{enCours.client}</div>
-                <div style={{fontSize:12,color:C.muted,marginBottom:6}}>📍 {enCours.adresse}</div>
+                <div style={{fontSize:12,color:"#333",marginBottom:6}}>📍 {enCours.adresse}</div>
                 {/* Deux distances */}
                 <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginBottom:12}}>
-                  <div style={{background:C.card2,borderRadius:10,padding:"8px 12px"}}>
+                  <div style={{background:"#fff",borderRadius:10,padding:"8px 12px"}}>
                     <div style={{fontSize:9,color:COL,fontWeight:800}}>📦 {lang==="fr"?"DÉPÔT → TOI":"DEPOT → YOU"}</div>
                     <div style={{fontFamily:"'Poppins',sans-serif",fontWeight:900,fontSize:18,color:COL}}>{enCours.distRelaisKm} km</div>
                   </div>
-                  <div style={{background:C.card2,borderRadius:10,padding:"8px 12px"}}>
-                    <div style={{fontSize:9,color:C.sub,fontWeight:800}}>🏁 {lang==="fr"?"DÉPÔT → CLIENT":"DEPOT → CLIENT"}</div>
-                    <div style={{fontFamily:"'Poppins',sans-serif",fontWeight:900,fontSize:18,color:C.text}}>{enCours.distClientKm} km</div>
+                  <div style={{background:"#fff",borderRadius:10,padding:"8px 12px"}}>
+                    <div style={{fontSize:9,color:"#1E40AF",fontWeight:800}}>🏁 {lang==="fr"?"DÉPÔT → CLIENT":"DEPOT → CLIENT"}</div>
+                    <div style={{fontFamily:"'Poppins',sans-serif",fontWeight:900,fontSize:18,color:"#111"}}>{enCours.distClientKm} km</div>
                   </div>
                 </div>
                 <div style={{display:"flex",gap:10}}>
@@ -1329,16 +1329,16 @@ function LivreurApp({oracle,lang,setLang,onBack}){
           {attentes.map(c=>(
             <div key={c.id} style={{background:C.card,borderRadius:16,padding:16,marginBottom:10,border:`1px solid ${C.border}`}}>
               <div style={{display:"flex",justifyContent:"space-between",marginBottom:10}}>
-                <div><div style={{fontFamily:"'Poppins',sans-serif",fontWeight:800,fontSize:12}}>{c.id}</div><div style={{fontSize:10,color:C.muted}}>{c.heure} · {c.relais}</div></div>
+                <div><div style={{fontFamily:"'Poppins',sans-serif",fontWeight:800,fontSize:12}}>{c.id}</div><div style={{fontSize:10,color:"#333"}}>{c.heure} · {c.relais}</div></div>
                 <span style={{fontSize:10,fontWeight:700,padding:"3px 10px",borderRadius:14,background:C.relais+"22",color:C.relais}}>⏳ {lang==="fr"?"En attente":"Pending"}</span>
               </div>
               <div style={{fontWeight:700,marginBottom:4}}>{c.client}</div>
-              <div style={{fontSize:12,color:C.muted,marginBottom:10}}>📍 {c.adresse}</div>
-              <div style={{background:C.card2,borderRadius:10,padding:"10px 12px",marginBottom:12,display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8}}>
+              <div style={{fontSize:12,color:"#333",marginBottom:10}}>📍 {c.adresse}</div>
+              <div style={{background:"#fff",borderRadius:10,padding:"10px 12px",marginBottom:12,display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8}}>
                 {[{l:lang==="fr"?"Dépôt→toi":"Depot→you",v:`${c.distRelaisKm} km`,col:COL},{l:lang==="fr"?"Dépôt→client":"Depot→client",v:`${c.distClientKm} km`,col:C.sub},{l:lang==="fr"?"Ton gain":"Your gain",v:`π${fmtPi(c.gainPi)}`,col:COL}].map(m=>(
                   <div key={m.l} style={{textAlign:"center"}}>
                     <div style={{fontFamily:"'Poppins',sans-serif",fontSize:13,fontWeight:900,color:m.col}}>{m.v}</div>
-                    <div style={{fontSize:9,color:C.muted}}>{m.l}</div>
+                    <div style={{fontSize:9,color:"#333"}}>{m.l}</div>
                   </div>
                 ))}
               </div>
@@ -1346,7 +1346,7 @@ function LivreurApp({oracle,lang,setLang,onBack}){
             </div>
           ))}
           {!enCours&&attentes.length===0&&(
-            <div style={{textAlign:"center",padding:"40px 0",color:C.muted}}>
+            <div style={{textAlign:"center",padding:"40px 0",color:"#333"}}>
               <div style={{fontSize:48,marginBottom:12}}>🏍️</div>
               <div style={{fontSize:14,fontWeight:700,marginBottom:6}}>{lang==="fr"?"Aucune course pour le moment":"No deliveries at the moment"}</div>
               <div style={{fontSize:12,marginBottom:16}}>{lang==="fr"?"Reste actif, les commandes arrivent bientôt !":"Stay active, orders are coming soon!"}</div>
@@ -1363,16 +1363,16 @@ function LivreurApp({oracle,lang,setLang,onBack}){
           {courses.map(c=>{const sc=SC(c.statut);return(
             <div key={c.id} style={{background:C.card,borderRadius:16,padding:16,marginBottom:10,border:`1.5px solid ${c.statut==="en_cours"?COL:C.border}`}}>
               <div style={{display:"flex",justifyContent:"space-between",marginBottom:8}}>
-                <div><div style={{fontFamily:"'Poppins',sans-serif",fontWeight:800,fontSize:12}}>{c.id}</div><div style={{fontSize:10,color:C.muted}}>{c.heure}</div></div>
+                <div><div style={{fontFamily:"'Poppins',sans-serif",fontWeight:800,fontSize:12}}>{c.id}</div><div style={{fontSize:10,color:"#333"}}>{c.heure}</div></div>
                 <span style={{fontSize:10,fontWeight:700,padding:"3px 10px",borderRadius:14,background:`${sc.co}22`,color:sc.co}}>{sc.i} {sc.l}</span>
               </div>
               <div style={{fontWeight:700,marginBottom:3}}>{c.client}</div>
-              <div style={{fontSize:12,color:C.muted,marginBottom:8}}>📍 {c.adresse}</div>
+              <div style={{fontSize:12,color:"#333",marginBottom:8}}>📍 {c.adresse}</div>
               <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8,marginBottom:c.statut==="livre"?0:10}}>
                 {[{l:lang==="fr"?"Dépôt→toi":"Depot→you",v:`${c.distRelaisKm}km`},{l:lang==="fr"?"Dépôt→client":"Depot→client",v:`${c.distClientKm}km`},{l:"Gain π",v:`π${fmtPi(c.gainPi)}`}].map(m=>(
-                  <div key={m.l} style={{background:C.card2,borderRadius:8,padding:"8px",textAlign:"center"}}>
+                  <div key={m.l} style={{background:"#fff",borderRadius:8,padding:"8px",textAlign:"center"}}>
                     <div style={{fontFamily:"'Poppins',sans-serif",fontSize:12,fontWeight:800,color:COL}}>{m.v}</div>
-                    <div style={{fontSize:9,color:C.muted}}>{m.l}</div>
+                    <div style={{fontSize:9,color:"#333"}}>{m.l}</div>
                   </div>
                 ))}
               </div>
@@ -1388,26 +1388,26 @@ function LivreurApp({oracle,lang,setLang,onBack}){
           <div style={{background:"linear-gradient(135deg,#1A0900,#2D1200)",borderRadius:20,padding:"22px 20px",marginBottom:16,border:`1px solid ${COL}44`}}>
             <div style={{fontSize:10,color:COL,fontWeight:800,marginBottom:8}}>💰 {lang==="fr"?"GAINS AUJOURD'HUI":"TODAY'S EARNINGS"}</div>
             <div style={{fontFamily:"'Poppins',sans-serif",fontSize:42,fontWeight:900,color:COL}}>π {fmtPi(gains)}</div>
-            <div style={{fontSize:13,color:C.muted,marginTop:4}}>≈ {fmt(gains*oracle.rate)} FCFA · {lang==="fr"?"Oracle CoinGecko":"CoinGecko Oracle"}</div>
+            <div style={{fontSize:13,color:"#333",marginTop:4}}>≈ {fmt(gains*oracle.rate)} FCFA · {lang==="fr"?"Oracle CoinGecko":"CoinGecko Oracle"}</div>
           </div>
           {courses.filter(c=>c.statut!=="en_attente").map(c=>(
             <div key={c.id} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"12px 14px",marginBottom:8,background:C.card,borderRadius:12,border:`1px solid ${C.border}`}}>
-              <div><div style={{fontFamily:"'Poppins',sans-serif",fontWeight:700,fontSize:12}}>{c.id}</div><div style={{fontSize:11,color:C.muted}}>{c.client} · {c.heure}</div></div>
+              <div><div style={{fontFamily:"'Poppins',sans-serif",fontWeight:700,fontSize:12}}>{c.id}</div><div style={{fontSize:11,color:"#333"}}>{c.client} · {c.heure}</div></div>
               <div style={{textAlign:"right"}}>
                 <div style={{fontFamily:"'Poppins',sans-serif",fontSize:15,fontWeight:900,color:c.statut==="livre"?C.green:COL}}>π{fmtPi(c.gainPi)}</div>
-                <div style={{fontSize:9,color:C.muted}}>{c.statut==="livre"?"✅":"🏍️"}</div>
+                <div style={{fontSize:9,color:"#333"}}>{c.statut==="livre"?"✅":"🏍️"}</div>
               </div>
             </div>
           ))}
           <div style={{background:C.card,borderRadius:14,padding:"14px 16px",marginTop:10,border:`1px solid ${C.border}`}}>
-            <div style={{fontSize:10,color:C.muted,fontWeight:700,marginBottom:8}}>{lang==="fr"?"FRAIS DE LIVRAISON — TARIFS ZONE A (≤15km)":"DELIVERY FEES — ZONE A RATES (≤15km)"}</div>
+            <div style={{fontSize:10,color:"#333",fontWeight:700,marginBottom:8}}>{lang==="fr"?"FRAIS DE LIVRAISON — TARIFS ZONE A (≤15km)":"DELIVERY FEES — ZONE A RATES (≤15km)"}</div>
             {FLOTTE.slice(0,4).map(v=>(
               <div key={v.id} style={{display:"flex",justifyContent:"space-between",fontSize:12,padding:"6px 0",borderTop:`1px solid ${C.border}`}}>
-                <span style={{color:C.sub}}>{v.icon} {v.label}</span>
+                <span style={{color:"#1E40AF"}}>{v.icon} {v.label}</span>
                 <span style={{fontWeight:700,color:COL}}>{fmt(v.tarifA)} F</span>
               </div>
             ))}
-            <div style={{fontSize:11,color:C.muted,marginTop:8}}>Zone B (&gt;15km) : +75 FCFA/km</div>
+            <div style={{fontSize:11,color:"#333",marginTop:8}}>Zone B (&gt;15km) : +75 FCFA/km</div>
           </div>
         </div>
       )}
@@ -1462,7 +1462,7 @@ function RelaisApp({oracle,stocks,update,lang,setLang,onBack}){
       <div style={{background:"linear-gradient(160deg,#1A0E00,#2D1800)",padding:"28px 20px 24px",textAlign:"center"}}>
         <div style={{fontSize:48,marginBottom:12}}>💼</div>
         <div style={{fontFamily:"'Poppins',sans-serif",fontSize:20,fontWeight:900,marginBottom:4,color:"#111"}}>{lang==="fr"?"Choisissez votre régime fiscal":"Choose your tax regime"}</div>
-        <div style={{fontSize:13,color:C.sub}}>{lang==="fr"?"Ce choix définit votre gestion comptable dans l'app":"This defines your accounting management in the app"}</div>
+        <div style={{fontSize:13,color:"#1E40AF"}}>{lang==="fr"?"Ce choix définit votre gestion comptable dans l'app":"This defines your accounting management in the app"}</div>
       </div>
       <div style={{padding:"20px 18px"}}>
         {Object.values(REGIMES).map(r=>(
@@ -1470,14 +1470,14 @@ function RelaisApp({oracle,stocks,update,lang,setLang,onBack}){
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:6}}>
               <div style={{display:"flex",alignItems:"center",gap:8}}>
                 <div style={{width:26,height:26,borderRadius:"50%",background:r.color+"22",border:`2px solid ${r.color}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:12,fontWeight:900,color:r.color}}>{r.num}</div>
-                <span style={{fontFamily:"'Poppins',sans-serif",fontWeight:800,color:regime===r.id?r.color:C.text,fontSize:14}}>{r.label}</span>
+                <span style={{fontFamily:"'Poppins',sans-serif",fontWeight:800,color:regime===r.id?r.color:"#111",fontSize:14}}>{r.label}</span>
               </div>
               {regime===r.id&&<span style={{color:r.color}}>✓</span>}
             </div>
-            <div style={{fontSize:12,color:C.sub,marginLeft:34,marginBottom:6}}>{r.desc}</div>
+            <div style={{fontSize:12,color:"#1E40AF",marginLeft:34,marginBottom:6}}>{r.desc}</div>
             <div style={{display:"flex",gap:6,marginLeft:34}}>
               {[{l:"NIF",ok:r.nif},{l:"TVA",ok:r.tva},{l:"IMF 1% ✓",ok:r.imf,force:true}].map(b=>(
-                <span key={b.l} style={{fontSize:9,fontWeight:700,padding:"2px 7px",borderRadius:8,background:(b.ok||b.force)?r.color+"22":"rgba(255,255,255,.05)",color:(b.ok||b.force)?r.color:C.muted}}>{b.l}</span>
+                <span key={b.l} style={{fontSize:9,fontWeight:700,padding:"2px 7px",borderRadius:8,background:(b.ok||b.force)?r.color+"22":"rgba(255,255,255,.05)",color:(b.ok||b.force)?r.color:"#333"}}>{b.l}</span>
               ))}
             </div>
             {regime===r.id&&<div style={{marginTop:8,fontSize:12,color:r.color,marginLeft:34}}>💡 {r.conseil}</div>}
@@ -1520,14 +1520,14 @@ function RelaisApp({oracle,stocks,update,lang,setLang,onBack}){
           <div style={{background:C.card,borderRadius:16,padding:"14px 16px",marginBottom:14,border:`1px solid ${COL}44`}}>
             <div style={{fontSize:10,color:COL,fontWeight:800,marginBottom:6}}>💹 {lang==="fr"?"ORACLE COINGECKO":"COINGECKO ORACLE"}</div>
             <div style={{fontFamily:"'Poppins',sans-serif",fontSize:26,fontWeight:900,color:COL}}>{fmt(oracle.rate)} FCFA</div>
-            <div style={{fontSize:12,color:C.muted}}>{lang==="fr"?"pour 1 π":"for 1 π"} · {oracle.status==="live"?"🟢 Live":"🟡 Fallback"}</div>
+            <div style={{fontSize:12,color:"#333"}}>{lang==="fr"?"pour 1 π":"for 1 π"} · {oracle.status==="live"?"🟢 Live":"🟡 Fallback"}</div>
           </div>
           <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10,marginBottom:14}}>
             {[{i:"🆕",l:lang==="fr"?"Nouvelles":"New",v:cmds.filter(c=>c.statut==="nouvelle").length,col:COL},{i:"✅",l:lang==="fr"?"Livrées":"Delivered",v:cmds.filter(c=>c.statut==="livree").length,col:C.green},{i:"⚠️",l:lang==="fr"?"Alertes":"Alerts",v:alertes,col:C.red},{i:"❌",l:lang==="fr"?"Ruptures":"Out of stock",v:vides,col:C.red}].map(k=>(
               <div key={k.l} style={{background:C.card,borderRadius:12,padding:"12px 14px",border:`1px solid ${k.col}22`}}>
                 <div style={{fontSize:18}}>{k.i}</div>
                 <div style={{fontFamily:"'Poppins',sans-serif",fontSize:20,fontWeight:900,color:k.col}}>{k.v}</div>
-                <div style={{fontSize:11,color:C.muted}}>{k.l}</div>
+                <div style={{fontSize:11,color:"#333"}}>{k.l}</div>
               </div>
             ))}
           </div>
@@ -1535,10 +1535,10 @@ function RelaisApp({oracle,stocks,update,lang,setLang,onBack}){
           {cmds.filter(c=>c.statut==="nouvelle").map(c=>{const sp=calcSplit(c);return(
             <div key={c.id} style={{background:C.card,borderRadius:14,padding:"14px 16px",marginBottom:10,border:`1px solid ${COL}44`}}>
               <div style={{display:"flex",justifyContent:"space-between",marginBottom:8}}>
-                <div><div style={{fontWeight:700}}>{c.client}</div><div style={{fontSize:11,color:C.muted}}>{c.id} · {c.distKm} km {lang==="fr"?"du dépôt":"from depot"}</div></div>
-                <div style={{textAlign:"right"}}><div style={{fontFamily:"'Poppins',sans-serif",fontWeight:900,color:COL}}>{fmt(sp.total)} F</div><div style={{fontSize:10,color:C.muted}}>π{fmtPi(sp.total/oracle.rate)}</div></div>
+                <div><div style={{fontWeight:700}}>{c.client}</div><div style={{fontSize:11,color:"#333"}}>{c.id} · {c.distKm} km {lang==="fr"?"du dépôt":"from depot"}</div></div>
+                <div style={{textAlign:"right"}}><div style={{fontFamily:"'Poppins',sans-serif",fontWeight:900,color:COL}}>{fmt(sp.total)} F</div><div style={{fontSize:10,color:"#333"}}>π{fmtPi(sp.total/oracle.rate)}</div></div>
               </div>
-              <div style={{fontSize:12,color:C.muted,marginBottom:8}}>📦 {c.prods.map(p=>`${p.n} ×${p.qty}`).join(", ")}</div>
+              <div style={{fontSize:12,color:"#333",marginBottom:8}}>📦 {c.prods.map(p=>`${p.n} ×${p.qty}`).join(", ")}</div>
               <Btn color={COL} onClick={()=>show(lang==="fr"?"🏍️ Livreur assigné":"🏍️ Driver assigned",COL)}>{lang==="fr"?"Assigner un livreur":"Assign a driver"}</Btn>
             </div>
           );})}
@@ -1557,18 +1557,18 @@ function RelaisApp({oracle,stocks,update,lang,setLang,onBack}){
                   <span style={{fontSize:10,fontWeight:700,padding:"3px 10px",borderRadius:14,background:`${sc.co}22`,color:sc.co}}>{sc.i} {sc.l}</span>
                 </div>
                 <div style={{fontWeight:700,marginBottom:4}}>{c.client}</div>
-                <div style={{fontSize:12,color:C.muted,marginBottom:8}}>📍 {c.adresse}</div>
+                <div style={{fontSize:12,color:"#333",marginBottom:8}}>📍 {c.adresse}</div>
                 {/* Distance dépôt→client */}
-                <div style={{background:C.card2,borderRadius:10,padding:"8px 12px",marginBottom:10,display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+                <div style={{background:"#fff",borderRadius:10,padding:"8px 12px",marginBottom:10,display:"flex",justifyContent:"space-between",alignItems:"center"}}>
                   <div><div style={{fontSize:9,color:COL,fontWeight:700}}>📦 {lang==="fr"?"DÉPÔT → CLIENT":"DEPOT → CLIENT"}</div><div style={{fontFamily:"'Poppins',sans-serif",fontWeight:800,fontSize:14}}>{c.distKm} km</div></div>
-                  <div style={{textAlign:"right"}}><div style={{fontSize:10,color:C.muted}}>{t.fraisLivraison}</div><div style={{fontFamily:"'Poppins',sans-serif",fontWeight:900,color:COL}}>{fmt(c.livraison)} F</div></div>
+                  <div style={{textAlign:"right"}}><div style={{fontSize:10,color:"#333"}}>{t.fraisLivraison}</div><div style={{fontFamily:"'Poppins',sans-serif",fontWeight:900,color:COL}}>{fmt(c.livraison)} F</div></div>
                 </div>
                 {/* Split */}
-                <div style={{background:C.card2,borderRadius:10,padding:"10px 12px",marginBottom:10}}>
-                  <div style={{fontSize:9,color:C.muted,fontWeight:700,marginBottom:6}}>⚡ SPLIT-PAYMENT</div>
+                <div style={{background:"#fff",borderRadius:10,padding:"10px 12px",marginBottom:10}}>
+                  <div style={{fontSize:9,color:"#333",fontWeight:700,marginBottom:6}}>⚡ SPLIT-PAYMENT</div>
                   {[{l:lang==="fr"?"Relais (Achat+90% Marge)":"Relay (Cost+90% Margin)",v:sp.relais,col:COL},{l:lang==="fr"?"Livreur (90% Livraison)":"Driver (90% Delivery)",v:sp.livreur,col:C.livreur},{l:lang==="fr"?"Admin (10% Marge+Livraison)":"Admin (10% Margin+Delivery)",v:sp.admin,col:C.admin}].map(r=>(
                     <div key={r.l} style={{display:"flex",justifyContent:"space-between",fontSize:11,padding:"3px 0",borderTop:`1px solid ${C.border}`}}>
-                      <span style={{color:C.muted}}>{r.l}</span>
+                      <span style={{color:"#333"}}>{r.l}</span>
                       <span style={{fontWeight:700,color:r.col}}>{fmt(r.v)} F · π{fmtPi(r.v/oracle.rate)}</span>
                     </div>
                   ))}
@@ -1583,7 +1583,7 @@ function RelaisApp({oracle,stocks,update,lang,setLang,onBack}){
 
       {tab==="stocks"&&(
         <div style={{padding:"14px",paddingBottom:80}}>
-          <div style={{fontSize:10,color:C.muted,fontWeight:700,marginBottom:12}}>⏰ {lang==="fr"?"Mise à jour obligatoire à 8h00 chaque matin":"Mandatory update at 8:00 AM every morning"}</div>
+          <div style={{fontSize:10,color:"#333",fontWeight:700,marginBottom:12}}>⏰ {lang==="fr"?"Mise à jour obligatoire à 8h00 chaque matin":"Mandatory update at 8:00 AM every morning"}</div>
           {Object.entries(BRANDS).map(([bk,br])=>{
             const ps=CATALOGUE.filter(p=>p.b===bk);
             return(
@@ -1603,11 +1603,11 @@ function RelaisApp({oracle,stocks,update,lang,setLang,onBack}){
                       {isE?(
                         <div onClick={e=>e.stopPropagation()}>
                           <div style={{fontFamily:"'Poppins',sans-serif",fontWeight:800,marginBottom:6}}>{p.icon} {lang==="fr"?p.nFr:p.nEn} {p.d}</div>
-                          <div style={{fontSize:11,color:C.muted,marginBottom:10}}>{lang==="fr"?"Unité":"Unit"} : <strong>{p.u}</strong> · {lang==="fr"?"Seuil alerte":"Alert threshold"} : {mn} {p.u}s</div>
+                          <div style={{fontSize:11,color:"#333",marginBottom:10}}>{lang==="fr"?"Unité":"Unit"} : <strong>{p.u}</strong> · {lang==="fr"?"Seuil alerte":"Alert threshold"} : {mn} {p.u}s</div>
                           <input type="number" min="0" value={editQty} onChange={e=>setEditQty(e.target.value)}
-                            style={{width:"100%",padding:"12px",background:C.card2,border:`2px solid ${COL}`,borderRadius:10,color:C.text,fontSize:22,fontWeight:900,fontFamily:"'Poppins',sans-serif",outline:"none",textAlign:"center",marginBottom:10}} autoFocus/>
+                            style={{width:"100%",padding:"12px",background:"#fff",border:`2px solid ${COL}`,borderRadius:10,color:"#111",fontSize:22,fontWeight:900,fontFamily:"'Poppins',sans-serif",outline:"none",textAlign:"center",marginBottom:10}} autoFocus/>
                           <div style={{display:"flex",gap:8}}>
-                            <button onClick={()=>setEditId(null)} style={{flex:1,padding:11,background:C.card2,border:`1px solid ${C.border}`,borderRadius:10,color:C.muted,cursor:"pointer"}}>{t.annuler}</button>
+                            <button onClick={()=>setEditId(null)} style={{flex:1,padding:11,background:"#fff",border:`1px solid ${C.border}`,borderRadius:10,color:"#333",cursor:"pointer"}}>{t.annuler}</button>
                             <button onClick={()=>saveStock(p.id)} style={{flex:2,padding:11,background:C.grelais,border:"none",borderRadius:10,color:"#0B0804",fontWeight:900,cursor:"pointer",fontFamily:"'Poppins',sans-serif"}}>{t.enregistrer}</button>
                           </div>
                         </div>
@@ -1622,7 +1622,7 @@ function RelaisApp({oracle,stocks,update,lang,setLang,onBack}){
                           </div>
                           <div style={{textAlign:"right",marginLeft:12}}>
                             <div style={{fontFamily:"'Poppins',sans-serif",fontSize:22,fontWeight:900,color:sc}}>{sq}</div>
-                            <div style={{fontSize:9,color:C.muted}}>✏️ {lang==="fr"?"modifier":"edit"}</div>
+                            <div style={{fontSize:9,color:"#333"}}>✏️ {lang==="fr"?"modifier":"edit"}</div>
                           </div>
                         </div>
                       )}
@@ -1649,7 +1649,7 @@ function RelaisApp({oracle,stocks,update,lang,setLang,onBack}){
                   <span style={{fontSize:24}}>{l.icon}</span>
                   <div style={{flex:1}}>
                     <div style={{fontWeight:700,fontSize:14}}>{l.nom}</div>
-                    <div style={{fontSize:11,color:C.muted}}>{l.quartier} · {l.vehicule}</div>
+                    <div style={{fontSize:11,color:"#333"}}>{l.quartier} · {l.vehicule}</div>
                     <div style={{fontSize:11,color:COL}}>📦 {l.distDepot} km {lang==="fr"?"du dépôt":"from depot"}</div>
                   </div>
                   <div style={{textAlign:"right"}}>
@@ -1680,14 +1680,14 @@ function RelaisApp({oracle,stocks,update,lang,setLang,onBack}){
           {/* Régime actuel */}
           <div style={{background:regimeData.color+"18",border:`1.5px solid ${regimeData.color}44`,borderRadius:16,padding:"16px 18px",marginBottom:16}}>
             <div style={{fontSize:10,color:regimeData.color,fontWeight:800,marginBottom:4}}>{lang==="fr"?"VOTRE RÉGIME":"YOUR REGIME"}</div>
-            <div style={{fontFamily:"'Poppins',sans-serif",fontSize:20,fontWeight:900,color:C.text,marginBottom:4}}>{regimeData.num}. {regimeData.label}</div>
-            <div style={{fontSize:12,color:C.sub,marginBottom:10}}>{regimeData.otr}</div>
+            <div style={{fontFamily:"'Poppins',sans-serif",fontSize:20,fontWeight:900,color:"#111",marginBottom:4}}>{regimeData.num}. {regimeData.label}</div>
+            <div style={{fontSize:12,color:"#1E40AF",marginBottom:10}}>{regimeData.otr}</div>
             {[{l:"NIF",v:regimeData.nif?(lang==="fr"?"Requis":"Required"):(lang==="fr"?"Non requis":"Not required"),c:regimeData.nif?C.green:C.muted},
               {l:"TVA",v:regimeData.tva?"18% activée":(lang==="fr"?"Non applicable":"Not applicable"),c:regimeData.tva?COL:C.muted},
               {l:"IMF",v:`1% du CA — ${lang==="fr"?"Activée pour TOUS":"Active for ALL"}`,c:C.green},
             ].map(r=>(
               <div key={r.l} style={{display:"flex",justifyContent:"space-between",padding:"7px 0",borderTop:`1px solid ${C.border}`,fontSize:12}}>
-                <span style={{color:C.muted}}>{r.l}</span><span style={{fontWeight:700,color:r.c}}>{r.v}</span>
+                <span style={{color:"#333"}}>{r.l}</span><span style={{fontWeight:700,color:r.c}}>{r.v}</span>
               </div>
             ))}
           </div>
@@ -1696,7 +1696,7 @@ function RelaisApp({oracle,stocks,update,lang,setLang,onBack}){
             <div style={{fontSize:10,color:COL,fontWeight:800,marginBottom:8}}>📈 {lang==="fr"?"CHIFFRE D'AFFAIRES":"REVENUE"}</div>
             <div style={{fontFamily:"'Poppins',sans-serif",fontSize:28,fontWeight:900,color:COL}}>{fmt(caTotal)} F</div>
             <div style={{display:"flex",justifyContent:"space-between",marginTop:12,padding:"10px 0",borderTop:`1px solid ${C.border}`}}>
-              <span style={{color:C.muted,fontSize:13}}>{lang==="fr"?"Provision IMF 1%":"IMF 1% provision"}</span>
+              <span style={{color:"#333",fontSize:13}}>{lang==="fr"?"Provision IMF 1%":"IMF 1% provision"}</span>
               <span style={{fontFamily:"'Poppins',sans-serif",fontWeight:900,color:C.green,fontSize:15}}>{fmt(caTotal*.01)} F</span>
             </div>
             {regimeData.seuil&&(
@@ -1704,7 +1704,7 @@ function RelaisApp({oracle,stocks,update,lang,setLang,onBack}){
                 <div style={{background:C.border,borderRadius:4,height:8,marginTop:10}}>
                   <div style={{background:COL,height:8,borderRadius:4,width:`${Math.min(100,(caTotal/regimeData.seuil)*100)}%`,transition:"width .5s"}}/>
                 </div>
-                <div style={{display:"flex",justifyContent:"space-between",fontSize:10,color:C.muted,marginTop:4}}>
+                <div style={{display:"flex",justifyContent:"space-between",fontSize:10,color:"#333",marginTop:4}}>
                   <span>0</span><span style={{color:COL}}>{Math.round((caTotal/regimeData.seuil)*100)}%</span><span>{fmt(regimeData.seuil)} F</span>
                 </div>
                 {caTotal>regimeData.seuil*.8&&<div style={{marginTop:8,background:C.red+"11",border:`1px solid ${C.red}33`,borderRadius:10,padding:"8px 12px",fontSize:12,color:C.red,fontWeight:700}}>⚠️ {lang==="fr"?"Seuil de changement de régime imminent !":"Tax regime change threshold imminent!"}</div>}
@@ -1713,13 +1713,13 @@ function RelaisApp({oracle,stocks,update,lang,setLang,onBack}){
           </div>
           {/* Tableau 4 régimes */}
           <div style={{background:C.card,borderRadius:14,padding:"14px 16px",border:`1px solid ${C.border}`}}>
-            <div style={{fontSize:10,color:C.sub,fontWeight:700,marginBottom:10}}>{lang==="fr"?"TABLEAU DES 4 RÉGIMES OTR TOGO":"4 OTR TOGO TAX REGIMES"}</div>
+            <div style={{fontSize:10,color:"#1E40AF",fontWeight:700,marginBottom:10}}>{lang==="fr"?"TABLEAU DES 4 RÉGIMES OTR TOGO":"4 OTR TOGO TAX REGIMES"}</div>
             {Object.values(REGIMES).map(r=>(
               <div key={r.id} style={{display:"flex",alignItems:"center",gap:10,padding:"8px 0",borderTop:`1px solid ${C.border}`}}>
                 <div style={{width:22,height:22,borderRadius:"50%",background:r.color+"22",border:`1.5px solid ${r.color}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:11,fontWeight:900,color:r.color,flexShrink:0}}>{r.num}</div>
                 <div style={{flex:1}}>
-                  <div style={{fontWeight:700,fontSize:12,color:C.text}}>{r.label}</div>
-                  <div style={{fontSize:10,color:C.muted}}>{r.desc}</div>
+                  <div style={{fontWeight:700,fontSize:12,color:"#111"}}>{r.label}</div>
+                  <div style={{fontSize:10,color:"#333"}}>{r.desc}</div>
                 </div>
                 <div style={{display:"flex",gap:3}}>
                   {r.tva&&<span style={{fontSize:8,background:COL+"22",color:COL,padding:"1px 5px",borderRadius:4,fontWeight:700}}>TVA</span>}
@@ -1728,7 +1728,7 @@ function RelaisApp({oracle,stocks,update,lang,setLang,onBack}){
               </div>
             ))}
           </div>
-          <button onClick={()=>setShowOnboarding(true)} style={{width:"100%",padding:12,marginTop:14,background:C.card2,border:`1px solid ${C.border}`,borderRadius:12,color:C.muted,cursor:"pointer",fontSize:12,fontWeight:600}}>
+          <button onClick={()=>setShowOnboarding(true)} style={{width:"100%",padding:12,marginTop:14,background:"#fff",border:`1px solid ${C.border}`,borderRadius:12,color:"#333",cursor:"pointer",fontSize:12,fontWeight:600}}>
             🔄 {lang==="fr"?"Modifier mon régime fiscal":"Change my tax regime"}
           </button>
         </div>
@@ -1759,8 +1759,8 @@ function AdminApp({oracle,lang,setLang,onBack}){
     {n:"Dépôt Segbé (Hub 1)",r:"Golfe 7",ca:18400000,regime:"SARL/RSI",actif:true,piToday:22.4,color:COL},
     {n:"Mini-Relais Bè (Hub 2)",r:"Golfe 1",ca:9500000,regime:"Ets/TPU",actif:true,piToday:11.2,color:C.relais},
     {n:"Point Atakpamé",r:"Plateaux",ca:3100000,regime:"Ets/TPU",actif:true,piToday:5.1,color:C.green},
-    {n:"Hub Kara Nord",r:"Kara",ca:920000,regime:"Informel",actif:false,piToday:0,color:C.muted},
-    {n:"Hub Savanes",r:"Savanes (Dapaong)",ca:0,regime:"Informel",actif:false,piToday:0,color:C.muted},
+    {n:"Hub Kara Nord",r:"Kara",ca:920000,regime:"Informel",actif:false,piToday:0,color:"#333"},
+    {n:"Hub Savanes",r:"Savanes (Dapaong)",ca:0,regime:"Informel",actif:false,piToday:0,color:"#333"},
   ];
 
   const totalPi=RELAIS.reduce((s,r)=>s+r.piToday,0);
@@ -1777,7 +1777,7 @@ function AdminApp({oracle,lang,setLang,onBack}){
   ];
 
   return(
-    <div style={{background:C.bg,minHeight:"100vh",fontFamily:"'Inter',sans-serif",color:C.text}}>
+    <div style={{background:C.bg,minHeight:"100vh",fontFamily:"'Inter',sans-serif",color:"#111"}}>
       <link href={GF} rel="stylesheet"/><style>{GCSS}</style>
       <Toast data={toast}/>
       <div style={{display:"flex",flexDirection:"column",minHeight:"100vh"}}>
@@ -1786,14 +1786,14 @@ function AdminApp({oracle,lang,setLang,onBack}){
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:10}}>
             <div>
               <div style={{fontFamily:"'Poppins',sans-serif",fontSize:15,fontWeight:900,color:COL}}>💧 Multivers'Eau</div>
-              <div style={{fontSize:10,color:C.muted}}>Super Admin</div>
+              <div style={{fontSize:10,color:"#333"}}>Super Admin</div>
             </div>
             <div style={{display:"flex",gap:8,alignItems:"center"}}>
               <div style={{background:C.bg,borderRadius:8,padding:"6px 10px",border:`1px solid ${COL}22`}}>
-                <div style={{fontSize:9,color:C.muted,fontWeight:700}}>ORACLE</div>
+                <div style={{fontSize:9,color:"#333",fontWeight:700}}>ORACLE</div>
                 <div style={{fontFamily:"'Poppins',sans-serif",fontSize:13,fontWeight:900,color:COL}}>{fmt(oracle.rate)} F</div>
               </div>
-              <button onClick={()=>setLang(l=>l==="fr"?"en":"fr")} style={{background:C.card2,border:`1px solid ${C.border}`,borderRadius:8,padding:"6px 10px",color:C.muted,fontSize:11,cursor:"pointer"}}>{lang==="fr"?"🇬🇧":"🇫🇷"}</button>
+              <button onClick={()=>setLang(l=>l==="fr"?"en":"fr")} style={{background:"#fff",border:`1px solid ${C.border}`,borderRadius:8,padding:"6px 10px",color:"#333",fontSize:11,cursor:"pointer"}}>{lang==="fr"?"🇬🇧":"🇫🇷"}</button>
               <button onClick={onBack} style={{background:"#0066FF",border:"none",borderRadius:8,padding:"6px 14px",color:"#fff",fontSize:13,fontWeight:700,cursor:"pointer"}}>← Retour</button>
             </div>
           </div>
@@ -1811,7 +1811,7 @@ function AdminApp({oracle,lang,setLang,onBack}){
         <div style={{display:"none"}}>
           <div style={{marginBottom:20,padding:"0 8px"}}>
             <div style={{fontFamily:"'Poppins',sans-serif",fontSize:16,fontWeight:900,color:COL}}>💧 Multivers'Eau</div>
-            <div style={{fontSize:10,color:C.muted,marginTop:2}}>Super Admin</div>
+            <div style={{fontSize:10,color:"#333",marginTop:2}}>Super Admin</div>
           </div>
           {NAV.map(n=>(
             <button key={n.id} onClick={()=>setSection(n.id)} style={{display:"flex",alignItems:"center",gap:8,width:"100%",padding:"9px 12px",borderRadius:10,background:section===n.id?COL+"18":"transparent",border:section===n.id?`1px solid ${COL}33`:"1px solid transparent",color:section===n.id?COL:C.muted,fontWeight:section===n.id?700:500,fontSize:12,cursor:"pointer",marginBottom:4,textAlign:"left",position:"relative"}}>
@@ -1820,16 +1820,16 @@ function AdminApp({oracle,lang,setLang,onBack}){
             </button>
           ))}
           <div style={{marginTop:"auto"}}>
-            <button onClick={()=>setLang(l=>l==="fr"?"en":"fr")} style={{width:"100%",padding:"7px",background:C.card2,border:`1px solid ${C.border}`,borderRadius:8,color:C.muted,fontSize:11,cursor:"pointer",marginBottom:8}}>{lang==="fr"?"🇬🇧 English":"🇫🇷 Français"}</button>
+            <button onClick={()=>setLang(l=>l==="fr"?"en":"fr")} style={{width:"100%",padding:"7px",background:"#fff",border:`1px solid ${C.border}`,borderRadius:8,color:"#333",fontSize:11,cursor:"pointer",marginBottom:8}}>{lang==="fr"?"🇬🇧 English":"🇫🇷 Français"}</button>
             <div style={{background:C.bg,borderRadius:10,padding:"10px 12px",border:`1px solid ${COL}22`}}>
-              <div style={{fontSize:9,color:C.muted,fontWeight:700,marginBottom:4}}>ORACLE · COINGECKO</div>
+              <div style={{fontSize:9,color:"#333",fontWeight:700,marginBottom:4}}>ORACLE · COINGECKO</div>
               <div style={{fontFamily:"'Poppins',sans-serif",fontSize:14,fontWeight:900,color:COL}}>{fmt(oracle.rate)} F</div>
               <div style={{display:"flex",alignItems:"center",gap:4,marginTop:3}}>
                 <div style={{width:5,height:5,borderRadius:"50%",background:oracle.status==="live"?C.green:C.relais,animation:oracle.status==="live"?"pulse 2s infinite":"none"}}/>
-                <span style={{fontSize:8,color:C.muted}}>{oracle.status==="live"?"Live":"Fallback"}</span>
+                <span style={{fontSize:8,color:"#333"}}>{oracle.status==="live"?"Live":"Fallback"}</span>
               </div>
             </div>
-            <button onClick={onBack} style={{width:"100%",padding:"7px",marginTop:8,background:C.card2,border:`1px solid ${C.border}`,borderRadius:8,color:C.muted,fontSize:11,cursor:"pointer"}}>{lang==="fr"?"← Retour":"← Back"}</button>
+            <button onClick={onBack} style={{width:"100%",padding:"7px",marginTop:8,background:"#fff",border:`1px solid ${C.border}`,borderRadius:8,color:"#333",fontSize:11,cursor:"pointer"}}>{lang==="fr"?"← Retour":"← Back"}</button>
           </div>
         </div>
 
@@ -1844,7 +1844,7 @@ function AdminApp({oracle,lang,setLang,onBack}){
                 {[{i:"📦",l:lang==="fr"?"Commandes/jour":"Orders/day",v:"42",col:COL},{i:"💧",l:"Pi collecté",v:`π${fmtPi(totalPi)}`,col:COL},{i:"💰",l:lang==="fr"?"Commission Admin":"Admin commission",v:`π${fmtPi(adminPi)}`,col:C.relais},{i:"🌍",l:lang==="fr"?"Relais actifs":"Active relays",v:`${RELAIS.filter(r=>r.actif).length}/${RELAIS.length}`,col:C.green}].map(k=>(
                   <div key={k.l} style={{background:C.card,borderRadius:14,padding:"16px 18px",border:`1px solid ${C.border}`,position:"relative",overflow:"hidden"}}>
                     <div style={{position:"absolute",top:0,right:0,width:60,height:60,background:`radial-gradient(circle at 100% 0%,${k.col}18,transparent 70%)`}}/>
-                    <div style={{fontSize:11,color:C.muted,marginBottom:6}}>{k.i} {k.l}</div>
+                    <div style={{fontSize:11,color:"#333",marginBottom:6}}>{k.i} {k.l}</div>
                     <div style={{fontFamily:"'Poppins',sans-serif",fontSize:22,fontWeight:900,color:k.col}}>{k.v}</div>
                   </div>
                 ))}
@@ -1857,7 +1857,7 @@ function AdminApp({oracle,lang,setLang,onBack}){
                   {l:lang==="fr"?"Admin (10% Marge+Livraison)":"Admin (10% Margin+Delivery)",v:`π${fmtPi(adminPi)}`,pct:10,col:COL},
                 ].map(r=>(
                   <div key={r.l} style={{marginBottom:12}}>
-                    <div style={{display:"flex",justifyContent:"space-between",fontSize:12,marginBottom:4}}><span style={{color:C.sub}}>{r.l}</span><span style={{fontFamily:"'Poppins',sans-serif",fontWeight:800,color:r.col}}>{r.v}</span></div>
+                    <div style={{display:"flex",justifyContent:"space-between",fontSize:12,marginBottom:4}}><span style={{color:"#1E40AF"}}>{r.l}</span><span style={{fontFamily:"'Poppins',sans-serif",fontWeight:800,color:r.col}}>{r.v}</span></div>
                     <div style={{background:C.border,borderRadius:4,height:6}}><div style={{background:r.col,height:6,borderRadius:4,width:`${r.pct}%`,transition:"width .5s"}}/></div>
                   </div>
                 ))}
@@ -1878,7 +1878,7 @@ function AdminApp({oracle,lang,setLang,onBack}){
                 {[{l:lang==="fr"?"En attente":"Pending",v:CANDIDATS.filter(c=>!decisions[c.id]).length,col:C.relais},{l:lang==="fr"?"Validés":"Validated",v:Object.values(decisions).filter(d=>d==="valide").length,col:C.green},{l:lang==="fr"?"Rejetés":"Rejected",v:Object.values(decisions).filter(d=>d==="rejete").length,col:C.red}].map(k=>(
                   <div key={k.l} style={{background:C.card,borderRadius:12,padding:"14px 16px",border:`1px solid ${k.col}33`}}>
                     <div style={{fontFamily:"'Poppins',sans-serif",fontSize:24,fontWeight:900,color:k.col}}>{k.v}</div>
-                    <div style={{fontSize:12,color:C.muted}}>{k.l}</div>
+                    <div style={{fontSize:12,color:"#333"}}>{k.l}</div>
                   </div>
                 ))}
               </div>
@@ -1890,7 +1890,7 @@ function AdminApp({oracle,lang,setLang,onBack}){
                     <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:12}}>
                       <div>
                         <div style={{fontFamily:"'Poppins',sans-serif",fontSize:16,fontWeight:900,color:"#111"}}>{c.nom}</div>
-                        <div style={{fontSize:12,color:C.sub}}>{c.vehicule} · {c.immat} · {c.region} · {c.distDepot} {lang==="fr"?"du dépôt":"from depot"}</div>
+                        <div style={{fontSize:12,color:"#1E40AF"}}>{c.vehicule} · {c.immat} · {c.region} · {c.distDepot} {lang==="fr"?"du dépôt":"from depot"}</div>
                       </div>
                       <span style={{fontSize:11,fontWeight:700,padding:"4px 12px",borderRadius:20,background:`${dc}22`,color:dc}}>
                         {dec==="valide"?"✅ Validé":dec==="rejete"?"❌ Rejeté":"⏳ En attente"}
@@ -1899,19 +1899,19 @@ function AdminApp({oracle,lang,setLang,onBack}){
                     {/* Photos côte à côte */}
                     <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10,marginBottom:12}}>
                       {[{l:lang==="fr"?"ENGIN":"VEHICLE",i:"🏍️"},{l:lang==="fr"?"ÉQUIPEMENT":"EQUIPMENT",i:"🛡️"}].map(ph=>(
-                        <div key={ph.l} style={{background:C.card2,borderRadius:10,overflow:"hidden",border:`1px solid ${C.border}`}}>
+                        <div key={ph.l} style={{background:"#fff",borderRadius:10,overflow:"hidden",border:`1px solid ${C.border}`}}>
                           <div style={{height:90,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",background:`linear-gradient(135deg,${C.card2},${C.border}22)`}}>
                             <span style={{fontSize:32}}>{ph.i}</span>
-                            <span style={{fontSize:9,color:C.muted,marginTop:4}}>photo_{c.id.toLowerCase()}_{ph.l.toLowerCase()}.jpg</span>
+                            <span style={{fontSize:9,color:"#333",marginTop:4}}>photo_{c.id.toLowerCase()}_{ph.l.toLowerCase()}.jpg</span>
                           </div>
                           <div style={{padding:"5px",fontSize:9,color:COL,fontWeight:700,textAlign:"center"}}>{ph.l}</div>
                         </div>
                       ))}
                     </div>
                     {/* Note relais */}
-                    <div style={{background:C.card2,borderRadius:10,padding:"10px 12px",marginBottom:10,borderLeft:`3px solid ${COL}`}}>
+                    <div style={{background:"#fff",borderRadius:10,padding:"10px 12px",marginBottom:10,borderLeft:`3px solid ${COL}`}}>
                       <div style={{fontSize:10,color:COL,fontWeight:700,marginBottom:4}}>{lang==="fr"?"RECOMMANDATION":"RECOMMENDATION"} · {c.relaisNom}</div>
-                      <div style={{fontSize:12,color:C.sub,fontStyle:"italic"}}>"{c.relaisNote}"</div>
+                      <div style={{fontSize:12,color:"#1E40AF",fontStyle:"italic"}}>"{c.relaisNote}"</div>
                     </div>
                     {/* Équipements */}
                     <div style={{display:"flex",gap:6,flexWrap:"wrap",marginBottom:10}}>
@@ -1945,19 +1945,19 @@ function AdminApp({oracle,lang,setLang,onBack}){
                   <div>
                     <div style={{fontSize:10,color:COL,fontWeight:800,letterSpacing:1,marginBottom:4}}>{lang==="fr"?"TAUX ACTUEL · COINGECKO":"CURRENT RATE · COINGECKO"}</div>
                     <div style={{fontFamily:"'Poppins',sans-serif",fontSize:38,fontWeight:900,color:COL}}>{fmt(oracle.rate)} F</div>
-                    <div style={{fontSize:12,color:C.muted}}>{lang==="fr"?"pour 1 π Pi Network":"for 1 π Pi Network"}</div>
+                    <div style={{fontSize:12,color:"#333"}}>{lang==="fr"?"pour 1 π Pi Network":"for 1 π Pi Network"}</div>
                   </div>
                   <div style={{textAlign:"right"}}>
                     <div style={{fontSize:12,color:oracle.status==="live"?C.green:C.relais,fontWeight:700}}>
                       {oracle.status==="live"?"🟢 Connecté":"🟡 Fallback"}
                     </div>
-                    {oracle.time&&<div style={{fontSize:11,color:C.muted,marginTop:4}}>{oracle.time.toLocaleTimeString(lang==="fr"?"fr-FR":"en-GB")}</div>}
+                    {oracle.time&&<div style={{fontSize:11,color:"#333",marginTop:4}}>{oracle.time.toLocaleTimeString(lang==="fr"?"fr-FR":"en-GB")}</div>}
                     <button onClick={oracle.sync} style={{marginTop:8,padding:"5px 12px",background:"transparent",border:`1px solid ${COL}44`,borderRadius:8,color:COL,fontSize:11,cursor:"pointer"}}>↻ Sync</button>
                   </div>
                 </div>
                 {oracle.history.length>1&&(
                   <div style={{background:C.bg,borderRadius:10,padding:"10px 12px"}}>
-                    <div style={{fontSize:9,color:C.muted,fontWeight:700,marginBottom:8}}>{lang==="fr"?"HISTORIQUE":"HISTORY"} (CoinGecko)</div>
+                    <div style={{fontSize:9,color:"#333",fontWeight:700,marginBottom:8}}>{lang==="fr"?"HISTORIQUE":"HISTORY"} (CoinGecko)</div>
                     <div style={{display:"flex",alignItems:"flex-end",gap:3,height:40}}>
                       {oracle.history.map((h,i)=>{
                         const max=Math.max(...oracle.history.map(x=>x.v));
@@ -1966,7 +1966,7 @@ function AdminApp({oracle,lang,setLang,onBack}){
                         return <div key={i} style={{flex:1,borderRadius:"2px 2px 0 0",height:`${Math.max(6,pct*.34+6)}px`,background:i===oracle.history.length-1?COL:COL+"44"}}/>;
                       })}
                     </div>
-                    <div style={{display:"flex",justifyContent:"space-between",fontSize:9,color:C.muted,marginTop:4}}>
+                    <div style={{display:"flex",justifyContent:"space-between",fontSize:9,color:"#333",marginTop:4}}>
                       <span>Min {Math.min(...oracle.history.map(x=>x.v)).toFixed(2)} F</span>
                       <span>Max {Math.max(...oracle.history.map(x=>x.v)).toFixed(2)} F</span>
                     </div>
@@ -1978,7 +1978,7 @@ function AdminApp({oracle,lang,setLang,onBack}){
                 <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:modeManuel?16:0}}>
                   <div>
                     <div style={{fontWeight:700,color:modeManuel?C.relais:C.text}}>⚙️ {lang==="fr"?"Mode Taux Fixe Manuel":"Manual Fixed Rate Mode"}</div>
-                    <div style={{fontSize:11,color:C.muted,marginTop:2}}>{lang==="fr"?"En cas de coupure CoinGecko — protection des relais":"In case of CoinGecko outage — relay protection"}</div>
+                    <div style={{fontSize:11,color:"#333",marginTop:2}}>{lang==="fr"?"En cas de coupure CoinGecko — protection des relais":"In case of CoinGecko outage — relay protection"}</div>
                   </div>
                   <div onClick={()=>setModeManuel(m=>!m)} style={{width:50,height:26,borderRadius:13,background:modeManuel?C.relais:C.border,position:"relative",cursor:"pointer",transition:"background .2s",flexShrink:0}}>
                     <div style={{position:"absolute",top:3,left:modeManuel?26:3,width:20,height:20,borderRadius:"50%",background:"#fff",transition:"left .2s",boxShadow:"0 2px 4px rgba(0,0,0,.3)"}}/>
@@ -1988,16 +1988,16 @@ function AdminApp({oracle,lang,setLang,onBack}){
                   <div>
                     <div style={{background:C.relais+"15",border:`1px solid ${C.relais}33`,borderRadius:10,padding:"10px 12px",marginBottom:12,fontSize:12,color:C.relais}}>⚠️ {lang==="fr"?"CoinGecko suspendu. Taux fixe appliqué.":"CoinGecko suspended. Fixed rate applied."}</div>
                     <div style={{display:"flex",gap:10}}>
-                      <input type="number" value={rateM} onChange={e=>setRateM(e.target.value)} style={{flex:1,padding:"12px",background:C.card2,border:`1.5px solid ${C.relais}`,borderRadius:10,color:C.text,fontSize:18,fontWeight:900,outline:"none",fontFamily:"'Poppins',sans-serif"}}/>
+                      <input type="number" value={rateM} onChange={e=>setRateM(e.target.value)} style={{flex:1,padding:"12px",background:"#fff",border:`1.5px solid ${C.relais}`,borderRadius:10,color:"#111",fontSize:18,fontWeight:900,outline:"none",fontFamily:"'Poppins',sans-serif"}}/>
                       <button onClick={()=>show(`✅ ${lang==="fr"?"Taux fixé à":"Rate set to"} ${rateM} F`,C.relais)} style={{padding:"12px 16px",background:`linear-gradient(135deg,${C.relais}CC,${C.relais})`,border:"none",borderRadius:10,color:"#0B0804",fontWeight:900,cursor:"pointer",fontFamily:"'Poppins',sans-serif"}}>{lang==="fr"?"Appliquer":"Apply"}</button>
                     </div>
                   </div>
                 )}
               </div>
               {/* Mention oracle */}
-              <div style={{background:C.card2,borderRadius:14,padding:"14px 16px",marginBottom:18,border:`1px solid ${C.border}`}}>
-                <div style={{fontSize:10,color:C.sub,fontWeight:700,marginBottom:6}}>{lang==="fr"?"MENTION AFFICHÉE AUX CLIENTS":"DISPLAYED TO CLIENTS"}</div>
-                <div style={{background:C.bg,borderRadius:10,padding:"12px 14px",fontSize:12,color:C.sub,fontStyle:"italic",lineHeight:1.6}}>
+              <div style={{background:"#fff",borderRadius:14,padding:"14px 16px",marginBottom:18,border:`1px solid ${C.border}`}}>
+                <div style={{fontSize:10,color:"#1E40AF",fontWeight:700,marginBottom:6}}>{lang==="fr"?"MENTION AFFICHÉE AUX CLIENTS":"DISPLAYED TO CLIENTS"}</div>
+                <div style={{background:C.bg,borderRadius:10,padding:"12px 14px",fontSize:12,color:"#1E40AF",fontStyle:"italic",lineHeight:1.6}}>
                   "{lang==="fr"?"Prix indexé sur l'Oracle CoinGecko · Dernière mise à jour le":"Price indexed on CoinGecko Oracle · Last updated on"} {new Date().toLocaleDateString(lang==="fr"?"fr-FR":"en-GB")} {lang==="fr"?"à":"at"} {new Date().toLocaleTimeString(lang==="fr"?"fr-FR":"en-GB")}{modeManuel?` · ⚠️ ${lang==="fr"?"Taux fixe temporaire":"Temporary fixed rate"}`:""}
                   "
                 </div>
@@ -2019,9 +2019,9 @@ function AdminApp({oracle,lang,setLang,onBack}){
                 <div style={{fontFamily:"'Poppins',sans-serif",fontSize:14,fontWeight:800,color:COL,marginBottom:12}}>🗺️ {lang==="fr"?"Stratégie 3 Hubs — Grand Lomé":"3 Hubs Strategy — Grand Lomé"}</div>
                 {[{icon:"🏠",nom:"Hub Principal Segbé",communes:["Golfe 7","Golfe 5","Golfe 4","Golfe 3","Agoè-Nyivé 1","Agoè-Nyivé 3","Agoè-Nyivé 5"],color:COL},
                   {icon:"🏪",nom:"Mini-Relais Bè",communes:["Golfe 1","Golfe 2","Golfe 6"],color:C.relais},
-                  {icon:"🔜",nom:"Mini-Relais Agoè-Nord",communes:["Agoè-Nyivé 4","Agoè-Nyivé 6","Agoè-Nyivé 2"],color:C.muted},
+                  {icon:"🔜",nom:"Mini-Relais Agoè-Nord",communes:["Agoè-Nyivé 4","Agoè-Nyivé 6","Agoè-Nyivé 2"],color:"#333"},
                 ].map(h=>(
-                  <div key={h.nom} style={{marginBottom:12,padding:"10px 12px",background:C.card2,borderRadius:10,border:`1px solid ${h.color}33`}}>
+                  <div key={h.nom} style={{marginBottom:12,padding:"10px 12px",background:"#fff",borderRadius:10,border:`1px solid ${h.color}33`}}>
                     <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:6}}>
                       <span style={{fontSize:18}}>{h.icon}</span>
                       <span style={{fontWeight:700,color:h.color,fontSize:13}}>{h.nom}</span>
@@ -2036,14 +2036,14 @@ function AdminApp({oracle,lang,setLang,onBack}){
               {RELAIS.map(r=>(
                 <div key={r.n} style={{background:C.card,borderRadius:14,padding:"14px 16px",marginBottom:10,border:`1px solid ${r.actif?C.border:C.muted+"22"}`}}>
                   <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:10}}>
-                    <div><div style={{fontFamily:"'Poppins',sans-serif",fontWeight:800,fontSize:14}}>{r.n}</div><div style={{fontSize:12,color:C.sub}}>{r.r} · {r.regime}</div></div>
+                    <div><div style={{fontFamily:"'Poppins',sans-serif",fontWeight:800,fontSize:14}}>{r.n}</div><div style={{fontSize:12,color:"#1E40AF"}}>{r.r} · {r.regime}</div></div>
                     <span style={{fontSize:11,fontWeight:700,padding:"4px 10px",borderRadius:14,background:r.actif?C.green+"22":C.muted+"22",color:r.actif?C.green:C.muted}}>{r.actif?"● Actif":"○ Inactif"}</span>
                   </div>
                   <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8}}>
                     {[{l:lang==="fr"?"CA cumulé":"Total revenue",v:`${fmt(r.ca)} F`},{l:lang==="fr"?"Pi (jour)":"Pi (day)",v:`π${fmtPi(r.piToday)}`},{l:"IMF 1%",v:`${fmt(r.ca*.01)} F`}].map(m=>(
-                      <div key={m.l} style={{background:C.card2,borderRadius:8,padding:"8px 10px"}}>
-                        <div style={{fontFamily:"'Poppins',sans-serif",fontSize:12,fontWeight:800,color:r.actif?r.color:C.muted}}>{m.v}</div>
-                        <div style={{fontSize:9,color:C.muted}}>{m.l}</div>
+                      <div key={m.l} style={{background:"#fff",borderRadius:8,padding:"8px 10px"}}>
+                        <div style={{fontFamily:"'Poppins',sans-serif",fontSize:12,fontWeight:800,color:r.actif?r.color:"#333"}}>{m.v}</div>
+                        <div style={{fontSize:9,color:"#333"}}>{m.l}</div>
                       </div>
                     ))}
                   </div>
@@ -2063,7 +2063,7 @@ function AdminApp({oracle,lang,setLang,onBack}){
                   <table style={{width:"100%",borderCollapse:"collapse",fontSize:12}}>
                     <thead>
                       <tr style={{borderBottom:`2px solid ${C.border}`}}>
-                        <th style={{textAlign:"left",padding:"8px 6px",color:C.sub,fontWeight:700,fontSize:10}}>RÉGION</th>
+                        <th style={{textAlign:"left",padding:"8px 6px",color:"#1E40AF",fontWeight:700,fontSize:10}}>RÉGION</th>
                         {[{label:"Voltic",col:BRANDS.voltic.color},{label:"Cristal",col:BRANDS.cristal.color},{label:"Vitale",col:BRANDS.vitale.color}].map(b=>(
                           <th key={b.label} style={{textAlign:"right",padding:"8px 6px",color:b.col,fontWeight:700,fontSize:10}}>{b.label}</th>
                         ))}
@@ -2072,7 +2072,7 @@ function AdminApp({oracle,lang,setLang,onBack}){
                     <tbody>
                       {Object.entries(REGIONS_INFO).map(([rid,rinfo],i)=>(
                         <tr key={rid} style={{borderBottom:`1px solid ${C.border}11`,background:i%2===0?"transparent":C.card2+"44"}}>
-                          <td style={{padding:"8px 6px",color:C.sub,fontWeight:600}}>{rinfo.label}</td>
+                          <td style={{padding:"8px 6px",color:"#1E40AF",fontWeight:600}}>{rinfo.label}</td>
                           {["v1","v2","v3","v4","c1","c2","c3","t1","t2","t3"].map(pid=>(
                             <td key={pid} style={{padding:"8px 6px",textAlign:"right",fontFamily:"'Poppins',sans-serif",fontWeight:800,color:"#111"}}>{fmt(PLANCHERS[pid]?.[rid]||0)} F</td>
                           ))}
@@ -2081,7 +2081,7 @@ function AdminApp({oracle,lang,setLang,onBack}){
                     </tbody>
                   </table>
                 </div>
-                <div style={{marginTop:12,padding:"10px 12px",background:C.card2,borderRadius:10,fontSize:11,color:C.sub}}>
+                <div style={{marginTop:12,padding:"10px 12px",background:"#fff",borderRadius:10,fontSize:11,color:"#1E40AF"}}>
                   💡 {lang==="fr"?"Prix plancher = Prix usine Lomé + frais transport groupage. Déclaration sous le plancher → révision obligatoire avec justificatif.":"Floor price = Lomé factory price + groupage transport fees. Declaration below floor → mandatory review with justification."}
                 </div>
               </div>
@@ -2101,11 +2101,11 @@ function AdminApp({oracle,lang,setLang,onBack}){
 // Écran de chargement Pi Auth
 function PiAuthLoading({lang}){
   return(
-    <div style={{background:C.bg,minHeight:"100vh",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",fontFamily:"'Inter',sans-serif",color:C.text}}>
+    <div style={{background:C.bg,minHeight:"100vh",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",fontFamily:"'Inter',sans-serif",color:"#111"}}>
       <link href={GF} rel="stylesheet"/>
       <div style={{width:64,height:64,borderRadius:"50%",background:"linear-gradient(135deg,#0033A8,#0066FF)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:30,marginBottom:20,boxShadow:"0 0 40px rgba(0,102,255,0.4)"}}>💧</div>
       <div style={{fontFamily:"'Poppins',sans-serif",fontSize:18,fontWeight:900,marginBottom:8}}>Multivers'Eau</div>
-      <div style={{display:"flex",alignItems:"center",gap:8,color:C.sub,fontSize:13}}>
+      <div style={{display:"flex",alignItems:"center",gap:8,color:"#1E40AF",fontSize:13}}>
         <div style={{width:6,height:6,borderRadius:"50%",background:C.admin,animation:"pulse 1s infinite"}}/>
         {lang==="fr"?"Connexion Pi Network…":"Connecting to Pi Network…"}
       </div>
@@ -2130,13 +2130,13 @@ function AdminRoleSwitcher({role,setRole,lang}){
         <div style={{position:"absolute",bottom:52,right:0,background:C.surf,borderRadius:16,padding:8,border:`1px solid ${C.border}`,boxShadow:"0 8px 32px rgba(0,0,0,.5)",display:"flex",flexDirection:"column",gap:6,minWidth:160}}>
           {ROLES.map(r=>(
             <button key={r.id} onClick={()=>{setRole(r.id);setOpen(false);}}
-              style={{display:"flex",alignItems:"center",gap:10,padding:"10px 14px",background:role===r.id?`${r.color}22`:C.card,border:`1px solid ${role===r.id?r.color:C.border}`,borderRadius:12,cursor:"pointer",color:C.text,fontSize:13,fontWeight:role===r.id?800:500,textAlign:"left"}}>
+              style={{display:"flex",alignItems:"center",gap:10,padding:"10px 14px",background:role===r.id?`${r.color}22`:C.card,border:`1px solid ${role===r.id?r.color:C.border}`,borderRadius:12,cursor:"pointer",color:"#111",fontSize:13,fontWeight:role===r.id?800:500,textAlign:"left"}}>
               <span style={{fontSize:18}}>{r.icon}</span>
-              <span style={{color:role===r.id?r.color:C.text}}>{r.label}</span>
+              <span style={{color:role===r.id?r.color:"#111"}}>{r.label}</span>
               {role===r.id&&<span style={{marginLeft:"auto",fontSize:10,color:r.color}}>●</span>}
             </button>
           ))}
-          <div style={{padding:"6px 14px",fontSize:10,color:C.muted,borderTop:`1px solid ${C.border}`,marginTop:2}}>
+          <div style={{padding:"6px 14px",fontSize:10,color:"#333",borderTop:`1px solid ${C.border}`,marginTop:2}}>
             flashman90 — multi-rôle
           </div>
         </div>
