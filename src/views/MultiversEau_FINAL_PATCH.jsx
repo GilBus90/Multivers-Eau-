@@ -597,8 +597,8 @@ function LandingPage({onRole,oracle,lang,setLang, defaultStep="splash"}){
         {adminVisible&&(
           <div style={{marginTop:12,background:"rgba(0,0,0,.6)",borderRadius:16,padding:"20px",border:`1px solid ${C.admin}44`,animation:"fadeUp .3s ease both",width:"100%",maxWidth:300}}>
             <div style={{fontFamily:"'Poppins',sans-serif",fontSize:13,fontWeight:800,color:C.admin,marginBottom:12,textAlign:"center"}}>🔐 Super Admin</div>
-            <input id="adm-email" type="email" placeholder="Email admin" style={{width:"100%",padding:"10px 12px",borderRadius:10,border:`1px solid ${C.admin}44`,background:"rgba(255,255,255,.08)",color:"#fff",fontSize:13,outline:"none",marginBottom:8,boxSizing:"border-box"}}/>
-            <input id="adm-pwd" type="password" placeholder="Mot de passe" style={{width:"100%",padding:"10px 12px",borderRadius:10,border:`1px solid ${C.admin}44`,background:"rgba(255,255,255,.08)",color:"#fff",fontSize:13,outline:"none",marginBottom:12,boxSizing:"border-box"}}/>
+            <input id="adm-email" type="email" placeholder="Email admin" style={{width:"100%",padding:"10px 12px",borderRadius:10,border:`1px solid ${C.admin}44`,background:"#fff",color:"#111",fontSize:13,outline:"none",marginBottom:8,boxSizing:"border-box"}}/>
+            <input id="adm-pwd" type="password" placeholder="Mot de passe" style={{width:"100%",padding:"10px 12px",borderRadius:10,border:`1px solid ${C.admin}44`,background:"#fff",color:"#111",fontSize:13,outline:"none",marginBottom:12,boxSizing:"border-box"}}/>
             <button onClick={()=>{
               const e=document.getElementById("adm-email")?.value;
               const p=document.getElementById("adm-pwd")?.value;
