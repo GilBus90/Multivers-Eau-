@@ -1637,7 +1637,7 @@ function RelaisApp({oracle,stocks,update,lang,setLang,onBack}){
 
       {tab==="livreurs"&&(
         <div style={{padding:"14px",paddingBottom:80}}>
-          <div style={{fontFamily:"'Poppins',sans-serif",fontSize:18,fontWeight:900,marginBottom:16}}>{lang==="fr"?"Mes Livreurs":"My Drivers"}</div>
+          <div style={{fontFamily:"'Poppins',sans-serif",fontSize:18,fontWeight:900,marginBottom:16,color:"#111"}}>{lang==="fr"?"Mes Livreurs":"My Drivers"}</div>
           {[{id:"L1",nom:"Kofi Mensah",vehicule:"Moto Express",icon:"🏍️",statut:"actif",kyb:true,equip:true,livraisons:47,gains:51.24,quartier:"Segbé",distDepot:"0.8"},
             {id:"L2",nom:"Edem Adzaho",vehicule:"Moto Express",icon:"🏍️",statut:"actif",kyb:true,equip:true,livraisons:31,gains:33.18,quartier:"Adidogomé",distDepot:"1.2"},
             {id:"L3",nom:"Sena Wutor",vehicule:"Petit Tricycle",icon:"🛺",statut:"attente",kyb:false,equip:false,livraisons:0,gains:0,quartier:"Sagbado",distDepot:"2.1"},
@@ -1648,7 +1648,7 @@ function RelaisApp({oracle,stocks,update,lang,setLang,onBack}){
                 <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:l.statut==="attente"?12:0}}>
                   <span style={{fontSize:24}}>{l.icon}</span>
                   <div style={{flex:1}}>
-                    <div style={{fontWeight:700,fontSize:14}}>{l.nom}</div>
+                    <div style={{fontWeight:700,fontSize:14,color:"#111"}}>{l.nom}</div>
                     <div style={{fontSize:11,color:"#333"}}>{l.quartier} · {l.vehicule}</div>
                     <div style={{fontSize:11,color:COL}}>📦 {l.distDepot} km {lang==="fr"?"du dépôt":"from depot"}</div>
                   </div>
@@ -2175,18 +2175,14 @@ export default function MultiversEau(){
   }
 
   const onBack=()=>{
-    setLandingStep("intention");
     setShowInscRelais(false);
     setShowInscLiv(false);
-    if(isAdmin){
-      // Admin: retourne à AdminApp sauf si vient de landing
-      setRole("admin");
-    } else if(prevRole){
-      // Utilisateur normal: retourne au rôle précédent
+    if(prevRole){
       setRole(prevRole);
       setPrevRole(null);
     } else {
-      setRole(null); // retour landing
+      setRole(null);
+      setLandingStep("intention");
     }
   };
 
