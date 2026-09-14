@@ -244,7 +244,7 @@ function usePiAuth(){
 // COMPOSANTS PARTAGÉS
 // ════════════════════════════════════════════════════════════════════════════
 const AppWrap=({children,mw=460})=>(
-  <div style={{background:C.bg,minHeight:"100vh",fontFamily:"'Inter',sans-serif",color:"#111",maxWidth:mw,margin:"0 auto"}}>
+  <div style={{background:"#F0F9FF",minHeight:"100vh",fontFamily:"'Inter',sans-serif",color:"#111",maxWidth:mw,margin:"0 auto"}}>
     <link href={GF} rel="stylesheet"/><style>{GCSS}</style>{children}
   </div>
 );
@@ -375,11 +375,11 @@ function CharteQualite({type="livreur",lang="fr",onAccept}){
         <div style={{fontSize:13,color:"rgba(255,255,255,.7)",marginTop:4}}>Multivers'Eau — {type==="livreur"?lang==="fr"?"Charte du Livreur":"Delivery Driver Charter":lang==="fr"?"Charte du Relais":"Relay Charter"}</div>
       </div>
       <div style={{padding:"24px 18px"}}>
-        <div style={{fontSize:14,color:"#111",lineHeight:1.7,marginBottom:20,padding:"14px 16px",background:C.card,borderRadius:14,border:`1px solid ${C.border}`}}>
+        <div style={{fontSize:14,color:"#111",lineHeight:1.7,marginBottom:20,padding:"14px 16px",background:"#fff",borderRadius:14,border:`1px solid ${C.border}`}}>
           {lang==="fr"?"En rejoignant Multivers'Eau, je m'engage à respecter les engagements suivants pour garantir la qualité du service et la confiance des clients dans tout le Togo.":"By joining Multivers'Eau, I commit to respecting the following commitments to guarantee service quality and customer trust throughout Togo."}
         </div>
         {ENGAGEMENTS.map(e=>(
-          <div key={e.icon} style={{display:"flex",alignItems:"flex-start",gap:14,padding:"16px",marginBottom:12,background:C.card,borderRadius:14,border:`1px solid ${C.border}`}}>
+          <div key={e.icon} style={{display:"flex",alignItems:"flex-start",gap:14,padding:"16px",marginBottom:12,background:"#fff",borderRadius:14,border:`1px solid ${C.border}`}}>
             <span style={{fontSize:26,flexShrink:0}}>{e.icon}</span>
             <div>
               <div style={{fontFamily:"'Poppins',sans-serif",fontWeight:800,color:"#111",fontSize:14,marginBottom:4}}>{lang==="fr"?e.fr:e.en}</div>
@@ -430,7 +430,7 @@ function AcademiePi({lang="fr",onClose}){
           <div style={{fontFamily:"'Poppins',sans-serif",fontSize:20,fontWeight:900,marginBottom:12}}>{lang==="fr"?s.fr:s.en}</div>
           {(s.cfr||s.cen)&&<div style={{fontSize:14,color:"#1E40AF",lineHeight:1.7}}>{lang==="fr"?s.cfr:s.cen}</div>}
           {s.pts&&s.pts.map(p=>(
-            <div key={p.i} style={{display:"flex",alignItems:"flex-start",gap:12,padding:"12px 14px",background:C.card,borderRadius:12,marginBottom:8,textAlign:"left"}}>
+            <div key={p.i} style={{display:"flex",alignItems:"flex-start",gap:12,padding:"12px 14px",background:"#fff",borderRadius:12,marginBottom:8,textAlign:"left"}}>
               <span style={{fontSize:20}}>{p.i}</span>
               <div><div style={{fontWeight:700}}>{lang==="fr"?p.fr:p.en}</div><div style={{fontSize:12,color:"#1E40AF"}}>{lang==="fr"?p.dfr:p.den}</div></div>
             </div>
@@ -1203,7 +1203,7 @@ function ClientApp({oracle,stocks,dec,lang,setLang,onBack}){
                   </div>
                 );
               })}
-              <div style={{background:C.card,borderRadius:16,padding:"14px 16px",margin:"16px 0"}}>
+              <div style={{background:"#fff",borderRadius:16,padding:"14px 16px",margin:"16px 0"}}>
                 {[{l:t.sousTotal,v:`${fmt(subtotal)} FCFA`},{l:t.fraisReseau,v:"π 0,010"}].map(r=>(
                   <div key={r.l} style={{display:"flex",justifyContent:"space-between",marginBottom:8,fontSize:13}}><span style={{color:"#1E40AF"}}>{r.l}</span><span style={{fontWeight:700}}>{r.v}</span></div>
                 ))}
@@ -1220,7 +1220,7 @@ function ClientApp({oracle,stocks,dec,lang,setLang,onBack}){
                 </div>
               </div>
               {payStatus==="loading"?(
-                <div style={{textAlign:"center",padding:"16px",background:C.card,borderRadius:14}}>
+                <div style={{textAlign:"center",padding:"16px",background:"#fff",borderRadius:14}}>
                   <div style={{fontSize:28,marginBottom:8}}>⏳</div>
                   <div style={{color:"#1E40AF"}}>{t.paiementCours}</div>
                 </div>
@@ -1285,7 +1285,7 @@ function LivreurApp({oracle,lang,setLang,onBack}){
               <div style={{width:7,height:7,borderRadius:"50%",background:actif?C.green:C.red,animation:actif?"pulse 2s infinite":"none"}}/>
               <span style={{fontSize:10,fontWeight:700,color:actif?C.green:C.red}}>{actif?(lang==="fr"?"Actif":"Active"):(lang==="fr"?"Hors ligne":"Offline")}</span>
             </div>
-            <button onClick={()=>setLang(l=>l==="fr"?"en":"fr")} style={{background:"rgba(255,255,255,.1)",border:"none",borderRadius:16,padding:"4px 10px",color:"#0C1A2E",fontSize:10,fontWeight:700,cursor:"pointer"}}>{t.lang}</button>
+            <button onClick={()=>setLang(l=>l==="fr"?"en":"fr")} style={{background:"rgba(255,255,255,.1)",border:"none",borderRadius:16,padding:"4px 10px",color:"#fff",fontSize:10,fontWeight:700,cursor:"pointer"}}>{t.lang}</button>
             <button onClick={onBack} style={{background:"rgba(255,255,255,.08)",border:"none",borderRadius:8,padding:"5px 10px",color:"#fff",fontSize:11,cursor:"pointer"}}>{t.retour}</button>
           </div>
         </div>
@@ -1295,7 +1295,7 @@ function LivreurApp({oracle,lang,setLang,onBack}){
         <div style={{padding:"14px",paddingBottom:80}}>
           <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:10,marginBottom:18}}>
             {[{i:"📦",l:lang==="fr"?"Livrées":"Delivered",v:livrees.length,col:C.green},{i:"⏳",l:lang==="fr"?"En attente":"Pending",v:attentes.length,col:C.relais},{i:"💰",l:"Gains π",v:`π${fmtPi(gains)}`,col:COL}].map(k=>(
-              <div key={k.l} style={{background:C.card,borderRadius:14,padding:"12px 10px",textAlign:"center",border:`1px solid ${k.col}22`}}>
+              <div key={k.l} style={{background:"#fff",borderRadius:14,padding:"12px 10px",textAlign:"center",border:`1px solid ${k.col}22`}}>
                 <div style={{fontSize:18}}>{k.i}</div>
                 <div style={{fontFamily:"'Poppins',sans-serif",fontSize:16,fontWeight:900,color:k.col,marginTop:4}}>{k.v}</div>
                 <div style={{fontSize:9,color:"#333",marginTop:2}}>{k.l}</div>
@@ -1305,7 +1305,7 @@ function LivreurApp({oracle,lang,setLang,onBack}){
           {enCours&&(
             <div style={{marginBottom:16}}>
               <div style={{fontSize:10,color:COL,fontWeight:800,letterSpacing:1,marginBottom:8}}>🏍️ {t.courseEnCours.toUpperCase()}</div>
-              <div style={{background:C.card,borderRadius:16,padding:16,border:`2px solid ${COL}`,boxShadow:`0 0 20px ${COL}18`}}>
+              <div style={{background:"#fff",borderRadius:16,padding:16,border:`2px solid ${COL}`,boxShadow:`0 0 20px ${COL}18`}}>
                 <div style={{fontFamily:"'Poppins',sans-serif",fontWeight:900,fontSize:15,marginBottom:4}}>{enCours.client}</div>
                 <div style={{fontSize:12,color:"#333",marginBottom:6}}>📍 {enCours.adresse}</div>
                 {/* Deux distances */}
@@ -1327,7 +1327,7 @@ function LivreurApp({oracle,lang,setLang,onBack}){
             </div>
           )}
           {attentes.map(c=>(
-            <div key={c.id} style={{background:C.card,borderRadius:16,padding:16,marginBottom:10,border:`1px solid ${C.border}`}}>
+            <div key={c.id} style={{background:"#fff",borderRadius:16,padding:16,marginBottom:10,border:`1px solid ${C.border}`}}>
               <div style={{display:"flex",justifyContent:"space-between",marginBottom:10}}>
                 <div><div style={{fontFamily:"'Poppins',sans-serif",fontWeight:800,fontSize:12}}>{c.id}</div><div style={{fontSize:10,color:"#333"}}>{c.heure} · {c.relais}</div></div>
                 <span style={{fontSize:10,fontWeight:700,padding:"3px 10px",borderRadius:14,background:C.relais+"22",color:C.relais}}>⏳ {lang==="fr"?"En attente":"Pending"}</span>
@@ -1361,7 +1361,7 @@ function LivreurApp({oracle,lang,setLang,onBack}){
       {tab==="courses"&&(
         <div style={{padding:"14px",paddingBottom:80}}>
           {courses.map(c=>{const sc=SC(c.statut);return(
-            <div key={c.id} style={{background:C.card,borderRadius:16,padding:16,marginBottom:10,border:`1.5px solid ${c.statut==="en_cours"?COL:C.border}`}}>
+            <div key={c.id} style={{background:"#fff",borderRadius:16,padding:16,marginBottom:10,border:`1.5px solid ${c.statut==="en_cours"?COL:C.border}`}}>
               <div style={{display:"flex",justifyContent:"space-between",marginBottom:8}}>
                 <div><div style={{fontFamily:"'Poppins',sans-serif",fontWeight:800,fontSize:12}}>{c.id}</div><div style={{fontSize:10,color:"#333"}}>{c.heure}</div></div>
                 <span style={{fontSize:10,fontWeight:700,padding:"3px 10px",borderRadius:14,background:`${sc.co}22`,color:sc.co}}>{sc.i} {sc.l}</span>
@@ -1391,7 +1391,7 @@ function LivreurApp({oracle,lang,setLang,onBack}){
             <div style={{fontSize:13,color:"#333",marginTop:4}}>≈ {fmt(gains*oracle.rate)} FCFA · {lang==="fr"?"Oracle CoinGecko":"CoinGecko Oracle"}</div>
           </div>
           {courses.filter(c=>c.statut!=="en_attente").map(c=>(
-            <div key={c.id} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"12px 14px",marginBottom:8,background:C.card,borderRadius:12,border:`1px solid ${C.border}`}}>
+            <div key={c.id} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"12px 14px",marginBottom:8,background:"#fff",borderRadius:12,border:`1px solid ${C.border}`}}>
               <div><div style={{fontFamily:"'Poppins',sans-serif",fontWeight:700,fontSize:12}}>{c.id}</div><div style={{fontSize:11,color:"#333"}}>{c.client} · {c.heure}</div></div>
               <div style={{textAlign:"right"}}>
                 <div style={{fontFamily:"'Poppins',sans-serif",fontSize:15,fontWeight:900,color:c.statut==="livre"?C.green:COL}}>π{fmtPi(c.gainPi)}</div>
@@ -1399,7 +1399,7 @@ function LivreurApp({oracle,lang,setLang,onBack}){
               </div>
             </div>
           ))}
-          <div style={{background:C.card,borderRadius:14,padding:"14px 16px",marginTop:10,border:`1px solid ${C.border}`}}>
+          <div style={{background:"#fff",borderRadius:14,padding:"14px 16px",marginTop:10,border:`1px solid ${C.border}`}}>
             <div style={{fontSize:10,color:"#333",fontWeight:700,marginBottom:8}}>{lang==="fr"?"FRAIS DE LIVRAISON — TARIFS ZONE A (≤15km)":"DELIVERY FEES — ZONE A RATES (≤15km)"}</div>
             {FLOTTE.slice(0,4).map(v=>(
               <div key={v.id} style={{display:"flex",justifyContent:"space-between",fontSize:12,padding:"6px 0",borderTop:`1px solid ${C.border}`}}>
@@ -1499,7 +1499,7 @@ function RelaisApp({oracle,stocks,update,lang,setLang,onBack}){
       <div style={{background:"linear-gradient(160deg,#1A0E00,#2D1800)",padding:"16px 18px 12px",borderBottom:`1px solid ${C.border}`}}>
         <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
           <div>
-            <div style={{fontFamily:"'Poppins',sans-serif",fontSize:17,fontWeight:900}}>🏪 {lang==="fr"?"Dépôt Principal · Segbé":"Main Depot · Segbé"}</div>
+            <div style={{fontFamily:"'Poppins',sans-serif",fontSize:17,fontWeight:900,color:"#fff"}}>🏪 {lang==="fr"?"Dépôt Principal · Segbé":"Main Depot · Segbé"}</div>
             <div style={{display:"flex",alignItems:"center",gap:6,marginTop:2}}>
               <span style={{fontSize:9,fontWeight:700,padding:"2px 8px",borderRadius:8,background:regimeData.color+"22",color:regimeData.color}}>{regimeData.num}. {regimeData.label}</span>
             </div>
@@ -1509,7 +1509,7 @@ function RelaisApp({oracle,stocks,update,lang,setLang,onBack}){
               <div style={{width:7,height:7,borderRadius:"50%",background:ouvert?C.green:C.red,animation:ouvert?"pulse 2s infinite":"none"}}/>
               <span style={{fontSize:10,fontWeight:700,color:ouvert?C.green:C.red}}>{ouvert?(lang==="fr"?"Ouvert":"Open"):(lang==="fr"?"Fermé":"Closed")}</span>
             </div>
-            <button onClick={()=>setLang(l=>l==="fr"?"en":"fr")} style={{background:"rgba(255,255,255,.1)",border:"none",borderRadius:16,padding:"4px 10px",color:"#0C1A2E",fontSize:10,fontWeight:700,cursor:"pointer"}}>{t.lang}</button>
+            <button onClick={()=>setLang(l=>l==="fr"?"en":"fr")} style={{background:"rgba(255,255,255,.1)",border:"none",borderRadius:16,padding:"4px 10px",color:"#fff",fontSize:10,fontWeight:700,cursor:"pointer"}}>{t.lang}</button>
             <button onClick={onBack} style={{background:"rgba(255,255,255,.08)",border:"none",borderRadius:8,padding:"5px 10px",color:"#fff",fontSize:11,cursor:"pointer"}}>{t.retour}</button>
           </div>
         </div>
@@ -1517,14 +1517,14 @@ function RelaisApp({oracle,stocks,update,lang,setLang,onBack}){
 
       {tab==="dashboard"&&(
         <div style={{padding:"14px",paddingBottom:80}}>
-          <div style={{background:C.card,borderRadius:16,padding:"14px 16px",marginBottom:14,border:`1px solid ${COL}44`}}>
+          <div style={{background:"#fff",borderRadius:16,padding:"14px 16px",marginBottom:14,border:`1px solid ${COL}44`}}>
             <div style={{fontSize:10,color:COL,fontWeight:800,marginBottom:6}}>💹 {lang==="fr"?"ORACLE COINGECKO":"COINGECKO ORACLE"}</div>
             <div style={{fontFamily:"'Poppins',sans-serif",fontSize:26,fontWeight:900,color:COL}}>{fmt(oracle.rate)} FCFA</div>
             <div style={{fontSize:12,color:"#333"}}>{lang==="fr"?"pour 1 π":"for 1 π"} · {oracle.status==="live"?"🟢 Live":"🟡 Fallback"}</div>
           </div>
           <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10,marginBottom:14}}>
             {[{i:"🆕",l:lang==="fr"?"Nouvelles":"New",v:cmds.filter(c=>c.statut==="nouvelle").length,col:COL},{i:"✅",l:lang==="fr"?"Livrées":"Delivered",v:cmds.filter(c=>c.statut==="livree").length,col:C.green},{i:"⚠️",l:lang==="fr"?"Alertes":"Alerts",v:alertes,col:C.red},{i:"❌",l:lang==="fr"?"Ruptures":"Out of stock",v:vides,col:C.red}].map(k=>(
-              <div key={k.l} style={{background:C.card,borderRadius:12,padding:"12px 14px",border:`1px solid ${k.col}22`}}>
+              <div key={k.l} style={{background:"#fff",borderRadius:12,padding:"12px 14px",border:`1px solid ${k.col}22`}}>
                 <div style={{fontSize:18}}>{k.i}</div>
                 <div style={{fontFamily:"'Poppins',sans-serif",fontSize:20,fontWeight:900,color:k.col}}>{k.v}</div>
                 <div style={{fontSize:11,color:"#333"}}>{k.l}</div>
@@ -1533,7 +1533,7 @@ function RelaisApp({oracle,stocks,update,lang,setLang,onBack}){
           </div>
           {/* Commandes nouvelles à assigner */}
           {cmds.filter(c=>c.statut==="nouvelle").map(c=>{const sp=calcSplit(c);return(
-            <div key={c.id} style={{background:C.card,borderRadius:14,padding:"14px 16px",marginBottom:10,border:`1px solid ${COL}44`}}>
+            <div key={c.id} style={{background:"#fff",borderRadius:14,padding:"14px 16px",marginBottom:10,border:`1px solid ${COL}44`}}>
               <div style={{display:"flex",justifyContent:"space-between",marginBottom:8}}>
                 <div><div style={{fontWeight:700}}>{c.client}</div><div style={{fontSize:11,color:"#333"}}>{c.id} · {c.distKm} km {lang==="fr"?"du dépôt":"from depot"}</div></div>
                 <div style={{textAlign:"right"}}><div style={{fontFamily:"'Poppins',sans-serif",fontWeight:900,color:COL}}>{fmt(sp.total)} F</div><div style={{fontSize:10,color:"#333"}}>π{fmtPi(sp.total/oracle.rate)}</div></div>
@@ -1551,7 +1551,7 @@ function RelaisApp({oracle,stocks,update,lang,setLang,onBack}){
             const sp=calcSplit(c);
             const sc={nouvelle:{l:lang==="fr"?"Nouvelle":"New",co:COL,i:"🆕"},assignee:{l:lang==="fr"?"Assignée":"Assigned",co:C.livreur,i:"🏍️"},livree:{l:lang==="fr"?"Livrée":"Delivered",co:C.green,i:"✅"}}[c.statut];
             return(
-              <div key={c.id} style={{background:C.card,borderRadius:16,padding:16,marginBottom:10,border:`1px solid ${sc.co}22`}}>
+              <div key={c.id} style={{background:"#fff",borderRadius:16,padding:16,marginBottom:10,border:`1px solid ${sc.co}22`}}>
                 <div style={{display:"flex",justifyContent:"space-between",marginBottom:8}}>
                   <div><div style={{fontFamily:"'Poppins',sans-serif",fontWeight:800,fontSize:12}}>{c.id}</div></div>
                   <span style={{fontSize:10,fontWeight:700,padding:"3px 10px",borderRadius:14,background:`${sc.co}22`,color:sc.co}}>{sc.i} {sc.l}</span>
@@ -1598,7 +1598,7 @@ function RelaisApp({oracle,stocks,update,lang,setLang,onBack}){
                   const sc={rupture:C.red,alerte:C.relais,ok:C.green}[st];
                   const isE=editId===p.id;
                   return(
-                    <div key={p.id} style={{background:C.card,borderRadius:14,padding:"13px 16px",marginBottom:8,border:`1.5px solid ${sq===0?C.red:sq<mn?C.relais:C.border}`,cursor:"pointer"}}
+                    <div key={p.id} style={{background:"#fff",borderRadius:14,padding:"13px 16px",marginBottom:8,border:`1.5px solid ${sq===0?C.red:sq<mn?C.relais:C.border}`,cursor:"pointer"}}
                       onClick={()=>{if(!isE){setEditId(p.id);setEditQty(String(sq));}}}>
                       {isE?(
                         <div onClick={e=>e.stopPropagation()}>
@@ -1644,7 +1644,7 @@ function RelaisApp({oracle,stocks,update,lang,setLang,onBack}){
           ].map(l=>{
             const sc={actif:{c:C.green,l:lang==="fr"?"Actif":"Active"},attente:{c:COL,l:lang==="fr"?"En attente":"Pending"},inactif:{c:C.muted,l:lang==="fr"?"Inactif":"Inactive"}}[l.statut];
             return(
-              <div key={l.id} style={{background:C.card,borderRadius:16,padding:"14px 16px",marginBottom:10,border:`1.5px solid ${l.statut==="attente"?COL+"55":C.border}`}}>
+              <div key={l.id} style={{background:"#fff",borderRadius:16,padding:"14px 16px",marginBottom:10,border:`1.5px solid ${l.statut==="attente"?COL+"55":C.border}`}}>
                 <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:l.statut==="attente"?12:0}}>
                   <span style={{fontSize:24}}>{l.icon}</span>
                   <div style={{flex:1}}>
@@ -1692,7 +1692,7 @@ function RelaisApp({oracle,stocks,update,lang,setLang,onBack}){
             ))}
           </div>
           {/* CA & IMF */}
-          <div style={{background:C.card,borderRadius:14,padding:"16px",marginBottom:14,border:`1px solid ${COL}44`}}>
+          <div style={{background:"#fff",borderRadius:14,padding:"16px",marginBottom:14,border:`1px solid ${COL}44`}}>
             <div style={{fontSize:10,color:COL,fontWeight:800,marginBottom:8}}>📈 {lang==="fr"?"CHIFFRE D'AFFAIRES":"REVENUE"}</div>
             <div style={{fontFamily:"'Poppins',sans-serif",fontSize:28,fontWeight:900,color:COL}}>{fmt(caTotal)} F</div>
             <div style={{display:"flex",justifyContent:"space-between",marginTop:12,padding:"10px 0",borderTop:`1px solid ${C.border}`}}>
@@ -1712,7 +1712,7 @@ function RelaisApp({oracle,stocks,update,lang,setLang,onBack}){
             )}
           </div>
           {/* Tableau 4 régimes */}
-          <div style={{background:C.card,borderRadius:14,padding:"14px 16px",border:`1px solid ${C.border}`}}>
+          <div style={{background:"#fff",borderRadius:14,padding:"14px 16px",border:`1px solid ${C.border}`}}>
             <div style={{fontSize:10,color:"#1E40AF",fontWeight:700,marginBottom:10}}>{lang==="fr"?"TABLEAU DES 4 RÉGIMES OTR TOGO":"4 OTR TOGO TAX REGIMES"}</div>
             {Object.values(REGIMES).map(r=>(
               <div key={r.id} style={{display:"flex",alignItems:"center",gap:10,padding:"8px 0",borderTop:`1px solid ${C.border}`}}>
@@ -1777,7 +1777,7 @@ function AdminApp({oracle,lang,setLang,onBack}){
   ];
 
   return(
-    <div style={{background:C.bg,minHeight:"100vh",fontFamily:"'Inter',sans-serif",color:"#111"}}>
+    <div style={{background:"#F0F9FF",minHeight:"100vh",fontFamily:"'Inter',sans-serif",color:"#111"}}>
       <link href={GF} rel="stylesheet"/><style>{GCSS}</style>
       <Toast data={toast}/>
       <div style={{display:"flex",flexDirection:"column",minHeight:"100vh"}}>
@@ -1842,7 +1842,7 @@ function AdminApp({oracle,lang,setLang,onBack}){
               <div style={{color:"#333",fontSize:13,marginBottom:18}}>{new Date().toLocaleDateString(lang==="fr"?"fr-FR":"en-GB",{weekday:"long",day:"numeric",month:"long",year:"numeric"})}</div>
               <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:12,marginBottom:20}}>
                 {[{i:"📦",l:lang==="fr"?"Commandes/jour":"Orders/day",v:"42",col:COL},{i:"💧",l:"Pi collecté",v:`π${fmtPi(totalPi)}`,col:COL},{i:"💰",l:lang==="fr"?"Commission Admin":"Admin commission",v:`π${fmtPi(adminPi)}`,col:C.relais},{i:"🌍",l:lang==="fr"?"Relais actifs":"Active relays",v:`${RELAIS.filter(r=>r.actif).length}/${RELAIS.length}`,col:C.green}].map(k=>(
-                  <div key={k.l} style={{background:C.card,borderRadius:14,padding:"16px 18px",border:`1px solid ${C.border}`,position:"relative",overflow:"hidden"}}>
+                  <div key={k.l} style={{background:"#fff",borderRadius:14,padding:"16px 18px",border:`1px solid ${C.border}`,position:"relative",overflow:"hidden"}}>
                     <div style={{position:"absolute",top:0,right:0,width:60,height:60,background:`radial-gradient(circle at 100% 0%,${k.col}18,transparent 70%)`}}/>
                     <div style={{fontSize:11,color:"#333",marginBottom:6}}>{k.i} {k.l}</div>
                     <div style={{fontFamily:"'Poppins',sans-serif",fontSize:22,fontWeight:900,color:k.col}}>{k.v}</div>
@@ -1850,7 +1850,7 @@ function AdminApp({oracle,lang,setLang,onBack}){
                 ))}
               </div>
               {/* Split du jour */}
-              <div style={{background:C.card,borderRadius:16,padding:"18px 20px",marginBottom:18,border:`1px solid ${C.border}`}}>
+              <div style={{background:"#fff",borderRadius:16,padding:"18px 20px",marginBottom:18,border:`1px solid ${C.border}`}}>
                 <div style={{fontFamily:"'Poppins',sans-serif",fontSize:14,fontWeight:800,marginBottom:14}}>⚡ {lang==="fr"?"Répartition Split-Payment":"Split-Payment Distribution"}</div>
                 {[{l:lang==="fr"?"Relais (Achat + 90% Marge)":"Relay (Cost + 90% Margin)",v:`π${fmtPi(totalPi*.80)}`,pct:80,col:C.relais},
                   {l:lang==="fr"?"Livreurs (90% Livraison)":"Drivers (90% Delivery)",v:`π${fmtPi(totalPi*.10)}`,pct:10,col:C.livreur},
@@ -1876,7 +1876,7 @@ function AdminApp({oracle,lang,setLang,onBack}){
               <div style={{color:"#333",fontSize:13,marginBottom:18}}>{lang==="fr"?"Double verrou · Étape finale Super Admin":"Double lock · Final Super Admin step"}</div>
               <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:12,marginBottom:20}}>
                 {[{l:lang==="fr"?"En attente":"Pending",v:CANDIDATS.filter(c=>!decisions[c.id]).length,col:C.relais},{l:lang==="fr"?"Validés":"Validated",v:Object.values(decisions).filter(d=>d==="valide").length,col:C.green},{l:lang==="fr"?"Rejetés":"Rejected",v:Object.values(decisions).filter(d=>d==="rejete").length,col:C.red}].map(k=>(
-                  <div key={k.l} style={{background:C.card,borderRadius:12,padding:"14px 16px",border:`1px solid ${k.col}33`}}>
+                  <div key={k.l} style={{background:"#fff",borderRadius:12,padding:"14px 16px",border:`1px solid ${k.col}33`}}>
                     <div style={{fontFamily:"'Poppins',sans-serif",fontSize:24,fontWeight:900,color:k.col}}>{k.v}</div>
                     <div style={{fontSize:12,color:"#333"}}>{k.l}</div>
                   </div>
@@ -1886,7 +1886,7 @@ function AdminApp({oracle,lang,setLang,onBack}){
                 const dec=decisions[c.id];
                 const dc=dec==="valide"?C.green:dec==="rejete"?C.red:COL;
                 return(
-                  <div key={c.id} style={{background:C.card,borderRadius:16,padding:"18px 20px",marginBottom:14,border:`1.5px solid ${dc}33`,opacity:dec?.7:1}}>
+                  <div key={c.id} style={{background:"#fff",borderRadius:16,padding:"18px 20px",marginBottom:14,border:`1.5px solid ${dc}33`,opacity:dec?.7:1}}>
                     <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:12}}>
                       <div>
                         <div style={{fontFamily:"'Poppins',sans-serif",fontSize:16,fontWeight:900,color:"#111"}}>{c.nom}</div>
@@ -1974,7 +1974,7 @@ function AdminApp({oracle,lang,setLang,onBack}){
                 )}
               </div>
               {/* Mode Manuel */}
-              <div style={{background:C.card,borderRadius:16,padding:"16px 18px",marginBottom:18,border:`1.5px solid ${modeManuel?C.relais+"66":C.border}`}}>
+              <div style={{background:"#fff",borderRadius:16,padding:"16px 18px",marginBottom:18,border:`1.5px solid ${modeManuel?C.relais+"66":C.border}`}}>
                 <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:modeManuel?16:0}}>
                   <div>
                     <div style={{fontWeight:700,color:modeManuel?C.relais:C.text}}>⚙️ {lang==="fr"?"Mode Taux Fixe Manuel":"Manual Fixed Rate Mode"}</div>
@@ -2015,7 +2015,7 @@ function AdminApp({oracle,lang,setLang,onBack}){
               <div style={{fontFamily:"'Poppins',sans-serif",fontSize:20,fontWeight:900,marginBottom:4,color:"#111"}}>🌍 {lang==="fr"?"Réseau des Relais":"Relay Network"}</div>
               <div style={{color:"#333",fontSize:13,marginBottom:18}}>6 {lang==="fr"?"régions":"regions"} · {RELAIS.filter(r=>r.actif).length} {lang==="fr"?"actifs":"active"}</div>
               {/* 3 Hubs */}
-              <div style={{background:C.card,borderRadius:16,padding:"16px 18px",marginBottom:18,border:`1px solid ${COL}44`}}>
+              <div style={{background:"#fff",borderRadius:16,padding:"16px 18px",marginBottom:18,border:`1px solid ${COL}44`}}>
                 <div style={{fontFamily:"'Poppins',sans-serif",fontSize:14,fontWeight:800,color:COL,marginBottom:12}}>🗺️ {lang==="fr"?"Stratégie 3 Hubs — Grand Lomé":"3 Hubs Strategy — Grand Lomé"}</div>
                 {[{icon:"🏠",nom:"Hub Principal Segbé",communes:["Golfe 7","Golfe 5","Golfe 4","Golfe 3","Agoè-Nyivé 1","Agoè-Nyivé 3","Agoè-Nyivé 5"],color:COL},
                   {icon:"🏪",nom:"Mini-Relais Bè",communes:["Golfe 1","Golfe 2","Golfe 6"],color:C.relais},
@@ -2034,7 +2034,7 @@ function AdminApp({oracle,lang,setLang,onBack}){
               </div>
               {/* Table relais */}
               {RELAIS.map(r=>(
-                <div key={r.n} style={{background:C.card,borderRadius:14,padding:"14px 16px",marginBottom:10,border:`1px solid ${r.actif?C.border:C.muted+"22"}`}}>
+                <div key={r.n} style={{background:"#fff",borderRadius:14,padding:"14px 16px",marginBottom:10,border:`1px solid ${r.actif?C.border:C.muted+"22"}`}}>
                   <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:10}}>
                     <div><div style={{fontFamily:"'Poppins',sans-serif",fontWeight:800,fontSize:14}}>{r.n}</div><div style={{fontSize:12,color:"#1E40AF"}}>{r.r} · {r.regime}</div></div>
                     <span style={{fontSize:11,fontWeight:700,padding:"4px 10px",borderRadius:14,background:r.actif?C.green+"22":C.muted+"22",color:r.actif?C.green:C.muted}}>{r.actif?"● Actif":"○ Inactif"}</span>
@@ -2057,7 +2057,7 @@ function AdminApp({oracle,lang,setLang,onBack}){
               <div style={{fontFamily:"'Poppins',sans-serif",fontSize:20,fontWeight:900,marginBottom:4,color:"#111"}}>💰 {lang==="fr"?"Gestion des Prix Planchers":"Floor Price Management"}</div>
               <div style={{color:"#333",fontSize:13,marginBottom:18}}>{lang==="fr"?"Arrêté interministériel Togo · 110 FCFA/tonne-km (groupage) · Décembre 2024":"Togo ministerial order · 110 FCFA/tonne-km (groupage) · December 2024"}</div>
               {/* Tableau planchers produits phares */}
-              <div style={{background:C.card,borderRadius:16,padding:"16px 18px",border:`1px solid ${C.border}`}}>
+              <div style={{background:"#fff",borderRadius:16,padding:"16px 18px",border:`1px solid ${C.border}`}}>
                 <div style={{fontFamily:"'Poppins',sans-serif",fontSize:14,fontWeight:800,marginBottom:14,color:"#111"}}>📋 {lang==="fr"?"Planchers régionaux — tous produits":"Regional floors — all products"}</div>
                 <div style={{overflowX:"auto"}}>
                   <table style={{width:"100%",borderCollapse:"collapse",fontSize:12}}>
