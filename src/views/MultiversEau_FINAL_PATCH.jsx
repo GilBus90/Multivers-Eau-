@@ -1104,7 +1104,7 @@ function ClientApp({oracle,stocks,dec,lang,setLang,onBack}){
           <div style={{display:"flex",gap:8,alignItems:"center"}}>
             <OracleBadge oracle={oracle} lang={lang} compact/>
             <button onClick={()=>setLang(l=>l==="fr"?"en":"fr")} style={{background:"rgba(255,255,255,.1)",border:"1px solid rgba(255,255,255,.2)",borderRadius:16,padding:"5px 10px",color:"#fff",fontSize:11,fontWeight:700,cursor:"pointer"}}>{t.lang}</button>
-            <button onClick={onBack} style={{background:"rgba(255,255,255,.08)",border:"none",borderRadius:8,padding:"5px 10px",color:"#fff",fontSize:11,cursor:"pointer"}}>{t.retour}</button>
+            <button onClick={()=>tab==="panier"?setTab("catalogue"):onBack()} style={{background:"rgba(255,255,255,.08)",border:"none",borderRadius:8,padding:"5px 10px",color:"#fff",fontSize:11,cursor:"pointer"}}>{t.retour}</button>
           </div>
         </div>
         {/* Académie Pi */}
@@ -1286,7 +1286,7 @@ function LivreurApp({oracle,lang,setLang,onBack}){
               <span style={{fontSize:10,fontWeight:700,color:actif?C.green:C.red}}>{actif?(lang==="fr"?"Actif":"Active"):(lang==="fr"?"Hors ligne":"Offline")}</span>
             </div>
             <button onClick={()=>setLang(l=>l==="fr"?"en":"fr")} style={{background:"rgba(255,255,255,.1)",border:"none",borderRadius:16,padding:"4px 10px",color:"#fff",fontSize:10,fontWeight:700,cursor:"pointer"}}>{t.lang}</button>
-            <button onClick={onBack} style={{background:"rgba(255,255,255,.08)",border:"none",borderRadius:8,padding:"5px 10px",color:"#fff",fontSize:11,cursor:"pointer"}}>{t.retour}</button>
+            <button onClick={()=>tab==="panier"?setTab("catalogue"):onBack()} style={{background:"rgba(255,255,255,.08)",border:"none",borderRadius:8,padding:"5px 10px",color:"#fff",fontSize:11,cursor:"pointer"}}>{t.retour}</button>
           </div>
         </div>
       </div>
@@ -1462,7 +1462,7 @@ function RelaisApp({oracle,stocks,update,lang,setLang,onBack}){
       <div style={{background:"linear-gradient(160deg,#1A0E00,#2D1800)",padding:"28px 20px 24px",textAlign:"center"}}>
         <div style={{fontSize:48,marginBottom:12}}>💼</div>
         <div style={{fontFamily:"'Poppins',sans-serif",fontSize:20,fontWeight:900,marginBottom:4,color:"#fff"}}>{lang==="fr"?"Choisissez votre régime fiscal":"Choose your tax regime"}</div>
-        <div style={{fontSize:13,color:"#1E40AF"}}>{lang==="fr"?"Ce choix définit votre gestion comptable dans l'app":"This defines your accounting management in the app"}</div>
+        <div style={{fontSize:13,color:"rgba(255,255,255,.7)"}}>{lang==="fr"?"Ce choix définit votre gestion comptable dans l'app":"This defines your accounting management in the app"}</div>
       </div>
       <div style={{padding:"20px 18px"}}>
         {Object.values(REGIMES).map(r=>(
@@ -1510,7 +1510,7 @@ function RelaisApp({oracle,stocks,update,lang,setLang,onBack}){
               <span style={{fontSize:10,fontWeight:700,color:ouvert?C.green:C.red}}>{ouvert?(lang==="fr"?"Ouvert":"Open"):(lang==="fr"?"Fermé":"Closed")}</span>
             </div>
             <button onClick={()=>setLang(l=>l==="fr"?"en":"fr")} style={{background:"rgba(255,255,255,.1)",border:"none",borderRadius:16,padding:"4px 10px",color:"#fff",fontSize:10,fontWeight:700,cursor:"pointer"}}>{t.lang}</button>
-            <button onClick={onBack} style={{background:"rgba(255,255,255,.08)",border:"none",borderRadius:8,padding:"5px 10px",color:"#fff",fontSize:11,cursor:"pointer"}}>{t.retour}</button>
+            <button onClick={()=>tab==="dashboard"?onBack():setTab("dashboard")} style={{background:"rgba(255,255,255,.08)",border:"none",borderRadius:8,padding:"5px 10px",color:"#fff",fontSize:11,cursor:"pointer"}}>{t.retour}</button>
           </div>
         </div>
       </div>
@@ -1977,7 +1977,7 @@ function AdminApp({oracle,lang,setLang,onBack}){
               <div style={{background:"#fff",borderRadius:16,padding:"16px 18px",marginBottom:18,border:`1.5px solid ${modeManuel?C.relais+"66":C.border}`}}>
                 <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:modeManuel?16:0}}>
                   <div>
-                    <div style={{fontWeight:700,color:modeManuel?C.relais:C.text}}>⚙️ {lang==="fr"?"Mode Taux Fixe Manuel":"Manual Fixed Rate Mode"}</div>
+                    <div style={{fontWeight:700,color:modeManuel?C.relais:"#111"}}>⚙️ {lang==="fr"?"Mode Taux Fixe Manuel":"Manual Fixed Rate Mode"}</div>
                     <div style={{fontSize:11,color:"#333",marginTop:2}}>{lang==="fr"?"En cas de coupure CoinGecko — protection des relais":"In case of CoinGecko outage — relay protection"}</div>
                   </div>
                   <div onClick={()=>setModeManuel(m=>!m)} style={{width:50,height:26,borderRadius:13,background:modeManuel?C.relais:C.border,position:"relative",cursor:"pointer",transition:"background .2s",flexShrink:0}}>
